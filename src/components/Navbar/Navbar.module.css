@@ -1,0 +1,23 @@
+.header {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 65px;
+}
+
+.logo {
+    height: 100%;
+    align-content: center;
+}
+
+.logo > img {
+    height: 65%;
+}
+
+.shoppingCart {
+    font-size: 1.7rem;
+    color: #393536;
+    cursor: pointer;
+}
