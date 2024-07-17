@@ -18,6 +18,7 @@ export const StoreSection = ({ stateGet, sectionTitle }) => {
           resMenClothing.map((product) => (
             <ProductCard
               key={product.id}
+              id={product.id}
               category={product.category}
               image={product.image}
               name={product.title}
