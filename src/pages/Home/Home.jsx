@@ -1,15 +1,11 @@
-import { useContext, useEffect } from "react";
 import mainModel from "../../assets/images/main-model.png";
 import styles from "./Home.module.css";
+import { StoreSection } from "../../components/StoreSection/StoreSection";
+import { useContext } from "react";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 
 export const Home = () => {
-
-  const { responseGet: responseProducts, loadingGet: loadingProducts, errorGet } = useContext(ProductsContext);
-
-  useEffect(() => {
-    console.log(responseProducts);
-  }, [responseProducts])
+  const { stateGetMen, stateGetWoman } = useContext(ProductsContext);
 
   return (
     <div className={styles.boxHome}>
@@ -25,14 +21,16 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* LISTA DE PRODUCTOS */}
-      <section>
-        {
-          // loadingProducts ? (<div>Cargando :v</div>): (
+      <div className={styles.boxSections}>
+        {/* LISTA DE PRODUCTOS DE HOMBRE */}
+        <StoreSection stateGet={stateGetMen} sectionTitle="MEN'S CLOTHING" />
 
-          // )
-        }
-      </section>
+        {/* LISTA DE PRODUCTOS DE MUJER */}
+        <StoreSection
+          stateGet={stateGetWoman}
+          sectionTitle="WOMEN'S CLOTHING"
+        />
+      </div>
     </div>
   );
 };

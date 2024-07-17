@@ -2,14 +2,14 @@ import styles from "./ProductCard.module.css";
 
 export const ProductCard = ({ image, category, name, price }) => {
     return (
-        <div>
-            <div>
+        <div className={styles.boxProduct}>
+            <div className={styles.boxImage}>
                 <img src={image} alt={name} />
             </div>
-            <div>
-                <p>{category}</p>
-                <h2>{name}</h2>
-                <p>{price}</p>
+            <div className={styles.boxText}>
+                <p className={styles.productCategory}>{category}</p>
+                <h2 className={styles.productName}>{name}</h2>
+                <p className={styles.productPrice}>$ {price}</p>
             </div>
         </div>
     );
