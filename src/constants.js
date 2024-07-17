@@ -1,5 +1,5 @@
 // URL DEL TOTAL DE PRODUCTOS
-export const URL_OF_ALL_PRODUCTS = "https://fakestoreapi.com/products";
+export const URL_PRODUCTS = "https://fakestoreapi.com/products";
 
 // URL -> ROPA DE HOMBRE
 export const URL_MEN_CLOTHING = "https://fakestoreapi.com/products/category/men's%20clothing";
