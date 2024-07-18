@@ -5,7 +5,14 @@ import { useContext } from "react";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 
 export const Home = () => {
-  const { stateGetMen, stateGetWoman } = useContext(ProductsContext);
+  const {
+    responseGet: responseProducts,
+    loadingGet: loadingProducts,
+    errorGet,
+  } = useContext(ProductsContext);
+
+  const menClothingList = responseProducts.filter((product) => product.category === "men's clothing");
+  const womenClothingList = responseProducts.filter((product) => product.category === "women's clothing");
 
   return (
     <div className={styles.boxHome}>
@@ -21,16 +28,23 @@ export const Home = () => {
         </div>
       </section>
 
-      <div className={styles.boxSections}>
-        {/* LISTA DE PRODUCTOS DE HOMBRE */}
-        <StoreSection stateGet={stateGetMen} sectionTitle="MEN'S CLOTHING" />
+      {loadingProducts ? (
+        <div>Cargando :v</div>
+      ) : (
+        <div className={styles.boxSections}>
+          {/* LISTA DE PRODUCTOS DE HOMBRE */}
+          <StoreSection
+            productList={menClothingList}
+            sectionTitle="MEN'S CLOTHING"
+          />
 
-        {/* LISTA DE PRODUCTOS DE MUJER */}
-        <StoreSection
-          stateGet={stateGetWoman}
-          sectionTitle="WOMEN'S CLOTHING"
-        />
-      </div>
+          {/* LISTA DE PRODUCTOS DE MUJER */}
+          <StoreSection
+            productList={womenClothingList}
+            sectionTitle="WOMEN'S CLOTHING"
+          />
+        </div>
+      )}
     </div>
   );
 };

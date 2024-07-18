@@ -10,7 +10,7 @@ export const ProductDetails = () => {
     loadingGet,
     errorGet,
   } = useGet(`${URL_PRODUCTS}/${id}`);
-  console.log(productData);
+
   return loadingGet ? (
     <div>Cargando :v</div>
   ) : (

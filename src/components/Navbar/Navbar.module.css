@@ -25,10 +25,34 @@
     height: 55%;
 }
 
+.boxShoppingCart {
+    position: relative;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
 .shoppingCart {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     color: #393536;
     cursor: pointer;
+    /* border: 1px solid blue; */
+}
+
+.quantityProducts {
+    position: absolute;
+    bottom: -8px;
+    right: -5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    align-content: center;
+    color: white;
+    background-color: red;
+    font-size: .8rem;
+    user-select: none;
 }
 
 @keyframes animation-header {
