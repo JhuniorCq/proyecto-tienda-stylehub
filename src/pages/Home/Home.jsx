@@ -3,6 +3,7 @@ import styles from "./Home.module.css";
 import { StoreSection } from "../../components/StoreSection/StoreSection";
 import { useContext } from "react";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
+import { PRODUCT_CATEGORIES } from "../../constants";
 
 export const Home = () => {
   const {
@@ -11,8 +12,8 @@ export const Home = () => {
     errorGet,
   } = useContext(ProductsContext);
 
-  const menClothingList = responseProducts.filter((product) => product.category === "men's clothing");
-  const womenClothingList = responseProducts.filter((product) => product.category === "women's clothing");
+  const menClothingList = responseProducts.filter((product) => product.category === PRODUCT_CATEGORIES.menClothing);
+  const womenClothingList = responseProducts.filter((product) => product.category === PRODUCT_CATEGORIES.womenClothing);
 
   return (
     <div className={styles.boxHome}>

@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { FaEye } from "react-icons/fa6";
 import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 
 export const ProductCard = ({ id, image, category, name, price }) => {
-  const [showOptions, setShowOptions] = useState(false);
-
   const navigate = useNavigate();
-
-  const saludar = () => {
-    console.log("Hola :v");
-  };
+  const [showOptions, setShowOptions] = useState(false);
+  const {
+    shoppingCartProducts,
+    addShoppingCart,
+    removeShoppingCart,
+    increaseProductQuantity,
+    reduceProductQuantity,
+  } = useContext(ShoppingCartContext);
 
   return (
     <div
@@ -37,7 +40,7 @@ export const ProductCard = ({ id, image, category, name, price }) => {
       >
         <button
           className={`${styles.addButton} ${styles.optionButton}`}
-          onClick={saludar}
+          onClick={() => addShoppingCart({ id, name, image, price })}
         >
           <IoMdAdd />
         </button>
