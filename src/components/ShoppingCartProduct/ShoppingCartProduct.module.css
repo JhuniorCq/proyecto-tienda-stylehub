@@ -72,7 +72,7 @@
 
 .boxProductOptions {
     display: flex;
-    border: 1px solid gray;
+    border: 1px solid rgb(220, 220, 220);
 }
 
 .boxProductOptions > * {
@@ -86,8 +86,8 @@
 }
 
 .quantityProduct {
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    border-left: 1px solid rgb(220, 220, 220);;
+    border-right: 1px solid rgb(220, 220, 220);;
     font-size: .8rem;
     font-weight: bold;
 }

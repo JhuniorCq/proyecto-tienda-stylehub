@@ -50,8 +50,8 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
       <div className={styles.boxFinalCartResult}>
         <div>
           <p className={styles.totalCost}>TOTAL: $ {totalCost}</p>
-          <button className={styles.deleteAllButton}>
-            <FaTrashAlt onClick={removeAllShoppingCart} />
+          <button onClick={removeAllShoppingCart} className={styles.deleteAllButton}>
+            <FaTrashAlt />
           </button>
         </div>
         <div>
