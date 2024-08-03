@@ -1,28 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AiOutlineShopping } from "react-icons/ai";
 import logo from "../../assets/images/logo.png";
 import styles from "./Navbar.module.css";
 import { ShoppingCart } from "../ShoppingCart/ShoppingCart";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 
 export const Navbar = () => {
   const {
     shoppingCartProducts,
-    addShoppingCart,
-    removeShoppingCart,
-    increaseProductQuantity,
-    reduceProductQuantity,
   } = useContext(ShoppingCartContext);
   const [showShoppingCart, setShowShoppingCart] = useState(false);
+
+  const location = useLocation();
+  const [isStart, setIsStart] = useState(true);
 
   const appearShoppingCart = () => {
     setShowShoppingCart(!showShoppingCart);
   };
 
+  useEffect(() => {
+    if(location.pathname !== "/") setIsStart(false);
+    else setIsStart(true);
+  }, [location.pathname])
+
   return (
     <>
-      <header className={styles.header}>
+      <header className={isStart ? `${styles.header} ${styles.startBackgroundColor}`: `${styles.header}`}>
         <Link className={styles.logo} to="/">
           <img src={logo} alt="Logo" />
         </Link>

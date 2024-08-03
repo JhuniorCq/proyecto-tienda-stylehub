@@ -1,0 +1,181 @@
+.boxStart {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 62px);
+  background-color: #f2e5e0;
+  padding: 0 90px;
+}
+
+.boxText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.boxText .preTitle {
+  font-size: 1.2rem;
+}
+
+.boxText .storeName {
+  font-size: 7rem;
+  text-shadow: -10px 0px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.boxText .storeSlogan {
+  font-size: 1.6rem;
+}
+
+.boxImage {
+  height: 80vh;
+}
+
+.boxImage > img {
+  height: 100%;
+  mask-image: linear-gradient(black 92%, transparent);
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .boxStart {
+    gap: 20px;
+  }
+
+  .boxText .preTitle {
+    font-size: 1.1rem;
+  }
+
+  .boxText .storeName {
+    font-size: 6rem;
+  }
+
+  .boxText .storeSlogan {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .boxStart {
+    padding: 0 60px;
+    gap: 20px;
+  }
+
+  .boxText {
+    padding-left: 40px;
+  }
+
+  .boxText .preTitle {
+    font-size: 1.1rem;
+  }
+
+  .boxText .storeName {
+    font-size: 6rem;
+  }
+
+  .boxText .storeSlogan {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .boxStart {
+    padding: 0 60px;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .boxText .preTitle {
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  .boxText .storeName {
+    font-size: 6rem;
+  }
+
+  .boxText .storeSlogan {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .boxImage {
+    height: 52vh;
+    margin-top: 25px;
+  }
+  
+  .boxImage > img {
+    height: 100%;
+    mask-image: linear-gradient(black 92%, transparent);
+  }
+  
+}
+
+@media (min-width: 451px) and (max-width: 575px) {
+  .boxStart {
+    padding: 0 60px;
+    gap: 50px;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .boxText .preTitle {
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  .boxText .storeName {
+    text-align: center;
+    font-size: 4.5rem;
+  }
+
+  .boxText .storeSlogan {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .boxImage {
+    height: 48vh;
+    margin-top: 25px;
+  }
+  
+  .boxImage > img {
+    height: 100%;
+    mask-image: linear-gradient(black 92%, transparent);
+  }
+}
+
+@media (max-width: 450px) {
+  .boxStart {
+    padding: 0 30px;
+    gap: 50px;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .boxText .preTitle {
+    font-size: .9rem;
+    text-align: right;
+  }
+
+  .boxText .storeName {
+    text-align: center;
+    font-size: 3.5rem;
+  }
+
+  .boxText .storeSlogan {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .boxImage {
+    height: 45vh;
+    margin-top: 35px;
+  }
+  
+  .boxImage > img {
+    height: 100%;
+    mask-image: linear-gradient(black 92%, transparent);
+  }
+}

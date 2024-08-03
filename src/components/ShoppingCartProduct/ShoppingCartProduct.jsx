@@ -2,12 +2,11 @@ import { RiDeleteBackFill } from "react-icons/ri";
 import styles from "./ShoppingCartProduct.module.css";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
+import { roundToDecimals } from "../../logic";
 
 export const ShoppingCartProduct = ({ id, name, image, price, quantity }) => {
 
   const {
-    shoppingCartProducts,
-    addShoppingCart,
     removeShoppingCart,
     increaseProductQuantity,
     reduceProductQuantity,
@@ -30,7 +29,7 @@ export const ShoppingCartProduct = ({ id, name, image, price, quantity }) => {
             <button onClick={() => increaseProductQuantity(id)}>+</button>
           </div>
           <p className={styles.unitPrice}>$ {price}</p>
-          <p className={styles.totalPrice}>$ {price * quantity}</p>
+          <p className={styles.totalPrice}>$ {roundToDecimals(price * quantity, 2)}</p>
         </div>
       </div>
     </div>

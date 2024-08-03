@@ -4,14 +4,11 @@ import styles from "./ShoppingCart.module.css";
 import { ShoppingCartProduct } from "../ShoppingCartProduct/ShoppingCartProduct";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
+import { roundToDecimals } from "../../logic";
 
 export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
   const {
     shoppingCartProducts,
-    addShoppingCart,
-    removeShoppingCart,
-    increaseProductQuantity,
-    reduceProductQuantity,
     removeAllShoppingCart
   } = useContext(ShoppingCartContext);
 
@@ -49,7 +46,7 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
       </div>
       <div className={styles.boxFinalCartResult}>
         <div>
-          <p className={styles.totalCost}>TOTAL: $ {totalCost}</p>
+          <p className={styles.totalCost}>TOTAL: $ {roundToDecimals(totalCost, 2)}</p>
           <button onClick={removeAllShoppingCart} className={styles.deleteAllButton}>
             <FaTrashAlt />
           </button>

@@ -1,6 +1,5 @@
 
 .boxStoreSection {
-    /* border: 1px solid brown; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,9 +7,6 @@
 }
 
 .boxProducts {
-    /* border: 1px solid orange; */
-    /* width: 100%; */
-    /* padding: 40px 0; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -18,5 +14,13 @@
 }
 
 .sectionTitle {
+    text-align: center;
     font-size: 3rem;
+}
+
+@media (max-width: 450px) {
+    .sectionTitle {
+        text-align: center;
+        font-size: 2.5rem;
+    }
 }

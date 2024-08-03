@@ -5,6 +5,7 @@ import { URL_PRODUCTS } from "../../constants";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
+import { Loader } from "../../components/Loader/Loader";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -14,16 +15,11 @@ export const ProductDetails = () => {
   const productData = responseProducts.find(product => product.id === Number(id));
 
   const {
-    shoppingCartProducts,
     addShoppingCart,
-    removeShoppingCart,
-    increaseProductQuantity,
-    reduceProductQuantity,
-    removeAllShoppingCart
   } = useContext(ShoppingCartContext);
 
   return loadingProducts ? (
-    <div>Cargando :v</div>
+    <Loader />
   ) : (
     <div className={styles.boxProductDetails}>
       <div className={styles.boxProduct}>

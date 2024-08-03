@@ -9,11 +9,7 @@ export const ProductCard = ({ id, image, category, name, price }) => {
   const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
   const {
-    shoppingCartProducts,
-    addShoppingCart,
-    removeShoppingCart,
-    increaseProductQuantity,
-    reduceProductQuantity,
+    addShoppingCart
   } = useContext(ShoppingCartContext);
 
   return (
