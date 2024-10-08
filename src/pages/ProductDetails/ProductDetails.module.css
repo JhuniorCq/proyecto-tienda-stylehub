@@ -61,6 +61,11 @@
   background-color: rgb(17, 17, 17);
 }
 
+.productDisabled {
+  filter: blur(0.1rem) !important;
+  cursor: default;
+}
+
 @media (min-width: 992px) and (max-width: 1199px) {
   .boxProduct {
     width: 75%;
@@ -77,7 +82,7 @@
     width: 85%;
     gap: 50px;
   }
-  
+
   .boxImage {
     height: 73%;
   }

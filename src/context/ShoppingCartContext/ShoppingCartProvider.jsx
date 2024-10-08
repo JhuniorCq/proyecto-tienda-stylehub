@@ -1,12 +1,13 @@
 import { useReducer } from "react";
 import { ShoppingCartContext } from "./ShoppingCartContext";
-import { SHOPPING_CART_ACTIONS } from "../../constants";
+import { SHOPPING_CART_ACTIONS } from "../../utils/constants";
 
 export const ShoppingCartProvider = ({ children }) => {
   const shoppingCartReducer = (state, action) => {
     switch (action.type) {
       case SHOPPING_CART_ACTIONS.addProduct: {
-        if(state.some(product => product.id === action.payload.id)) return state;
+        if (state.some((product) => product.id === action.payload.id))
+          return state;
         return [...state, action.payload];
       }
       case SHOPPING_CART_ACTIONS.removeProduct: {
@@ -20,7 +21,8 @@ export const ShoppingCartProvider = ({ children }) => {
       }
       case SHOPPING_CART_ACTIONS.reduceProduct: {
         return state.map((product) => {
-          if (product.id === action.payload && product.quantity > 1) product.quantity--;
+          if (product.id === action.payload && product.quantity > 1)
+            product.quantity--;
           return product;
         });
       }
@@ -78,8 +80,8 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const removeAllShoppingCart = () => {
     const action = {
-      type: SHOPPING_CART_ACTIONS.removeAllProducts
-    }
+      type: SHOPPING_CART_ACTIONS.removeAllProducts,
+    };
 
     shoppingCartDispatch(action);
   };
@@ -92,7 +94,7 @@ export const ShoppingCartProvider = ({ children }) => {
         removeShoppingCart,
         increaseProductQuantity,
         reduceProductQuantity,
-        removeAllShoppingCart
+        removeAllShoppingCart,
       }}
     >
       {children}

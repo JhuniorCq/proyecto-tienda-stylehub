@@ -1,13 +1,13 @@
 import { ProductsContext } from "./ProductsContext";
-import { useGet } from "../../hooks/useGet"
-import { URL_PRODUCTS } from "../../constants";
+import { useGet } from "../../hooks/useGet";
+import { URL_PRODUCTS } from "../../utils/constants";
 
 export const ProductsProvider = ({ children }) => {
-    const stateProducts = useGet(URL_PRODUCTS);
+  const stateProducts = useGet(URL_PRODUCTS);
 
-    return (
-        <ProductsContext.Provider value={stateProducts}>
-            {children}
-        </ProductsContext.Provider>
-    );
+  return (
+    <ProductsContext.Provider value={stateProducts}>
+      {children}
+    </ProductsContext.Provider>
+  );
 };

@@ -4,13 +4,43 @@ import { FaEye } from "react-icons/fa6";
 import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
+import { addOrRemoveProductToast } from "../../utils/notifications/toasts";
+// import { cartProductsExist } from "../../utils/cartProductsExist";
 
 export const ProductCard = ({ id, image, category, name, price }) => {
   const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
-  const {
-    addShoppingCart
-  } = useContext(ShoppingCartContext);
+  const { shoppingCartProducts, addShoppingCart } =
+    useContext(ShoppingCartContext);
+
+  const cartProductsExist = () => {
+    return shoppingCartProducts.some((product) => id === product.id);
+  };
+
+  const addProductCart = () => {
+    if (cartProductsExist()) {
+      addOrRemoveProductToast({
+        toast: true,
+        position: "bottom-left",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        icon: "error",
+        title: "Este producto ya se encuentra en el carrito",
+      });
+    } else {
+      addShoppingCart({ id, name, image, price });
+      addOrRemoveProductToast({
+        toast: true,
+        position: "bottom-left",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        icon: "success",
+        title: "Producto agregado al carrito",
+      });
+    }
+  };
 
   return (
     <div
@@ -35,8 +65,10 @@ export const ProductCard = ({ id, image, category, name, price }) => {
         }
       >
         <button
-          className={`${styles.addButton} ${styles.optionButton}`}
-          onClick={() => addShoppingCart({ id, name, image, price })}
+          className={`${styles.addButton} ${styles.optionButton} ${
+            cartProductsExist() ? styles.productDisabled : ""
+          }`}
+          onClick={addProductCart}
         >
           <IoMdAdd />
         </button>

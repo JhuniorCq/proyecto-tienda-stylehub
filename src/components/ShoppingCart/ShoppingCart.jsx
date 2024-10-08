@@ -4,16 +4,64 @@ import styles from "./ShoppingCart.module.css";
 import { ShoppingCartProduct } from "../ShoppingCartProduct/ShoppingCartProduct";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
-import { roundToDecimals } from "../../logic";
+import { roundToDecimals } from "../../utils/logic";
+import {
+  confirmPurchaseModal,
+  noProductsCartExist,
+  removeAllProductsCartModal,
+} from "../../utils/notifications/modals";
 
 export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
-  const {
-    shoppingCartProducts,
-    removeAllShoppingCart
-  } = useContext(ShoppingCartContext);
+  const { shoppingCartProducts, removeAllShoppingCart } =
+    useContext(ShoppingCartContext);
 
-  const totalQuantityItems = shoppingCartProducts.reduce((accumulator, product) => product.quantity + accumulator, 0);
-  const totalCost = shoppingCartProducts.reduce((accumulator, product) => (product.quantity * product.price) + accumulator , 0);
+  const totalQuantityItems = shoppingCartProducts.reduce(
+    (accumulator, product) => product.quantity + accumulator,
+    0
+  );
+  const totalCost = shoppingCartProducts.reduce(
+    (accumulator, product) => product.quantity * product.price + accumulator,
+    0
+  );
+
+  const productsExistCart = shoppingCartProducts.length > 0;
+
+  const confirmPurchase = () => {
+    if (productsExistCart) {
+      confirmPurchaseModal({
+        title: "¡Gracias!",
+        text: "Su compra ha sido exitosa",
+        icon: "success",
+        confirmButtonColor: "black",
+      });
+    } else {
+      noProductsCartExist();
+    }
+  };
+
+  const removeAllProductsCart = () => {
+    if (productsExistCart) {
+      removeAllProductsCartModal({
+        title: "¿Está seguro?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, remuevelos!",
+        cancelButtonText: "Cancelar",
+        title2: "¡Productos removidos!",
+        text2: "Se han removido todos los productos del carrito",
+        icon2: "success",
+        confirmButtonColor2: "black",
+        removeAllShoppingCart,
+      });
+
+      // removeAllShoppingCart();
+    } else {
+      noProductsCartExist();
+    }
+  };
 
   return (
     <div
@@ -24,16 +72,18 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
       }
     >
       <div className={styles.boxQuantityProducts}>
-        <p className={styles.quantityProducts}>SHOPPING CART {`(${totalQuantityItems})`}</p>
+        <p className={styles.quantityProducts}>
+          SHOPPING CART {`(${totalQuantityItems})`}
+        </p>
         <FaArrowRight
           onClick={appearShoppingCart}
           className={styles.backButton}
         />
       </div>
       <div className={styles.boxProducts}>
-        {
-          shoppingCartProducts && shoppingCartProducts.map(product => (
-            <ShoppingCartProduct 
+        {shoppingCartProducts &&
+          shoppingCartProducts.map((product) => (
+            <ShoppingCartProduct
               key={product.id}
               id={product.id}
               name={product.name}
@@ -41,18 +91,24 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
               price={product.price}
               quantity={product.quantity}
             />
-          ))
-        }
+          ))}
       </div>
       <div className={styles.boxFinalCartResult}>
         <div>
-          <p className={styles.totalCost}>TOTAL: $ {roundToDecimals(totalCost, 2)}</p>
-          <button onClick={removeAllShoppingCart} className={styles.deleteAllButton}>
+          <p className={styles.totalCost}>
+            TOTAL: $ {roundToDecimals(totalCost, 2)}
+          </p>
+          <button
+            onClick={removeAllProductsCart}
+            className={styles.deleteAllButton}
+          >
             <FaTrashAlt />
           </button>
         </div>
         <div>
-          <button className={styles.buyButton}>Buy products</button>
+          <button onClick={confirmPurchase} className={styles.buyButton}>
+            Buy products
+          </button>
         </div>
       </div>
     </div>
