@@ -52,24 +52,6 @@ export const Checkout = () => {
           <div className={styles.deliveryBox}>
             <h2 className={styles.sectionTitle}>Delivery</h2>
 
-            {/* <div className={styles.deliveryOptionsBox}>
-              <label className={styles.optionDelivery}>
-                <div className={styles.optionDeliveryInputBox}>
-                  <input className={`${styles.input}`} type="radio" />
-                  <p>Shipping</p>
-                </div>
-                <TbTruck className={styles.iconDelivery} />
-              </label>
-
-              <label className={styles.optionDelivery}>
-                <div className={styles.optionDeliveryInputBox}>
-                  <input className={`${styles.input}`} type="radio" />
-                  <p>Pick up in store</p>
-                </div>
-                <LuStore className={styles.iconDelivery} />
-              </label>
-            </div> */}
-
             <OptionsBox name="deliveryOptions" dataOptions={deliveryOptions} />
 
             <div className={styles.selectCountryBox}>
@@ -122,22 +104,6 @@ export const Checkout = () => {
 
           <div className={styles.paymentBox}>
             <h2 className={styles.sectionTitle}>Payment</h2>
-
-            {/* <div className={styles.paymentOptionsBox}>
-              <label className={styles.optionPayment}>
-                <div className={styles.optionPaymentInputBox}>
-                  <input className={`${styles.input}`} type="radio" />
-                  <p>Paypal</p>
-                </div>
-              </label>
-
-              <label className={styles.optionPayment}>
-                <div className={styles.optionPaymentInputBox}>
-                  <input className={`${styles.input}`} type="radio" />
-                  <p>Yape</p>
-                </div>
-              </label>
-            </div> */}
 
             <OptionsBox name="paymentOptions" dataOptions={paymentOptions} />
           </div>

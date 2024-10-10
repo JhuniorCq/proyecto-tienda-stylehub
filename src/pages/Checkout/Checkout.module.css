@@ -1,17 +1,19 @@
 .checkoutBox {
   width: 100%;
   min-height: 100vh;
-  padding: 0 20%; /*En vez de esto acá, puedo hacer que orderFormBox tengo un padding-left del 20% y que orderSummaryBox tengo un padding-right del 20%*/
+  /*En vez de esto acá, puedo hacer que orderFormBox tengo un padding-left del 20% y que orderSummaryBox tengo un padding-right del 20%*/
+  /* padding: 0 20%; */
   display: flex;
 }
 
 .checkoutBox > * {
   width: 50%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .orderFormBox {
-  padding: 20px;
+  /* padding: 20px 20px; */
+  padding: 25px 40px 50px 20%;
 }
 
 .orderForm {
@@ -82,5 +84,6 @@
 /*  */
 
 .orderSummaryBox {
-  background-color: gray;
+  background-color: lightgray;
+  padding: 25px 20% 50px 40px;
 }
