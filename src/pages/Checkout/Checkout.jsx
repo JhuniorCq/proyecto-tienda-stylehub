@@ -9,11 +9,11 @@ export const Checkout = () => {
   const deliveryOptions = [
     {
       text: "Shipping",
-      icon: <TbTruck className={styles.iconDelivery} />,
+      icon: <TbTruck />,
     },
     {
       text: "Pick up in store",
-      icon: <LuStore className={styles.iconDelivery} />,
+      icon: <LuStore />,
     },
   ];
 

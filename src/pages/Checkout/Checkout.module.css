@@ -21,7 +21,7 @@
 }
 
 .orderForm > * {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -35,17 +35,7 @@
 .deliveryBox > *,
 .paymentBox > * {
   width: 100%;
-  border: 1px solid rgb(203, 203, 0);
-}
-
-.conctactBox {
-  /* display: flex;
-  flex-direction: column; */
-}
-
-.deliveryBox {
-  /* display: flex;
-  flex-direction: column; */
+  /* border: 1px solid rgb(203, 203, 0); */
 }
 
 .input {
@@ -57,10 +47,10 @@
   border: 1px solid lightgray;
 }
 
-.iconDelivery {
+/* .iconDelivery {
   font-size: 1.3rem;
   color: lightgray;
-}
+} */
 
 .selectCountryBox > select,
 .dniBox > input,
@@ -93,10 +83,10 @@
   font-weight: bold;
 }
 
-.iconAdditional {
+/* .iconAdditional {
   font-size: 3rem;
   color: lightgray;
-}
+} */
 
 /*  */
 
