@@ -10,10 +10,13 @@ import {
   noProductsCartExist,
   removeAllProductsCartModal,
 } from "../../utils/notifications/modals";
+import { useNavigate } from "react-router-dom";
 
 export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
   const { shoppingCartProducts, removeAllShoppingCart } =
     useContext(ShoppingCartContext);
+
+  const navigate = useNavigate();
 
   const totalQuantityItems = shoppingCartProducts.reduce(
     (accumulator, product) => product.quantity + accumulator,
@@ -28,12 +31,13 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
 
   const confirmPurchase = () => {
     if (productsExistCart) {
-      confirmPurchaseModal({
-        title: "¡Gracias!",
-        text: "Su compra ha sido exitosa",
-        icon: "success",
-        confirmButtonColor: "black",
-      });
+      // confirmPurchaseModal({
+      //   title: "¡Gracias!",
+      //   text: "Su compra ha sido exitosa",
+      //   icon: "success",
+      //   confirmButtonColor: "black",
+      // });
+      navigate("/checkout");
     } else {
       noProductsCartExist();
     }
@@ -56,8 +60,6 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
         confirmButtonColor2: "black",
         removeAllShoppingCart,
       });
-
-      // removeAllShoppingCart();
     } else {
       noProductsCartExist();
     }

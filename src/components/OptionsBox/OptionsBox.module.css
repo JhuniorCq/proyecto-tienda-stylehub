@@ -1,0 +1,42 @@
+.optionsBox {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border: 1px solid lightgray;
+  cursor: pointer;
+}
+
+.optionInputBox {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.input {
+  height: 48px;
+  padding: 7px 12px;
+  outline: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  border: 1px solid lightgray;
+}
+
+.additionalDataBox {
+  padding: 20px;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* .additionalDataBox > * {
+  border: 1px solid blue;
+} */
