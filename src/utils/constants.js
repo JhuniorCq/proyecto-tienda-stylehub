@@ -1,3 +1,8 @@
+import { IoArrowRedoOutline } from "react-icons/io5";
+import { LuStore } from "react-icons/lu";
+import { MdOutlinePhoneIphone } from "react-icons/md";
+import { TbTruck } from "react-icons/tb";
+
 // URL DEL TOTAL DE PRODUCTOS
 export const URL_PRODUCTS = "https://fakestoreapi.com/products";
 

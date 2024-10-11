@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./OptionsBox.module.css";
 
-export const OptionsBox = ({ dataOptions, name }) => {
+export const OptionsBox = ({ dataOptions, name, onChange }) => {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleOptionChange = (event) => {
     console.log(event.target);
     setSelectedOption(event.target.value);
+    onChange(event);
   };
 
   return (
@@ -28,7 +29,7 @@ export const OptionsBox = ({ dataOptions, name }) => {
                   className={`${styles.input}`}
                   type="radio"
                   name={name}
-                  value={`option-${index}`}
+                  value={text}
                   onChange={handleOptionChange}
                   // checked={}
                 />
