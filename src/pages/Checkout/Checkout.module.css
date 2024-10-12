@@ -50,6 +50,7 @@
   border: 1px solid lightgray;
 }
 
+.emailBox > input,
 .selectCountryBox > select,
 .dniBox > input,
 .addressBox > input,

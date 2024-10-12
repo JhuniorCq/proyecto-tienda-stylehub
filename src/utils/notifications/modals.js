@@ -59,3 +59,17 @@ export const removeAllProductsCartModal = ({
     }
   });
 };
+
+export const checkoutValidationsModal = ({
+  title,
+  text,
+  icon,
+  confirmButtonColor,
+}) => {
+  Swal.fire({
+    title,
+    text,
+    icon,
+    confirmButtonColor,
+  });
+};

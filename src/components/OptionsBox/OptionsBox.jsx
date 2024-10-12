@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./OptionsBox.module.css";
 
-export const OptionsBox = ({ dataOptions, name, onChange }) => {
-  const [selectedOption, setSelectedOption] = useState("");
+export const OptionsBox = ({ dataOptions, name, onChange, defaultOption }) => {
+  const [selectedOption, setSelectedOption] = useState(defaultOption);
 
   const handleOptionChange = (event) => {
     console.log(event.target);
@@ -19,9 +19,7 @@ export const OptionsBox = ({ dataOptions, name, onChange }) => {
           <div key={index}>
             <label
               className={`${styles.option} ${
-                selectedOption === `option-${index}`
-                  ? styles.selectedOption
-                  : ""
+                selectedOption === text ? styles.selectedOption : ""
               }`}
             >
               <div className={styles.optionInputBox}>
@@ -31,13 +29,13 @@ export const OptionsBox = ({ dataOptions, name, onChange }) => {
                   name={name}
                   value={text}
                   onChange={handleOptionChange}
-                  // checked={}
+                  checked={selectedOption === text}
                 />
                 <p className={styles.optionText}>{text}</p>
               </div>
               <span
                 className={
-                  selectedOption === `option-${index}`
+                  selectedOption === text
                     ? `${styles.iconOption} ${styles.iconOptionSelected}`
                     : styles.iconOption
                 }
@@ -48,7 +46,7 @@ export const OptionsBox = ({ dataOptions, name, onChange }) => {
             {additionalData && (
               <div
                 className={
-                  selectedOption === `option-${index}`
+                  selectedOption === text
                     ? `${styles.additionalDataBox} ${styles.visible}`
                     : styles.additionalDataBox
                 }

@@ -5,7 +5,12 @@ import { OptionsBox } from "../../components/OptionsBox/OptionsBox";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { useState } from "react";
-import { validateCheckout } from "../../utils/validations/checkoutValidations";
+import {
+  validateCheckout,
+  validateInputCheckout,
+} from "../../utils/validations/checkoutValidations";
+import { checkoutValidationsModal } from "../../utils/notifications/modals";
+import { INPUT_NAMES } from "../../utils/constants";
 // import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "../../utils/constants";
 
 // OPCIONES DE ENVÍO
@@ -41,18 +46,18 @@ export const PAYMENT_OPTIONS = [
 
 export const Checkout = () => {
   const [checkoutForm, setCheckoutForm] = useState({
-    email: null,
-    deliveryOption: null,
-    country: "Perú",
-    firstName: null,
-    lastName: null,
-    dni: null,
-    address: null,
-    department: null,
-    province: null,
-    district: null,
-    cellPhone: null,
-    paymentOption: null,
+    [INPUT_NAMES.EMAIL]: null,
+    [INPUT_NAMES.DELIVERY_OPTION]: DELIVERY_OPTIONS[0].text,
+    [INPUT_NAMES.COUNTRY]: null,
+    [INPUT_NAMES.FIRST_NAME]: null,
+    [INPUT_NAMES.LAST_NAME]: null,
+    [INPUT_NAMES.DNI]: null,
+    [INPUT_NAMES.ADDRESS]: null,
+    [INPUT_NAMES.DEPARTMENT]: null,
+    [INPUT_NAMES.PROVINCE]: null,
+    [INPUT_NAMES.DISTRICT]: null,
+    [INPUT_NAMES.CELL_PHONE]: null,
+    [INPUT_NAMES.PAYMENT_OPTION]: PAYMENT_OPTIONS[0].text,
   });
 
   const handleInput = ({ target }) => {
@@ -64,6 +69,22 @@ export const Checkout = () => {
     }));
   };
 
+  // Validar el input al perder el foco
+  const handleBlur = ({ target }) => {
+    const { name, value } = target;
+    const inputValidated = validateInputCheckout({ name, value });
+
+    if (inputValidated.error) {
+      console.log(
+        "ERROR EN LA VALIDACIÓN DEL INPUT: ",
+        inputValidated.error.issues[0].message
+      );
+      alert(inputValidated.error.issues[0].message);
+    } else {
+      console.log("VALIDACIÓN CORRECTA PARA: ", name);
+    }
+  };
+
   const sendForm = (event) => {
     event.preventDefault();
 
@@ -71,13 +92,26 @@ export const Checkout = () => {
     const checkoutValidated = validateCheckout(checkoutForm);
 
     if (checkoutValidated.error) {
-      console.log("Error en la Validación", checkoutValidated.error.issues);
-      alert("Error en las validaciones.");
+      checkoutValidated.error.issues.forEach((error) =>
+        console.log(error.message)
+      );
+      checkoutValidationsModal({
+        title: "Error en el ingreso de datos",
+        text: "Porfavor, complete correctamente todos los campos.",
+        icon: "warning",
+        confirmButtonColor: "black",
+      });
+
       // return;
+    } else {
+      alert("Todo fino");
     }
 
     console.log("Enviando: ", checkoutForm);
   };
+
+  // COLOCAR flex-grow: 1 A CADA <div> DE UN INPUT (PROBAR ESO PARA LUEGO CREAR EL COMPONENTE INPUT)
+  // HAY QUE VER QUE EN LOS <select> NO SE PERMITA EL "value" -> "noValid"
 
   return (
     <div className={styles.checkoutBox}>
@@ -87,13 +121,17 @@ export const Checkout = () => {
           <div className={styles.conctactBox}>
             <h2 className={styles.sectionTitle}>Contact</h2>
 
-            <input
-              className={`${styles.input}`}
-              type="text"
-              placeholder="Email"
-              name="email"
-              onChange={handleInput}
-            />
+            <div className={styles.emailBox}>
+              <input
+                className={`${styles.input}`}
+                type="text"
+                placeholder="Email"
+                name={INPUT_NAMES.EMAIL}
+                onChange={handleInput}
+                onBlur={handleBlur}
+              />
+              {/* <p>Introduce un correo electrónico</p> */}
+            </div>
           </div>
 
           {/* Delivery */}
@@ -101,19 +139,21 @@ export const Checkout = () => {
             <h2 className={styles.sectionTitle}>Delivery</h2>
 
             <OptionsBox
-              name="deliveryOption"
+              name={INPUT_NAMES.DELIVERY_OPTION}
               dataOptions={DELIVERY_OPTIONS}
               onChange={handleInput}
+              defaultOption={DELIVERY_OPTIONS[0].text}
             />
 
             <div className={styles.selectCountryBox}>
               <select
                 className={`${styles.input}`}
-                name="country"
+                name={INPUT_NAMES.COUNTRY}
                 onChange={handleInput}
+                onBlur={handleBlur}
                 id=""
               >
-                {/* <option value="notValid"></option> */}
+                <option value="notValid">Select a country</option>
                 <option value="Perú">Perú</option>
               </select>
             </div>
@@ -123,15 +163,16 @@ export const Checkout = () => {
                 className={`${styles.input}`}
                 type="text"
                 placeholder="First name"
-                name="firstName"
+                name={INPUT_NAMES.FIRST_NAME}
                 onChange={handleInput}
               />
               <input
                 className={`${styles.input}`}
                 type="text"
                 placeholder="Last name"
-                name="lastName"
+                name={INPUT_NAMES.LAST_NAME}
                 onChange={handleInput}
+                onBlur={handleBlur}
               />
             </div>
 
@@ -140,8 +181,9 @@ export const Checkout = () => {
                 className={`${styles.input}`}
                 type="text"
                 placeholder="DNI"
-                name="dni"
+                name={INPUT_NAMES.DNI}
                 onChange={handleInput}
+                onBlur={handleBlur}
               />
             </div>
 
@@ -150,34 +192,41 @@ export const Checkout = () => {
                 className={`${styles.input}`}
                 type="text"
                 placeholder="Address"
-                name="address"
+                name={INPUT_NAMES.ADDRESS}
                 onChange={handleInput}
+                onBlur={handleBlur}
               />
             </div>
 
             <div className={styles.locationsBox}>
               <select
                 className={`${styles.input}`}
-                name="department"
+                name={INPUT_NAMES.DEPARTMENT}
                 onChange={handleInput}
+                onBlur={handleBlur}
                 id=""
               >
+                <option value="notValid">Select a department</option>
                 <option value="">Lima</option>
               </select>
               <select
                 className={`${styles.input}`}
-                name="province"
+                name={INPUT_NAMES.PROVINCE}
                 onChange={handleInput}
+                onBlur={handleBlur}
                 id=""
               >
+                <option value="notValid">Select a province</option>
                 <option value="">Callao</option>
               </select>
               <select
                 className={`${styles.input}`}
-                name="district"
+                name={INPUT_NAMES.DISTRICT}
                 onChange={handleInput}
+                onBlur={handleBlur}
                 id=""
               >
+                <option value="notValid">Select a district</option>
                 <option value="">Ventanilla</option>
               </select>
             </div>
@@ -187,8 +236,9 @@ export const Checkout = () => {
                 className={`${styles.input}`}
                 type="text"
                 placeholder="Cell phone"
-                name="cellPhone"
+                name={INPUT_NAMES.CELL_PHONE}
                 onChange={handleInput}
+                onBlur={handleBlur}
               />
             </div>
           </div>
@@ -198,9 +248,10 @@ export const Checkout = () => {
             <h2 className={styles.sectionTitle}>Payment</h2>
 
             <OptionsBox
-              name="paymentOption"
+              name={INPUT_NAMES.PAYMENT_OPTION}
               dataOptions={PAYMENT_OPTIONS}
               onChange={handleInput}
+              defaultOption={PAYMENT_OPTIONS[0].text}
             />
           </div>
 

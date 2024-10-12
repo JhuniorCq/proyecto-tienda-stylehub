@@ -30,3 +30,19 @@ export const SHOPPING_CART_ACTIONS = {
   reduceProduct: "REDUCE_PRODUCT",
   removeAllProducts: "REMOVE_ALL_PRODUCTS",
 };
+
+// NAMES DE LOS INPUTS
+export const INPUT_NAMES = {
+  EMAIL: "email",
+  DELIVERY_OPTION: "deliveryOption",
+  COUNTRY: "country",
+  FIRST_NAME: "firstName",
+  LAST_NAME: "lastName",
+  DNI: "dni",
+  ADDRESS: "address",
+  DEPARTMENT: "department",
+  PROVINCE: "province",
+  DISTRICT: "district",
+  CELL_PHONE: "cellPhone",
+  PAYMENT_OPTION: "paymentOption",
+};
