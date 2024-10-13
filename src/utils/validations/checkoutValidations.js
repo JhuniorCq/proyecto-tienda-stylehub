@@ -2,7 +2,9 @@ import { z } from "zod";
 import { INPUT_NAMES } from "../constants";
 
 const checkoutSchema = z.object({
-  email: z.string().email(),
+  email: z
+    .string({ message: "El email debe ser una cadena de texto." })
+    .email(),
   deliveryOption: z.string(),
   country: z.string(),
   firstName: z
@@ -59,6 +61,6 @@ export const validateInputCheckout = ({ name, value }) => {
       : null;
 
   if (selectedSchema) {
-    return selectedSchema.safeParse({ name, value });
+    return selectedSchema.safeParse({ [name]: value });
   }
 };

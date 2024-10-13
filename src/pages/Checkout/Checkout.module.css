@@ -58,15 +58,18 @@
   width: 100%;
 }
 
+/* Este de nameBox me sirve */
 .namesBox,
 .locationsBox {
   display: flex;
   gap: 12px;
 }
 
+/* Este de nameBox me sirve */
 .namesBox > input,
 .locationsBox > select {
   flex-grow: 1;
+  width: calc(100% / 3);
 }
 
 .finalizeOrderButton {
@@ -87,4 +90,13 @@
 .orderSummaryBox {
   background-color: lightgray;
   padding: 25px 20% 50px 40px;
+}
+
+/* Ya no usaré estos dos */
+.inputValidated {
+  border: 2px solid green;
+}
+
+.inputNotValidated {
+  border: 2px solid red;
 }
