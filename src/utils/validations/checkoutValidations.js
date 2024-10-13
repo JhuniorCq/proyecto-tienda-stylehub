@@ -1,12 +1,14 @@
 import { z } from "zod";
-import { INPUT_NAMES } from "../constants";
+import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../constants";
 
 const checkoutSchema = z.object({
   email: z
     .string({ message: "El email debe ser una cadena de texto." })
     .email(),
   deliveryOption: z.string(),
-  country: z.string(),
+  country: z.string().refine((value) => value !== DEFAULT_SELECT_VALUE, {
+    message: "El país seleccionado no es válido.",
+  }),
   firstName: z
     .string()
     .min(1, { message: "El campo para los nombres no debe estar vacío." }),
@@ -19,9 +21,15 @@ const checkoutSchema = z.object({
   address: z
     .string()
     .min(1, { message: "El campo para la dirección no debe estar vacío." }),
-  department: z.string(),
-  province: z.string(),
-  district: z.string(),
+  department: z.string().refine((value) => value !== DEFAULT_SELECT_VALUE, {
+    message: "El departamento seleccionado no es válido.",
+  }),
+  province: z.string().refine((value) => value !== DEFAULT_SELECT_VALUE, {
+    message: "La provincia seleccionado no es válida.",
+  }),
+  district: z.string().refine((value) => value !== DEFAULT_SELECT_VALUE, {
+    message: "El distrito seleccionado no es válido.",
+  }),
   cellPhone: z.string().regex(/^\d{9}$/, {
     message: "El número de celular debe tener 9 dígitos números.",
   }),
@@ -33,6 +41,7 @@ export const validateCheckout = (checkoutData) => {
 };
 
 export const validateInputCheckout = ({ name, value }) => {
+  // DeliveryOption y PaymentOption son validados como correctos siempre, ya que su valor por defecto está bien hecho
   const selectedSchema =
     name === INPUT_NAMES.EMAIL
       ? checkoutSchema.pick({ email: true })

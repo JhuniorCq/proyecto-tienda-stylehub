@@ -8,19 +8,8 @@ export const InputCheckout = ({
   handleInput,
   isSelect,
   children,
-  // onBlur,
-  // inputValidated,
 }) => {
   const [inputValidated, setInputValidated] = useState(null);
-
-  // const handleInput = ({ target }) => {
-  //   const { name, value } = target;
-
-  //   setCheckoutForm((prev) => ({
-  //     ...prev,
-  //     [name]: value,
-  //   }));
-  // };
 
   // Validar el input al perder el foco
   const handleBlur = ({ target }) => {
@@ -86,6 +75,7 @@ export const InputCheckout = ({
   );
 };
 
+// AGREGAR UN MENSAJE DE EXITO O DE ERROR abajo del INPUT o SELECT :3
 {
   /* <p>Introduce un correo electrónico</p> */
 }

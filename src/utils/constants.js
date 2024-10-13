@@ -46,3 +46,6 @@ export const INPUT_NAMES = {
   CELL_PHONE: "cellPhone",
   PAYMENT_OPTION: "paymentOption",
 };
+
+// VALOR POR DEFECTO PARA LA PRIMERA OPCIÓN DE UN SELECT
+export const DEFAULT_SELECT_VALUE = "notValid";

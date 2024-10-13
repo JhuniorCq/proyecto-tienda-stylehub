@@ -10,7 +10,7 @@ import {
   validateInputCheckout,
 } from "../../utils/validations/checkoutValidations";
 import { checkoutValidationsModal } from "../../utils/notifications/modals";
-import { INPUT_NAMES } from "../../utils/constants";
+import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../../utils/constants";
 import { InputCheckout } from "../../components/InputCheckout/InputCheckout";
 // import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "../../utils/constants";
 
@@ -61,11 +61,20 @@ export const Checkout = () => {
     [INPUT_NAMES.PAYMENT_OPTION]: PAYMENT_OPTIONS[0].text,
   });
 
-  const [inputValidated, setInputValidated] = useState(null);
+  // const [inputValidated, setInputValidated] = useState(null);
 
+  // HAY QUE USAR ESTO PARA NO MOSTRAR LOS INPUTS QUE CORRESPONDEN AL TIPO DE ENTREGA "ENVÍO"
   const [selectedDelivery, setSelectedDelivery] = useState(
     DELIVERY_OPTIONS[0].text
   );
+
+  const changeDeliveryTypeSelection = () => {
+    setSelectedDelivery((prev) =>
+      prev === DELIVERY_OPTIONS[0].text
+        ? DELIVERY_OPTIONS[1].text
+        : DELIVERY_OPTIONS[0].text
+    );
+  };
 
   const handleInput = ({ target }) => {
     const { name, value } = target;
@@ -75,28 +84,6 @@ export const Checkout = () => {
       [name]: value,
     }));
   };
-
-  // // Validar el input al perder el foco
-  // const handleBlur = ({ target }) => {
-  //   const { name, value } = target;
-  //   const resultInputValidated = validateInputCheckout({ name, value });
-
-  //   if (!resultInputValidated.success) {
-  //     console.log(
-  //       "ERROR EN LA VALIDACIÓN DEL INPUT: ",
-  //       resultInputValidated.error.issues[0].message,
-  //       "El name:",
-  //       name,
-  //       "El value",
-  //       value
-  //     );
-  //     // alert(resultInputValidated.error.issues[0].message);
-  //     setInputValidated(false);
-  //   } else if (resultInputValidated.success) {
-  //     console.log("VALIDACIÓN CORRECTA PARA: ", name);
-  //     setInputValidated(true);
-  //   }
-  // };
 
   const sendForm = (event) => {
     event.preventDefault();
@@ -108,6 +95,9 @@ export const Checkout = () => {
       checkoutValidated.error.issues.forEach((error) =>
         console.log(error.message)
       );
+
+      // PARA ESTA VALIDACIÓN TOTAL -> HACER OPCIONAL A COUNTRY, ADDRESS, DEPARTMENT, PROVINCE Y DISTRICT, YA QUE SOLO EXISTIRÁN SI ES QUE EL TIPO DE ENVÍO ES "SHIPPING"
+
       checkoutValidationsModal({
         title: "Error en el ingreso de datos",
         text: "Porfavor, complete correctamente todos los campos.",
@@ -124,87 +114,34 @@ export const Checkout = () => {
   };
 
   // COLOCAR flex-grow: 1 A CADA <div> DE UN INPUT (PROBAR ESO PARA LUEGO CREAR EL COMPONENTE INPUT)
-  // HAY QUE VER QUE EN LOS <select> NO SE PERMITA EL "value" -> "noValid"
+  // HAY QUE VER QUE EN LOS <select> NO SE PERMITA EL "value" -> "notValid"
 
   return (
     <div className={styles.checkoutBox}>
       <div className={styles.orderFormBox}>
         <form className={styles.orderForm} onSubmit={sendForm}>
           {/* Contact */}
-          <div className={styles.conctactBox}>
+          <section className={styles.conctactBox}>
             <h2 className={styles.sectionTitle}>Contact</h2>
-
-            {/* <div className={styles.emailBox}>
-              <input
-                className={`${styles.input} ${
-                  inputValidated
-                    ? styles.inputValidated
-                    : inputValidated === false
-                    ? styles.inputNotValidated
-                    : ""
-                }`}
-                type="text"
-                placeholder="Email"
-                name={INPUT_NAMES.EMAIL}
-                onChange={handleInput}
-                onBlur={handleBlur}
-              />
-            </div> */}
 
             <InputCheckout
               placeholder="Email"
               name={INPUT_NAMES.EMAIL}
               onChange={handleInput}
-              // onBlur={handleBlur}
-              // inputValidated={inputValidated}
             />
-
-            {/* <div className={styles.namesBox}>
-              <input
-                className={`${styles.input}`}
-                type="text"
-                placeholder="First name"
-                name={INPUT_NAMES.FIRST_NAME}
-                onChange={handleInput}
-                onBlur={handleBlur}
-              />
-              <input
-                className={`${styles.input}`}
-                type="text"
-                placeholder="Last name"
-                name={INPUT_NAMES.LAST_NAME}
-                onChange={handleInput}
-                onBlur={handleBlur}
-              />
-            </div> */}
 
             <div className={styles.namesBox}>
               <InputCheckout
                 placeholder="First name"
                 name={INPUT_NAMES.FIRST_NAME}
                 onChange={handleInput}
-                // onBlur={handleBlur}
-                // inputValidated={inputValidated}
               />
               <InputCheckout
                 placeholder="Last name"
                 name={INPUT_NAMES.LAST_NAME}
                 onChange={handleInput}
-                // onBlur={handleBlur}
-                // inputValidated={inputValidated}
               />
             </div>
-
-            {/* <div className={styles.dniBox}>
-              <input
-                className={`${styles.input}`}
-                type="text"
-                placeholder="DNI"
-                name={INPUT_NAMES.DNI}
-                onChange={handleInput}
-                onBlur={handleBlur}
-              />
-            </div> */}
 
             <InputCheckout
               placeholder="DNI"
@@ -212,26 +149,14 @@ export const Checkout = () => {
               onChange={handleInput}
             />
 
-            {/* <div className={styles.cellPhone}>
-              <input
-                className={`${styles.input}`}
-                type="text"
-                placeholder="Cell phone"
-                name={INPUT_NAMES.CELL_PHONE}
-                onChange={handleInput}
-                onBlur={handleBlur}
-              />
-            </div> */}
-
             <InputCheckout
               placeholder="Cell phone"
               name={INPUT_NAMES.CELL_PHONE}
               onChange={handleInput}
             />
-          </div>
-
-          {/* Delivery */}
-          <div className={styles.deliveryBox}>
+          </section>
+          {/* Delivery */} {/* USAR AL selectDelivery */}
+          <section className={styles.deliveryBox}>
             <h2 className={styles.sectionTitle}>Delivery</h2>
 
             <OptionsBox
@@ -239,110 +164,65 @@ export const Checkout = () => {
               dataOptions={DELIVERY_OPTIONS}
               onChange={handleInput}
               defaultOption={DELIVERY_OPTIONS[0].text}
-            />
-            {/* selectedDelivery */}
-            {/* <div className={styles.selectCountryBox}>
-              <select
-                className={`${styles.input}`}
-                name={INPUT_NAMES.COUNTRY}
-                onChange={handleInput}
-                onBlur={handleBlur}
-                id=""
-              >
-                <option value="notValid">Select a country</option>
-                <option value="Perú">Perú</option>
-              </select>
-            </div> */}
-
-            <InputCheckout
-              name={INPUT_NAMES.COUNTRY}
-              onChange={handleInput}
-              isSelect={true}
-            >
-              <option value="notValid">Select a country</option>
-              <option value="Perú">Perú</option>
-            </InputCheckout>
-
-            {/* <div className={styles.addressBox}>
-              <input
-                className={`${styles.input}`}
-                type="text"
-                placeholder="Address"
-                name={INPUT_NAMES.ADDRESS}
-                onChange={handleInput}
-                onBlur={handleBlur}
-              />
-            </div> */}
-
-            <InputCheckout
-              placeholder="Address"
-              name={INPUT_NAMES.ADDRESS}
-              onChange={handleInput}
+              changeDeliveryTypeSelection={changeDeliveryTypeSelection}
             />
 
-            {/* <div className={styles.locationsBox}>
-              <select
-                className={`${styles.input}`}
-                name={INPUT_NAMES.DEPARTMENT}
-                onChange={handleInput}
-                onBlur={handleBlur}
-                id=""
-              >
-                <option value="notValid">Select a department</option>
-                <option value="">Lima</option>
-              </select>
-              <select
-                className={`${styles.input}`}
-                name={INPUT_NAMES.PROVINCE}
-                onChange={handleInput}
-                onBlur={handleBlur}
-                id=""
-              >
-                <option value="notValid">Select a province</option>
-                <option value="">Callao</option>
-              </select>
-              <select
-                className={`${styles.input}`}
-                name={INPUT_NAMES.DISTRICT}
-                onChange={handleInput}
-                onBlur={handleBlur}
-                id=""
-              >
-                <option value="notValid">Select a district</option>
-                <option value="">Ventanilla</option>
-              </select>
-            </div> */}
+            {selectedDelivery === DELIVERY_OPTIONS[0].text ? (
+              <>
+                <InputCheckout
+                  name={INPUT_NAMES.COUNTRY}
+                  onChange={handleInput}
+                  isSelect={true}
+                >
+                  <option value={DEFAULT_SELECT_VALUE}>Select a country</option>
+                  <option value="Perú">Perú</option>
+                </InputCheckout>
+                <InputCheckout
+                  placeholder="Address"
+                  name={INPUT_NAMES.ADDRESS}
+                  onChange={handleInput}
+                />
+                <div className={styles.locationsBox}>
+                  <InputCheckout
+                    name={INPUT_NAMES.DEPARTMENT}
+                    onChange={handleInput}
+                    isSelect={true}
+                  >
+                    <option value={DEFAULT_SELECT_VALUE}>
+                      Select a department
+                    </option>
+                    <option value="">Lima</option>
+                  </InputCheckout>
 
-            <div className={styles.locationsBox}>
-              <InputCheckout
-                name={INPUT_NAMES.DEPARTMENT}
-                onChange={handleInput}
-                isSelect={true}
-              >
-                <option value="notValid">Select a department</option>
-                <option value="">Lima</option>
-              </InputCheckout>
-              <InputCheckout
-                name={INPUT_NAMES.PROVINCE}
-                onChange={handleInput}
-                isSelect={true}
-              >
-                <option value="notValid">Select a province</option>
-                <option value="">Callao</option>
-              </InputCheckout>
-              <InputCheckout
-                name={INPUT_NAMES.DISTRICT}
-                onChange={handleInput}
-                isSelect={true}
-              >
-                <option value="notValid">Select a district</option>
-                <option value="">Ventanilla</option>
-              </InputCheckout>
-            </div>
-          </div>
+                  <InputCheckout
+                    name={INPUT_NAMES.PROVINCE}
+                    onChange={handleInput}
+                    isSelect={true}
+                  >
+                    <option value={DEFAULT_SELECT_VALUE}>
+                      Select a province
+                    </option>
+                    <option value="">Callao</option>
+                  </InputCheckout>
 
+                  <InputCheckout
+                    name={INPUT_NAMES.DISTRICT}
+                    onChange={handleInput}
+                    isSelect={true}
+                  >
+                    <option value={DEFAULT_SELECT_VALUE}>
+                      Select a district
+                    </option>
+                    <option value="">Ventanilla</option>
+                  </InputCheckout>
+                </div>
+              </>
+            ) : (
+              <div>Holi</div>
+            )}
+          </section>
           {/* Payment */}
-          <div className={styles.paymentBox}>
+          <section className={styles.paymentBox}>
             <h2 className={styles.sectionTitle}>Payment</h2>
 
             <OptionsBox
@@ -351,8 +231,7 @@ export const Checkout = () => {
               onChange={handleInput}
               defaultOption={PAYMENT_OPTIONS[0].text}
             />
-          </div>
-
+          </section>
           {/* Pay now o Checkout */}
           <div>
             <button className={styles.finalizeOrderButton}>Pay now</button>

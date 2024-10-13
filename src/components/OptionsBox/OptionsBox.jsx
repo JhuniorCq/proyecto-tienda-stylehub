@@ -1,12 +1,19 @@
 import { useState } from "react";
 import styles from "./OptionsBox.module.css";
 
-export const OptionsBox = ({ dataOptions, name, onChange, defaultOption }) => {
+export const OptionsBox = ({
+  dataOptions,
+  name,
+  onChange,
+  defaultOption,
+  changeDeliveryTypeSelection,
+}) => {
   const [selectedOption, setSelectedOption] = useState(defaultOption);
 
   const handleOptionChange = (event) => {
     console.log(event.target);
     setSelectedOption(event.target.value);
+    changeDeliveryTypeSelection();
     onChange(event);
   };
 
