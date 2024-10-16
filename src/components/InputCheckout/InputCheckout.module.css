@@ -20,3 +20,19 @@
 .inputNotValidated {
   border: 2px solid red;
 }
+
+.messageCompleteInput {
+  font-size: 0.9rem;
+  /* margin-left: 10px; */
+  /* margin-bottom: 5px; */
+  margin: 15px 0 5px 10px;
+  /* color: red; */
+}
+
+.errorColor {
+  color: var(--error-color);
+}
+
+.successColor {
+  color: var(--success-color);
+}

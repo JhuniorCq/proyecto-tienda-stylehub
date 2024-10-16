@@ -9,7 +9,7 @@
 }
 
 .orderFormBox {
-  padding: 25px 40px 50px 20%;
+  padding: 25px 40px 50px 15%;
 }
 
 .orderForm {
@@ -60,5 +60,5 @@
 
 .orderSummaryBox {
   background-color: lightgray;
-  padding: 25px 20% 50px 40px;
+  padding: 25px 15% 50px 40px;
 }

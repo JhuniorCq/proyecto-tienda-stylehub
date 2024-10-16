@@ -8,6 +8,7 @@ export const InputCheckout = ({
   handleInput,
   isSelect,
   children,
+  messageCompleteInput,
 }) => {
   const [inputValidated, setInputValidated] = useState(null);
 
@@ -25,7 +26,7 @@ export const InputCheckout = ({
         "El value",
         value
       );
-      // alert(resultInputValidated.error.issues[0].message);
+
       setInputValidated(false);
     } else if (resultInputValidated.success) {
       console.log("VALIDACIÓN CORRECTA PARA: ", name);
@@ -34,7 +35,7 @@ export const InputCheckout = ({
   };
 
   return (
-    <>
+    <div>
       {isSelect ? (
         <div className={styles.inputBox}>
           <select
@@ -71,7 +72,18 @@ export const InputCheckout = ({
           />
         </div>
       )}
-    </>
+      {inputValidated ? (
+        <div
+          className={`${styles.messageCompleteInput} ${styles.successColor}`}
+        >
+          Field completed successfully.
+        </div>
+      ) : (
+        <div className={`${styles.messageCompleteInput} ${styles.errorColor}`}>
+          Please complete the field correctly.
+        </div>
+      )}
+    </div>
   );
 };
 

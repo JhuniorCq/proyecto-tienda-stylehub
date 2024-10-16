@@ -12,7 +12,6 @@ import {
 import { checkoutValidationsModal } from "../../utils/notifications/modals";
 import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../../utils/constants";
 import { InputCheckout } from "../../components/InputCheckout/InputCheckout";
-// import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "../../utils/constants";
 
 // OPCIONES DE ENVÍO
 export const DELIVERY_OPTIONS = [
@@ -128,6 +127,7 @@ export const Checkout = () => {
               placeholder="Email"
               name={INPUT_NAMES.EMAIL}
               onChange={handleInput}
+              messageCompleteInput="Please enter a valid email address."
             />
 
             <div className={styles.namesBox}>
