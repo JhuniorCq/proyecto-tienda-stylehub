@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { roundToDecimals } from "../../utils/logic";
 import {
-  confirmPurchaseModal,
   noProductsCartExist,
   removeAllProductsCartModal,
 } from "../../utils/notifications/modals";
@@ -31,12 +30,7 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
 
   const confirmPurchase = () => {
     if (productsExistCart) {
-      // confirmPurchaseModal({
-      //   title: "¡Gracias!",
-      //   text: "Su compra ha sido exitosa",
-      //   icon: "success",
-      //   confirmButtonColor: "black",
-      // });
+      console.log("CARRITO DE COMPRAS: ", shoppingCartProducts);
       navigate("/checkout");
     } else {
       noProductsCartExist();

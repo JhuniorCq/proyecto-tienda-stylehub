@@ -1,0 +1,116 @@
+.orderSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.orderSummary > * {
+  border: 1px solid blue;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* .productList > * {
+  border: 1px solid green;
+} */
+
+.productBox {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 20px; */
+}
+
+.productBox > div:first-child {
+  /* Este max-width no sé si ponerlo o quitarlo -> Dependerá de cómo se comporte el <div> */
+  /* max-width: 85%; */
+  width: 85%;
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* gap: 15px; */
+  height: 70px;
+}
+
+.imageBox {
+  width: 65px;
+  min-width: 65px;
+  height: 100%;
+  position: relative;
+  border: 1px solid lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.imageBox > img {
+  /* width: 100%; */
+  /* min-width: 70px; */
+  height: 100%;
+  padding: 10px;
+  /* object-fit: cover; */
+}
+
+.quantity {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  align-content: center;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  background-color: gray;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.nameProductBox {
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid red; */
+}
+
+.nameProduct {
+  width: 100%;
+  height: 100%;
+  /* background-color: green; */
+  align-content: center;
+  padding: 0 18px;
+}
+
+.priceProduct {
+  /* background-color: red; */
+  flex-grow: 1;
+  text-align: right;
+  font-weight: bold;
+}
+
+.productCostsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.subTotalBox,
+.totalBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.subTotalBox > div,
+.totalBox > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid red;
+}

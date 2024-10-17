@@ -87,9 +87,13 @@
   font-size: 0.9rem;
 }
 
-/*  */
+/* ORDER SUMMARY */
 
 .orderSummaryBox {
   background-color: lightgray;
   padding: 25px 12% 50px 40px;
 }
+/* 
+.orderSummaryBox > * {
+  border: 1px solid red;
+} */

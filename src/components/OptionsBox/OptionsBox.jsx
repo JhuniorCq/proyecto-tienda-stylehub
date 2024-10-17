@@ -11,7 +11,6 @@ export const OptionsBox = ({
   const [selectedOption, setSelectedOption] = useState(defaultOption);
 
   const handleOptionChange = (event) => {
-    console.log(event.target);
     setSelectedOption(event.target.value);
     onChange(event);
     if (changeDeliveryTypeSelection) changeDeliveryTypeSelection();

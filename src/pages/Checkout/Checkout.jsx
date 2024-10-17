@@ -4,11 +4,13 @@ import { LuStore } from "react-icons/lu";
 import { OptionsBox } from "../../components/OptionsBox/OptionsBox";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { MdOutlinePhoneIphone } from "react-icons/md";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { validateCheckout } from "../../utils/validations/checkoutValidations";
 import { checkoutValidationsModal } from "../../utils/notifications/modals";
 import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../../utils/constants";
 import { InputCheckout } from "../../components/InputCheckout/InputCheckout";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
+import { OrderSummary } from "../../components/OrderSummary/OrderSummary";
 
 // OPCIONES DE ENVÍO
 export const DELIVERY_OPTIONS = [
@@ -42,6 +44,8 @@ export const PAYMENT_OPTIONS = [
 ];
 
 export const Checkout = () => {
+  const { shoppingCartProducts } = useContext(ShoppingCartContext);
+
   const [checkoutForm, setCheckoutForm] = useState({
     [INPUT_NAMES.EMAIL]: null,
     [INPUT_NAMES.DELIVERY_OPTION]: DELIVERY_OPTIONS[0].text,
@@ -68,6 +72,16 @@ export const Checkout = () => {
         ? DELIVERY_OPTIONS[1].text
         : DELIVERY_OPTIONS[0].text
     );
+
+    // CUANDO HACEMOS ESTE CAMBIO, TAMBIEN DEBEMOS RESETEAR A country, department, province y district
+    setCheckoutForm((prev) => ({
+      ...prev,
+      [INPUT_NAMES.COUNTRY]: null,
+      [INPUT_NAMES.ADDRESS]: null,
+      [INPUT_NAMES.DEPARTMENT]: null,
+      [INPUT_NAMES.PROVINCE]: null,
+      [INPUT_NAMES.DISTRICT]: null,
+    }));
   };
 
   const handleInput = ({ target }) => {
@@ -84,7 +98,7 @@ export const Checkout = () => {
 
     console.log("Se validarán estos datos: ", checkoutForm);
     // Validations
-    const checkoutValidated = validateCheckout(checkoutForm);
+    const checkoutValidated = validateCheckout(checkoutForm, selectedDelivery);
 
     if (!checkoutValidated.success) {
       checkoutValidated.error.issues.forEach((error) =>
@@ -100,12 +114,14 @@ export const Checkout = () => {
         confirmButtonColor: "black",
       });
 
-      // return;
-    } else {
-      alert("Todo fino");
+      console.log("Datos validados que tienen error: ", checkoutForm);
+
+      return;
     }
 
-    console.log("Enviando: ", checkoutForm);
+    setCheckoutForm(checkoutValidated.data);
+    console.log("Enviando: ", checkoutValidated.data);
+    alert("Todo fino");
   };
 
   return (
@@ -184,7 +200,7 @@ export const Checkout = () => {
                     <option value={DEFAULT_SELECT_VALUE}>
                       Select a department
                     </option>
-                    <option value="">Lima</option>
+                    <option value="Lima">Lima</option>
                   </InputCheckout>
 
                   <InputCheckout
@@ -195,7 +211,7 @@ export const Checkout = () => {
                     <option value={DEFAULT_SELECT_VALUE}>
                       Select a province
                     </option>
-                    <option value="">Callao</option>
+                    <option value="Callao">Callao</option>
                   </InputCheckout>
 
                   <InputCheckout
@@ -206,7 +222,7 @@ export const Checkout = () => {
                     <option value={DEFAULT_SELECT_VALUE}>
                       Select a district
                     </option>
-                    <option value="">Ventanilla</option>
+                    <option value="Ventanilla">Ventanilla</option>
                   </InputCheckout>
                 </div>
               </>
@@ -246,7 +262,9 @@ export const Checkout = () => {
           </div>
         </form>
       </div>
-      <div className={styles.orderSummaryBox}></div>
+      <div className={styles.orderSummaryBox}>
+        <OrderSummary shoppingCartProducts={shoppingCartProducts} />
+      </div>
     </div>
   );
 };
