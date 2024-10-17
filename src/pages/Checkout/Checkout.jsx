@@ -5,10 +5,7 @@ import { OptionsBox } from "../../components/OptionsBox/OptionsBox";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { useState } from "react";
-import {
-  validateCheckout,
-  validateInputCheckout,
-} from "../../utils/validations/checkoutValidations";
+import { validateCheckout } from "../../utils/validations/checkoutValidations";
 import { checkoutValidationsModal } from "../../utils/notifications/modals";
 import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../../utils/constants";
 import { InputCheckout } from "../../components/InputCheckout/InputCheckout";
@@ -60,8 +57,6 @@ export const Checkout = () => {
     [INPUT_NAMES.PAYMENT_OPTION]: PAYMENT_OPTIONS[0].text,
   });
 
-  // const [inputValidated, setInputValidated] = useState(null);
-
   // HAY QUE USAR ESTO PARA NO MOSTRAR LOS INPUTS QUE CORRESPONDEN AL TIPO DE ENTREGA "ENVÍO"
   const [selectedDelivery, setSelectedDelivery] = useState(
     DELIVERY_OPTIONS[0].text
@@ -77,7 +72,7 @@ export const Checkout = () => {
 
   const handleInput = ({ target }) => {
     const { name, value } = target;
-
+    console.log(name, ":", value);
     setCheckoutForm((prev) => ({
       ...prev,
       [name]: value,
@@ -87,10 +82,11 @@ export const Checkout = () => {
   const sendForm = (event) => {
     event.preventDefault();
 
+    console.log("Se validarán estos datos: ", checkoutForm);
     // Validations
     const checkoutValidated = validateCheckout(checkoutForm);
 
-    if (checkoutValidated.error) {
+    if (!checkoutValidated.success) {
       checkoutValidated.error.issues.forEach((error) =>
         console.log(error.message)
       );
@@ -112,9 +108,6 @@ export const Checkout = () => {
     console.log("Enviando: ", checkoutForm);
   };
 
-  // COLOCAR flex-grow: 1 A CADA <div> DE UN INPUT (PROBAR ESO PARA LUEGO CREAR EL COMPONENTE INPUT)
-  // HAY QUE VER QUE EN LOS <select> NO SE PERMITA EL "value" -> "notValid"
-
   return (
     <div className={styles.checkoutBox}>
       <div className={styles.orderFormBox}>
@@ -126,7 +119,7 @@ export const Checkout = () => {
             <InputCheckout
               placeholder="Email"
               name={INPUT_NAMES.EMAIL}
-              onChange={handleInput}
+              handleInput={handleInput}
               messageCompleteInput="Please enter a valid email address."
             />
 
@@ -134,25 +127,25 @@ export const Checkout = () => {
               <InputCheckout
                 placeholder="First name"
                 name={INPUT_NAMES.FIRST_NAME}
-                onChange={handleInput}
+                handleInput={handleInput}
               />
               <InputCheckout
                 placeholder="Last name"
                 name={INPUT_NAMES.LAST_NAME}
-                onChange={handleInput}
+                handleInput={handleInput}
               />
             </div>
 
             <InputCheckout
               placeholder="DNI"
               name={INPUT_NAMES.DNI}
-              onChange={handleInput}
+              handleInput={handleInput}
             />
 
             <InputCheckout
               placeholder="Cell phone"
               name={INPUT_NAMES.CELL_PHONE}
-              onChange={handleInput}
+              handleInput={handleInput}
             />
           </section>
           {/* Delivery */} {/* USAR AL selectDelivery */}
@@ -171,7 +164,7 @@ export const Checkout = () => {
               <>
                 <InputCheckout
                   name={INPUT_NAMES.COUNTRY}
-                  onChange={handleInput}
+                  handleInput={handleInput}
                   isSelect={true}
                 >
                   <option value={DEFAULT_SELECT_VALUE}>Select a country</option>
@@ -180,12 +173,12 @@ export const Checkout = () => {
                 <InputCheckout
                   placeholder="Address"
                   name={INPUT_NAMES.ADDRESS}
-                  onChange={handleInput}
+                  handleInput={handleInput}
                 />
                 <div className={styles.locationsBox}>
                   <InputCheckout
                     name={INPUT_NAMES.DEPARTMENT}
-                    onChange={handleInput}
+                    handleInput={handleInput}
                     isSelect={true}
                   >
                     <option value={DEFAULT_SELECT_VALUE}>
@@ -196,7 +189,7 @@ export const Checkout = () => {
 
                   <InputCheckout
                     name={INPUT_NAMES.PROVINCE}
-                    onChange={handleInput}
+                    handleInput={handleInput}
                     isSelect={true}
                   >
                     <option value={DEFAULT_SELECT_VALUE}>
@@ -207,7 +200,7 @@ export const Checkout = () => {
 
                   <InputCheckout
                     name={INPUT_NAMES.DISTRICT}
-                    onChange={handleInput}
+                    handleInput={handleInput}
                     isSelect={true}
                   >
                     <option value={DEFAULT_SELECT_VALUE}>
@@ -218,7 +211,22 @@ export const Checkout = () => {
                 </div>
               </>
             ) : (
-              <div>Holi</div>
+              <div className={styles.storeBranchBox}>
+                <h3 className={styles.storeBrachTitle}>Store branch</h3>
+                <div className={styles.storeBranchDataBox}>
+                  <div className={styles.storeBranchData}>
+                    <h4 className={styles.storeBranchTitle}>
+                      StyleHub Store, Gamarra (Lima)
+                    </h4>
+                    <p className={styles.storeBranchAddress}>
+                      Av. Emilio Caveneda 151, Miraflores, Lima PE-LMA
+                    </p>
+                  </div>
+                  <p>
+                    <strong>GRATIS</strong>
+                  </p>
+                </div>
+              </div>
             )}
           </section>
           {/* Payment */}

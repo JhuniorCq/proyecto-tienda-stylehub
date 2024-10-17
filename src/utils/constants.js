@@ -1,8 +1,3 @@
-import { IoArrowRedoOutline } from "react-icons/io5";
-import { LuStore } from "react-icons/lu";
-import { MdOutlinePhoneIphone } from "react-icons/md";
-import { TbTruck } from "react-icons/tb";
-
 // URL DEL TOTAL DE PRODUCTOS
 export const URL_PRODUCTS = "https://fakestoreapi.com/products";
 
@@ -49,3 +44,10 @@ export const INPUT_NAMES = {
 
 // VALOR POR DEFECTO PARA LA PRIMERA OPCIÓN DE UN SELECT
 export const DEFAULT_SELECT_VALUE = "notValid";
+
+// ESTADOS DE VALIDACIÓN DE UN INPUT / SELECT
+export const INPUT_STATES = {
+  INITIAL: "Initial",
+  SUCCESS: "Success",
+  ERROR: "Error",
+};

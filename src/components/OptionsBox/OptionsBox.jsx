@@ -13,8 +13,8 @@ export const OptionsBox = ({
   const handleOptionChange = (event) => {
     console.log(event.target);
     setSelectedOption(event.target.value);
-    changeDeliveryTypeSelection();
     onChange(event);
+    if (changeDeliveryTypeSelection) changeDeliveryTypeSelection();
   };
 
   return (

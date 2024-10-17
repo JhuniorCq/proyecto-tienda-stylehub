@@ -5,10 +5,13 @@ const checkoutSchema = z.object({
   email: z
     .string({ message: "El email debe ser una cadena de texto." })
     .email(),
-  deliveryOption: z.string(),
-  country: z.string().refine((value) => value !== DEFAULT_SELECT_VALUE, {
-    message: "El país seleccionado no es válido.",
-  }),
+  deliveryOption: z.string().min(1),
+  country: z
+    .string()
+    .min(1)
+    .refine((value) => value !== DEFAULT_SELECT_VALUE, {
+      message: "El país seleccionado no es válido.",
+    }),
   firstName: z
     .string()
     .min(1, { message: "El campo para los nombres no debe estar vacío." }),
@@ -21,22 +24,32 @@ const checkoutSchema = z.object({
   address: z
     .string()
     .min(1, { message: "El campo para la dirección no debe estar vacío." }),
-  department: z.string().refine((value) => value !== DEFAULT_SELECT_VALUE, {
-    message: "El departamento seleccionado no es válido.",
-  }),
-  province: z.string().refine((value) => value !== DEFAULT_SELECT_VALUE, {
-    message: "La provincia seleccionado no es válida.",
-  }),
-  district: z.string().refine((value) => value !== DEFAULT_SELECT_VALUE, {
-    message: "El distrito seleccionado no es válido.",
-  }),
+  department: z
+    .string()
+    .min(1)
+    .refine((value) => value !== DEFAULT_SELECT_VALUE, {
+      message: "El departamento seleccionado no es válido.",
+    }),
+  province: z
+    .string()
+    .min(1)
+    .refine((value) => value !== DEFAULT_SELECT_VALUE, {
+      message: "La provincia seleccionado no es válida.",
+    }),
+  district: z
+    .string()
+    .min(1)
+    .refine((value) => value !== DEFAULT_SELECT_VALUE, {
+      message: "El distrito seleccionado no es válido.",
+    }),
   cellPhone: z.string().regex(/^\d{9}$/, {
     message: "El número de celular debe tener 9 dígitos números.",
   }),
-  paymentOption: z.string(),
+  paymentOption: z.string().min(1),
 });
 
 export const validateCheckout = (checkoutData) => {
+  // Si el Tipo de Entrega es por Delivery usamos todas las reglas, pero si es por Recojo omitimos -> department, province y district
   return checkoutSchema.safeParse(checkoutData);
 };
 

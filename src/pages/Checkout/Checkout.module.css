@@ -9,7 +9,7 @@
 }
 
 .orderFormBox {
-  padding: 25px 40px 50px 15%;
+  padding: 25px 40px 50px 12%;
 }
 
 .orderForm {
@@ -56,9 +56,40 @@
   font-weight: bold;
 }
 
+.storeBranchBox {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* 
+.storeBranchTitle {
+  font-weight: 600;
+} */
+
+.storeBranchDataBox {
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 15px 17px;
+  background-color: rgb(234, 234, 234);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.storeBranchData {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.storeBranchAddress {
+  font-size: 0.9rem;
+}
+
 /*  */
 
 .orderSummaryBox {
   background-color: lightgray;
-  padding: 25px 15% 50px 40px;
+  padding: 25px 12% 50px 40px;
 }
