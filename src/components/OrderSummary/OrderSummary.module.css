@@ -1,12 +1,12 @@
 .orderSummary {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 }
 
-.orderSummary > * {
+/* .orderSummary > * {
   border: 1px solid blue;
-}
+} */
 
 .productList {
   display: flex;
@@ -14,16 +14,10 @@
   gap: 12px;
 }
 
-/* .productList > * {
-  border: 1px solid green;
-} */
-
 .productBox {
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
-  /* gap: 20px; */
 }
 
 .productBox > div:first-child {
@@ -60,8 +54,8 @@
 }
 
 .quantity {
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
   text-align: center;
   align-content: center;
   position: absolute;
@@ -92,25 +86,58 @@
   /* background-color: red; */
   flex-grow: 1;
   text-align: right;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .productCostsBox {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
-.subTotalBox,
-.totalBox {
+.subTotalBox {
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
-.subTotalBox > div,
-.totalBox > div {
+.subTotalBox > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+}
+
+.totalBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.totalBox > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border: 1px solid green; */
+}
+
+.totalText {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.totalCost {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.taxtText {
+  color: var(--light-gray);
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+.textPEN {
+  color: var(--light-gray);
+  font-size: 0.9rem;
+  margin-right: 5px;
 }

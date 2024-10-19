@@ -1,3 +1,8 @@
+import {
+  roundToDecimals,
+  totalCost,
+  totalQuantityItems,
+} from "../../utils/logic";
 import styles from "./OrderSummary.module.css";
 
 export const OrderSummary = ({ shoppingCartProducts }) => {
@@ -23,8 +28,8 @@ export const OrderSummary = ({ shoppingCartProducts }) => {
       <div className={styles.productCostsBox}>
         <div className={styles.subTotalBox}>
           <div>
-            <p>Subtotal - 2 items</p>
-            <p>S/. 119.80</p>
+            <p>Subtotal ({totalQuantityItems(shoppingCartProducts)} items)</p>
+            <p>S/. {roundToDecimals(totalCost(shoppingCartProducts), 2)}</p>
           </div>
           <div>
             <p>Shipping type</p>
@@ -33,12 +38,16 @@ export const OrderSummary = ({ shoppingCartProducts }) => {
         </div>
         <div className={styles.totalBox}>
           <div>
-            <p>TOTAL</p>
-            <p>Incluye S/. 18.28 de impuestos</p>
+            <p className={styles.totalText}>TOTAL</p>
+            <p className={styles.taxtText}>Incluye S/. 18.28 de impuestos</p>
           </div>
           <div>
-            <span>PEN</span>
-            <p>S/. 128.80</p>
+            <p>
+              <span className={styles.textPEN}>PEN</span>{" "}
+              <span className={styles.totalCost}>
+                S/. {roundToDecimals(totalCost(shoppingCartProducts) + 9, 2)}
+              </span>
+            </p>
           </div>
         </div>
       </div>

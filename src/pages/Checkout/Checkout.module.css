@@ -71,7 +71,7 @@
   border: 1px solid black;
   border-radius: 6px;
   padding: 15px 17px;
-  background-color: rgb(234, 234, 234);
+  background-color: var(--background-very-light-gray);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -90,7 +90,7 @@
 /* ORDER SUMMARY */
 
 .orderSummaryBox {
-  background-color: lightgray;
+  background-color: var(--very-light-gray);
   padding: 25px 12% 50px 40px;
 }
 /* 

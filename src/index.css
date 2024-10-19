@@ -1,6 +1,9 @@
 :root {
-  --error-color: red;
-  --success-color: green;
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+  --light-gray: #919191;
+  --very-light-gray: #efefef;
+  --background-very-light-gray: #f6f6f6;
 }
 
 * {

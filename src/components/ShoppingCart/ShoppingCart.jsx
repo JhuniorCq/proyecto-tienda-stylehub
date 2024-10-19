@@ -4,7 +4,11 @@ import styles from "./ShoppingCart.module.css";
 import { ShoppingCartProduct } from "../ShoppingCartProduct/ShoppingCartProduct";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
-import { roundToDecimals } from "../../utils/logic";
+import {
+  roundToDecimals,
+  totalCost,
+  totalQuantityItems,
+} from "../../utils/logic";
 import {
   noProductsCartExist,
   removeAllProductsCartModal,
@@ -16,15 +20,6 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
     useContext(ShoppingCartContext);
 
   const navigate = useNavigate();
-
-  const totalQuantityItems = shoppingCartProducts.reduce(
-    (accumulator, product) => product.quantity + accumulator,
-    0
-  );
-  const totalCost = shoppingCartProducts.reduce(
-    (accumulator, product) => product.quantity * product.price + accumulator,
-    0
-  );
 
   const productsExistCart = shoppingCartProducts.length > 0;
 
@@ -69,7 +64,7 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
     >
       <div className={styles.boxQuantityProducts}>
         <p className={styles.quantityProducts}>
-          SHOPPING CART {`(${totalQuantityItems})`}
+          SHOPPING CART {`(${totalQuantityItems(shoppingCartProducts)})`}
         </p>
         <FaArrowRight
           onClick={appearShoppingCart}
@@ -92,7 +87,7 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
       <div className={styles.boxFinalCartResult}>
         <div>
           <p className={styles.totalCost}>
-            TOTAL: $ {roundToDecimals(totalCost, 2)}
+            TOTAL: $ {roundToDecimals(totalCost(shoppingCartProducts), 2)}
           </p>
           <button
             onClick={removeAllProductsCart}
