@@ -4,6 +4,7 @@ import { LuStore } from "react-icons/lu";
 import { OptionsBox } from "../../components/OptionsBox/OptionsBox";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { MdOutlinePhoneIphone } from "react-icons/md";
+import { RiBankCardLine } from "react-icons/ri";
 import { useContext, useState } from "react";
 import { validateCheckout } from "../../utils/validations/checkoutValidations";
 import { checkoutValidationsModal } from "../../utils/notifications/modals";
@@ -11,6 +12,7 @@ import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../../utils/constants";
 import { InputCheckout } from "../../components/InputCheckout/InputCheckout";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { OrderSummary } from "../../components/OrderSummary/OrderSummary";
+import { useNavigate } from "react-router-dom";
 
 // OPCIONES DE ENVÍO
 export const DELIVERY_OPTIONS = [
@@ -37,13 +39,22 @@ export const PAYMENT_OPTIONS = [
   {
     text: "Yape",
     additionalData: {
-      message: "The number will appear after clicking “Checkout”.",
+      message: "The number will appear after clicking “Finalize Order”.",
       icon: <MdOutlinePhoneIphone />,
+    },
+  },
+  {
+    text: "Bank Deposit",
+    additionalData: {
+      message:
+        "Your order will be reserved for a maximum of 24 to 48 hours. Our bank account details will be after clicking on “Finalize Order”.",
+      icon: <RiBankCardLine />,
     },
   },
 ];
 
 export const Checkout = () => {
+  const navigate = useNavigate();
   const { shoppingCartProducts } = useContext(ShoppingCartContext);
 
   const [checkoutForm, setCheckoutForm] = useState({
@@ -62,16 +73,16 @@ export const Checkout = () => {
   });
 
   // HAY QUE USAR ESTO PARA NO MOSTRAR LOS INPUTS QUE CORRESPONDEN AL TIPO DE ENTREGA "ENVÍO"
-  const [selectedDelivery, setSelectedDelivery] = useState(
-    DELIVERY_OPTIONS[0].text
-  );
+  // const [selectedDelivery, setSelectedDelivery] = useState(
+  //   DELIVERY_OPTIONS[0].text
+  // );
 
   const changeDeliveryTypeSelection = () => {
-    setSelectedDelivery((prev) =>
-      prev === DELIVERY_OPTIONS[0].text
-        ? DELIVERY_OPTIONS[1].text
-        : DELIVERY_OPTIONS[0].text
-    );
+    // setSelectedDelivery((prev) =>
+    //   prev === DELIVERY_OPTIONS[0].text
+    //     ? DELIVERY_OPTIONS[1].text
+    //     : DELIVERY_OPTIONS[0].text
+    // );
 
     // CUANDO HACEMOS ESTE CAMBIO, TAMBIEN DEBEMOS RESETEAR A country, department, province y district
     setCheckoutForm((prev) => ({
@@ -98,7 +109,10 @@ export const Checkout = () => {
 
     console.log("Se validarán estos datos: ", checkoutForm);
     // Validations
-    const checkoutValidated = validateCheckout(checkoutForm, selectedDelivery);
+    const checkoutValidated = validateCheckout(
+      checkoutForm,
+      /*selectedDelivery, */ checkoutForm[INPUT_NAMES.DELIVERY_OPTION]
+    );
 
     if (!checkoutValidated.success) {
       checkoutValidated.error.issues.forEach((error) =>
@@ -106,7 +120,6 @@ export const Checkout = () => {
       );
 
       // PARA ESTA VALIDACIÓN TOTAL -> HACER OPCIONAL A COUNTRY, ADDRESS, DEPARTMENT, PROVINCE Y DISTRICT, YA QUE SOLO EXISTIRÁN SI ES QUE EL TIPO DE ENVÍO ES "SHIPPING"
-
       checkoutValidationsModal({
         title: "Error en el ingreso de datos",
         text: "Porfavor, complete correctamente todos los campos.",
@@ -121,7 +134,14 @@ export const Checkout = () => {
 
     setCheckoutForm(checkoutValidated.data);
     console.log("Enviando: ", checkoutValidated.data);
-    alert("Todo fino");
+    // alert("Todo fino");
+    if (checkoutForm[INPUT_NAMES.PAYMENT_OPTION] === PAYMENT_OPTIONS[0].text) {
+      alert("Conectando con Paypal para realizar el pago.");
+    } else {
+      alert(
+        "Gracias, por su compra. (Redireccionando al panel con los detalles del pedido)"
+      );
+    }
   };
 
   return (
@@ -176,7 +196,8 @@ export const Checkout = () => {
               changeDeliveryTypeSelection={changeDeliveryTypeSelection}
             />
 
-            {selectedDelivery === DELIVERY_OPTIONS[0].text ? (
+            {checkoutForm[INPUT_NAMES.DELIVERY_OPTION] ===
+            DELIVERY_OPTIONS[0].text ? (
               <>
                 <InputCheckout
                   name={INPUT_NAMES.COUNTRY}
@@ -256,9 +277,14 @@ export const Checkout = () => {
               defaultOption={PAYMENT_OPTIONS[0].text}
             />
           </section>
-          {/* Pay now o Checkout */}
+          {/* Pay now o Finalize Order */}
           <div>
-            <button className={styles.finalizeOrderButton}>Pay now</button>
+            <button className={styles.finalizeOrderButton}>
+              {checkoutForm[INPUT_NAMES.PAYMENT_OPTION] ===
+              PAYMENT_OPTIONS[0].text
+                ? "Pay now"
+                : "Finalize Order"}
+            </button>
           </div>
         </form>
       </div>
