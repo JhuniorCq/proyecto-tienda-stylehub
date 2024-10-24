@@ -1,62 +1,16 @@
 import styles from "./Checkout.module.css";
-import { TbTruck } from "react-icons/tb";
-import { LuStore } from "react-icons/lu";
 import { OptionsBox } from "../../components/OptionsBox/OptionsBox";
-import { IoArrowRedoOutline } from "react-icons/io5";
-import { MdOutlinePhoneIphone } from "react-icons/md";
-import { RiBankCardLine } from "react-icons/ri";
 import { useContext, useState } from "react";
 import { validateCheckout } from "../../utils/validations/checkoutValidations";
 import { checkoutValidationsModal } from "../../utils/notifications/modals";
-import {
-  DEFAULT_SELECT_VALUE,
-  INPUT_NAMES,
-  // PAYMENT_OPTIONS,
-} from "../../utils/constants";
+import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../../utils/constants";
 import { InputCheckout } from "../../components/InputCheckout/InputCheckout";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { OrderSummary } from "../../components/OrderSummary/OrderSummary";
 import { useNavigate } from "react-router-dom";
 import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "./constants";
-
-// OPCIONES DE ENVÍO
-// export const DELIVERY_OPTIONS = [
-//   {
-//     text: "Shipping",
-//     icon: <TbTruck />,
-//   },
-//   {
-//     text: "Pick up in store",
-//     icon: <LuStore />,
-//   },
-// ];
-
-// OPCIONES DE PAGO
-// export const PAYMENT_OPTIONS = [
-//   {
-//     text: "Paypal",
-//     additionalData: {
-//       message:
-//         "After clicking on “Pay now”, you will be redirected to Paypal to complete your purchase safely.",
-//       icon: <IoArrowRedoOutline />,
-//     },
-//   },
-//   {
-//     text: "Yape",
-//     additionalData: {
-//       message: "The number will appear after clicking “Finalize Order”.",
-//       icon: <MdOutlinePhoneIphone />,
-//     },
-//   },
-//   {
-//     text: "Bank Deposit",
-//     additionalData: {
-//       message:
-//         "Your order will be reserved for a maximum of 24 to 48 hours. Our bank account details will be after clicking on “Finalize Order”.",
-//       icon: <RiBankCardLine />,
-//     },
-//   },
-// ];
+import paypalImage from "../../assets/images/paypal.png";
+import Swal from "sweetalert2";
 
 export const Checkout = () => {
   const navigate = useNavigate();
@@ -77,18 +31,7 @@ export const Checkout = () => {
     [INPUT_NAMES.PAYMENT_OPTION]: PAYMENT_OPTIONS[0].text,
   });
 
-  // HAY QUE USAR ESTO PARA NO MOSTRAR LOS INPUTS QUE CORRESPONDEN AL TIPO DE ENTREGA "ENVÍO"
-  // const [selectedDelivery, setSelectedDelivery] = useState(
-  //   DELIVERY_OPTIONS[0].text
-  // );
-
   const changeDeliveryTypeSelection = () => {
-    // setSelectedDelivery((prev) =>
-    //   prev === DELIVERY_OPTIONS[0].text
-    //     ? DELIVERY_OPTIONS[1].text
-    //     : DELIVERY_OPTIONS[0].text
-    // );
-
     // CUANDO HACEMOS ESTE CAMBIO, TAMBIEN DEBEMOS RESETEAR A country, department, province y district
     setCheckoutForm((prev) => ({
       ...prev,
@@ -141,12 +84,27 @@ export const Checkout = () => {
     console.log("Enviando: ", checkoutValidated.data);
 
     if (checkoutForm[INPUT_NAMES.PAYMENT_OPTION] === PAYMENT_OPTIONS[0].text) {
-      alert("Conectando con Paypal para realizar el pago.");
+      // Por ahora estará esto, luego haremos la integración de Paypal en el backend
+      Swal.fire({
+        title: "Thank you for your purchase!",
+        text: "You will be redirected to the paypal website to confirm payment.",
+        imageUrl: paypalImage,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Paypal",
+        confirmButtonText: "Go to Paypal",
+        confirmButtonColor: "black",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.open("https://www.paypal.com/signin", "_blank");
+        }
+      });
     } else {
       // Enviamos al backend a -> checkoutValidated.data -> El backend lo almacena y nos devuelve una respuesta con los mismos datos, y esto lo mostraremos en /order-completion, pero como aún no hay backend -> Lo que haré será enviar al checkoutValidated.data como un PAYMENT en el 2do Argumento del navigate
-      alert(
-        "Gracias, por su compra. (Redireccionando al panel con los detalles del pedido)"
-      );
+
+      // alert(
+      //   "Gracias, por su compra. (Redireccionando al panel con los detalles del pedido)"
+      // );
       navigate("/order-completion", { state: checkoutValidated.data });
     }
   };

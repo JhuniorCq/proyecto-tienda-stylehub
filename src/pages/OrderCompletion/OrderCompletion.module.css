@@ -9,7 +9,7 @@
 }
 
 .orderCompletionDataBox {
-  padding: 25px 40px 50px 12%;
+  padding: 50px 40px 50px 12%;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -40,16 +40,9 @@
   border: 1px solid var(--light-gray);
   border-radius: 7px;
   padding: 24px;
-  /* SI AGREGO UN <div> con un <img> EN orderReservedBox ENTONCES DESCOMENTO ESTO */
-  /* display: flex;
-  flex-direction: column;
-  gap: 10px; */
-}
-
-.orderReserverdDataBox {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .paymentMethodDataBox,
@@ -115,5 +108,5 @@
 
 .orderSummaryBox {
   background-color: var(--very-light-gray);
-  padding: 25px 12% 50px 40px;
+  padding: 50px 12% 50px 40px;
 }

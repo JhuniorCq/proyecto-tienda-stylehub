@@ -1,5 +1,5 @@
 import { DELIVERY_OPTIONS } from "../../pages/Checkout/constants";
-import { DELIVERY_COST } from "../../utils/constants";
+import { SHIPPING_COST } from "../../utils/constants";
 import {
   roundToDecimals,
   totalCost,
@@ -37,7 +37,7 @@ export const OrderSummary = ({ shoppingCartProducts, orderData }) => {
             {orderData.deliveryOption === DELIVERY_OPTIONS[0].text ? (
               <>
                 <p>{orderData.deliveryOption}</p>
-                <p>S/. 9.00</p>
+                <p>{`S/. ${SHIPPING_COST}.00`}</p>
               </>
             ) : orderData.deliveryOption === DELIVERY_OPTIONS[1].text ? (
               <>
@@ -50,7 +50,7 @@ export const OrderSummary = ({ shoppingCartProducts, orderData }) => {
         <div className={styles.totalBox}>
           <div>
             <p className={styles.totalText}>TOTAL</p>
-            <p className={styles.taxtText}>Incluye S/. 18.28 de impuestos</p>
+            <p className={styles.taxtText}>Includes S/. 18.28 of taxes</p>
           </div>
           <div>
             <p>
@@ -59,7 +59,7 @@ export const OrderSummary = ({ shoppingCartProducts, orderData }) => {
                 S/.{" "}
                 {orderData.deliveryOption === DELIVERY_OPTIONS[0].text
                   ? roundToDecimals(
-                      totalCost(shoppingCartProducts) + DELIVERY_COST,
+                      totalCost(shoppingCartProducts) + SHIPPING_COST,
                       2
                     )
                   : orderData.deliveryOption === DELIVERY_OPTIONS[1].text

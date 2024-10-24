@@ -2,12 +2,11 @@ import { useContext } from "react";
 import { OrderSummary } from "../../components/OrderSummary/OrderSummary";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import styles from "./OrderCompletion.module.css";
-// import { FaRegCircleCheck } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "../Checkout/constants";
 import { roundToDecimals, totalCost } from "../../utils/logic";
-import { DELIVERY_COST } from "../../utils/constants";
+import { SHIPPING_COST } from "../../utils/constants";
 
 export const OrderCompletion = () => {
   const { shoppingCartProducts, removeAllShoppingCart } =
@@ -25,40 +24,36 @@ export const OrderCompletion = () => {
         </div>
 
         <div className={styles.orderReservedBox}>
-          {/* <div>
-            <img src="" alt="" />
-          </div> */}
-          <div className={styles.orderReserverdDataBox}>
-            <h2>Tu pedido ya ha sido reservado</h2>
-            <p>
-              Deberás realizar el pago de tu pedido en la siguientes 24 o 48
-              horas como máximo, de lo contrario tu pedido será cancelado.
-            </p>
+          {/* Acá el título tal vez cambia cuando el Pago es por Paypal */}
+          <h2>Your order has already been reserved</h2>
+          <p>
+            You must make the payment for your order within the next 24 or 48
+            hours at the latest, otherwise your order will be cancelled.
+          </p>
 
-            <div className={styles.paymentMethodDataBox}>
-              {orderData.paymentOption === PAYMENT_OPTIONS[1].text ? (
-                <>
-                  <h3>Número de Yape</h3>
-                  <p>936128801</p>
-                </>
-              ) : orderData.paymentOption === PAYMENT_OPTIONS[2].text ? (
-                <>
-                  <h3>Cuenta BCP</h3>
-                  <p>Cuenta: 191-9876543-2-10</p>
-                  <p>CCI: 00112233445566778899</p>
-                  <p>A nombre de: Style Hub S.A.C.</p>
-                </>
-              ) : null}
-            </div>
+          <div className={styles.paymentMethodDataBox}>
+            {orderData.paymentOption === PAYMENT_OPTIONS[1].text ? (
+              <>
+                <h3>Yape number</h3>
+                <p>936128801</p>
+              </>
+            ) : orderData.paymentOption === PAYMENT_OPTIONS[2].text ? (
+              <>
+                <h3>BCP account</h3>
+                <p>Account: 191-9876543-2-10</p>
+                <p>CCI: 00112233445566778899</p>
+                <p>In the name of: Style Hub S.A.C.</p>
+              </>
+            ) : null}
           </div>
         </div>
 
         <div className={styles.orderDetailsBox}>
-          <h2>Detalles del pedido</h2>
+          <h2>Order details</h2>
           <div className={styles.orderDetailsDataBox}>
             <div>
               <div className={styles.sectionOrderDetails}>
-                <h3>Información de contacto</h3>
+                <h3>Contact information</h3>
                 <p>{orderData.firstName}</p>
                 <p>{orderData.lastName}</p>
                 <p>{orderData.dni}</p>
@@ -67,13 +62,12 @@ export const OrderCompletion = () => {
               </div>
 
               <div className={styles.sectionOrderDetails}>
-                <h3>Tipo de Entrega</h3>
+                <h3>Delivery Type</h3>
                 <p>{orderData.deliveryOption}</p>
               </div>
             </div>
 
             <div>
-              {/* Si el tipo de envío es por domicilio se mostrará el siguiente <div> */}
               {orderData.deliveryOption === DELIVERY_OPTIONS[0].text && (
                 <div className={styles.sectionOrderDetails}>
                   <h3>Dirección de envío</h3>
@@ -85,12 +79,12 @@ export const OrderCompletion = () => {
               )}
 
               <div className={styles.sectionOrderDetails}>
-                <h3>Método de Pago</h3>
+                <h3>Payment Method</h3>
                 <p>
                   {orderData.paymentOption}: S/.{" "}
                   {orderData.deliveryOption === DELIVERY_OPTIONS[0].text
                     ? roundToDecimals(totalCost(shoppingCartProducts), 2) +
-                      DELIVERY_COST
+                      SHIPPING_COST
                     : orderData.deliveryOption === DELIVERY_OPTIONS[1].text
                     ? roundToDecimals(totalCost(shoppingCartProducts), 2)
                     : null}
@@ -101,8 +95,12 @@ export const OrderCompletion = () => {
         </div>
 
         <div className={styles.finalOptionsBox}>
-          <Link to="/" className={styles.helpLink}>
-            ¿Necesitas ayuda?, ponte en contacto con nosotros.
+          <Link
+            to="https://wa.me/936128801"
+            target="_blank"
+            className={styles.helpLink}
+          >
+            Do you need help? Please contact us.
           </Link>
 
           <Link
@@ -110,7 +108,7 @@ export const OrderCompletion = () => {
             className={styles.backButton}
             onClick={removeAllShoppingCart}
           >
-            Regresar a la tienda
+            Return to the store
           </Link>
         </div>
       </div>
