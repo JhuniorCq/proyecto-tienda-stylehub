@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../constants";
-import { DELIVERY_OPTIONS } from "../../pages/Checkout/Checkout";
+import { DELIVERY_OPTIONS } from "../../pages/Checkout/constants";
+// import { DELIVERY_OPTIONS } from "../../pages/Checkout/Checkout";
 
 const checkoutSchema = z.object({
   email: z

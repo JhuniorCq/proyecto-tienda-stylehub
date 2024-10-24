@@ -17,11 +17,11 @@
 }
 
 .inputValidated {
-  border: 2px solid green;
+  border: 2px solid var(--success-color);
 }
 
 .inputNotValidated {
-  border: 2px solid red;
+  border: 2px solid var(--error-color);
 }
 
 .messageCompleteInput {

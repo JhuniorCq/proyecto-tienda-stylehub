@@ -1,3 +1,5 @@
+import { DELIVERY_OPTIONS } from "../../pages/Checkout/constants";
+import { DELIVERY_COST } from "../../utils/constants";
 import {
   roundToDecimals,
   totalCost,
@@ -5,7 +7,7 @@ import {
 } from "../../utils/logic";
 import styles from "./OrderSummary.module.css";
 
-export const OrderSummary = ({ shoppingCartProducts }) => {
+export const OrderSummary = ({ shoppingCartProducts, orderData }) => {
   return (
     <div className={styles.orderSummary}>
       <ul className={styles.productList}>
@@ -32,8 +34,17 @@ export const OrderSummary = ({ shoppingCartProducts }) => {
             <p>S/. {roundToDecimals(totalCost(shoppingCartProducts), 2)}</p>
           </div>
           <div>
-            <p>Shipping type</p>
-            <p>S/. 9.00</p>
+            {orderData.deliveryOption === DELIVERY_OPTIONS[0].text ? (
+              <>
+                <p>{orderData.deliveryOption}</p>
+                <p>S/. 9.00</p>
+              </>
+            ) : orderData.deliveryOption === DELIVERY_OPTIONS[1].text ? (
+              <>
+                <p>{orderData.deliveryOption}</p>
+                <p>FREE</p>
+              </>
+            ) : null}
           </div>
         </div>
         <div className={styles.totalBox}>
@@ -45,7 +56,15 @@ export const OrderSummary = ({ shoppingCartProducts }) => {
             <p>
               <span className={styles.textPEN}>PEN</span>{" "}
               <span className={styles.totalCost}>
-                S/. {roundToDecimals(totalCost(shoppingCartProducts) + 9, 2)}
+                S/.{" "}
+                {orderData.deliveryOption === DELIVERY_OPTIONS[0].text
+                  ? roundToDecimals(
+                      totalCost(shoppingCartProducts) + DELIVERY_COST,
+                      2
+                    )
+                  : orderData.deliveryOption === DELIVERY_OPTIONS[1].text
+                  ? roundToDecimals(totalCost(shoppingCartProducts), 2)
+                  : null}
               </span>
             </p>
           </div>

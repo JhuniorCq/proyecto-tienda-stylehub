@@ -8,50 +8,55 @@ import { RiBankCardLine } from "react-icons/ri";
 import { useContext, useState } from "react";
 import { validateCheckout } from "../../utils/validations/checkoutValidations";
 import { checkoutValidationsModal } from "../../utils/notifications/modals";
-import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../../utils/constants";
+import {
+  DEFAULT_SELECT_VALUE,
+  INPUT_NAMES,
+  // PAYMENT_OPTIONS,
+} from "../../utils/constants";
 import { InputCheckout } from "../../components/InputCheckout/InputCheckout";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { OrderSummary } from "../../components/OrderSummary/OrderSummary";
 import { useNavigate } from "react-router-dom";
+import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "./constants";
 
 // OPCIONES DE ENVÍO
-export const DELIVERY_OPTIONS = [
-  {
-    text: "Shipping",
-    icon: <TbTruck />,
-  },
-  {
-    text: "Pick up in store",
-    icon: <LuStore />,
-  },
-];
+// export const DELIVERY_OPTIONS = [
+//   {
+//     text: "Shipping",
+//     icon: <TbTruck />,
+//   },
+//   {
+//     text: "Pick up in store",
+//     icon: <LuStore />,
+//   },
+// ];
 
 // OPCIONES DE PAGO
-export const PAYMENT_OPTIONS = [
-  {
-    text: "Paypal",
-    additionalData: {
-      message:
-        "After clicking on “Pay now”, you will be redirected to Paypal to complete your purchase safely.",
-      icon: <IoArrowRedoOutline />,
-    },
-  },
-  {
-    text: "Yape",
-    additionalData: {
-      message: "The number will appear after clicking “Finalize Order”.",
-      icon: <MdOutlinePhoneIphone />,
-    },
-  },
-  {
-    text: "Bank Deposit",
-    additionalData: {
-      message:
-        "Your order will be reserved for a maximum of 24 to 48 hours. Our bank account details will be after clicking on “Finalize Order”.",
-      icon: <RiBankCardLine />,
-    },
-  },
-];
+// export const PAYMENT_OPTIONS = [
+//   {
+//     text: "Paypal",
+//     additionalData: {
+//       message:
+//         "After clicking on “Pay now”, you will be redirected to Paypal to complete your purchase safely.",
+//       icon: <IoArrowRedoOutline />,
+//     },
+//   },
+//   {
+//     text: "Yape",
+//     additionalData: {
+//       message: "The number will appear after clicking “Finalize Order”.",
+//       icon: <MdOutlinePhoneIphone />,
+//     },
+//   },
+//   {
+//     text: "Bank Deposit",
+//     additionalData: {
+//       message:
+//         "Your order will be reserved for a maximum of 24 to 48 hours. Our bank account details will be after clicking on “Finalize Order”.",
+//       icon: <RiBankCardLine />,
+//     },
+//   },
+// ];
 
 export const Checkout = () => {
   const navigate = useNavigate();
@@ -134,13 +139,15 @@ export const Checkout = () => {
 
     setCheckoutForm(checkoutValidated.data);
     console.log("Enviando: ", checkoutValidated.data);
-    // alert("Todo fino");
+
     if (checkoutForm[INPUT_NAMES.PAYMENT_OPTION] === PAYMENT_OPTIONS[0].text) {
       alert("Conectando con Paypal para realizar el pago.");
     } else {
+      // Enviamos al backend a -> checkoutValidated.data -> El backend lo almacena y nos devuelve una respuesta con los mismos datos, y esto lo mostraremos en /order-completion, pero como aún no hay backend -> Lo que haré será enviar al checkoutValidated.data como un PAYMENT en el 2do Argumento del navigate
       alert(
         "Gracias, por su compra. (Redireccionando al panel con los detalles del pedido)"
       );
+      navigate("/order-completion", { state: checkoutValidated.data });
     }
   };
 
@@ -289,7 +296,10 @@ export const Checkout = () => {
         </form>
       </div>
       <div className={styles.orderSummaryBox}>
-        <OrderSummary shoppingCartProducts={shoppingCartProducts} />
+        <OrderSummary
+          shoppingCartProducts={shoppingCartProducts}
+          orderData={checkoutForm}
+        />
       </div>
     </div>
   );

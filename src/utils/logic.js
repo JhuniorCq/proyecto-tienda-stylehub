@@ -16,13 +16,3 @@ export const totalCost = (shoppingCartProducts) => {
     0
   );
 };
-
-// const totalQuantityItems = shoppingCartProducts.reduce(
-//   (accumulator, product) => product.quantity + accumulator,
-//   0
-// );
-
-// const totalCost = shoppingCartProducts.reduce(
-//   (accumulator, product) => product.quantity * product.price + accumulator,
-//   0
-// );
