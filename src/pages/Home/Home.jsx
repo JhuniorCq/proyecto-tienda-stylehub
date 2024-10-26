@@ -20,6 +20,8 @@ export const Home = () => {
     (product) => product.category === PRODUCT_CATEGORIES.womenClothing
   );
 
+  console.log(responseProducts, "sfkfojwigpoewgjwiehweweweioweiwegpweg");
+
   return (
     <div className={styles.boxHome}>
       {/* SECCIÓN DE INICIO */}

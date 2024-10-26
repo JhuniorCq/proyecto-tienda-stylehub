@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import { usePost } from "../../hooks/usePost";
 import axios from "axios";
 import { Loader } from "../../components/Loader/Loader";
+import { MdEmail } from "react-icons/md";
 
 export const Checkout = () => {
   const { postData, responsePost, loadingPost, errorPost } = usePost();
@@ -103,10 +104,10 @@ export const Checkout = () => {
     try {
       console.log(shoppingCartProducts);
 
-      await postData(
-        "http://localhost:1238/payment/create-order",
-        shoppingCartProducts
-      );
+      await postData("http://localhost:1238/payment/create-order", {
+        productList: shoppingCartProducts,
+        checkoutData: checkoutForm,
+      });
     } catch (error) {
       console.error("", error.message);
     }
