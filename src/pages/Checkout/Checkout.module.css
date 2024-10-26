@@ -9,7 +9,7 @@
 }
 
 .orderFormBox {
-  padding: 25px 40px 50px 12%;
+  padding: 50px 40px 50px 12%;
 }
 
 .orderForm {
@@ -91,7 +91,7 @@
 
 .orderSummaryBox {
   background-color: var(--very-light-gray);
-  padding: 25px 12% 50px 40px;
+  padding: 50px 12% 50px 40px;
 }
 /* 
 .orderSummaryBox > * {

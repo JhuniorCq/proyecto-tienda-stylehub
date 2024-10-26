@@ -87,7 +87,7 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
       <div className={styles.boxFinalCartResult}>
         <div>
           <p className={styles.totalCost}>
-            TOTAL: $ {roundToDecimals(totalCost(shoppingCartProducts), 2)}
+            TOTAL: S/. {roundToDecimals(totalCost(shoppingCartProducts), 2)}
           </p>
           <button
             onClick={removeAllProductsCart}
@@ -97,7 +97,13 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
           </button>
         </div>
         <div>
-          <button onClick={confirmPurchase} className={styles.buyButton}>
+          <button
+            onClickCapture={() => {
+              confirmPurchase();
+              appearShoppingCart();
+            }}
+            className={styles.buyButton}
+          >
             Buy products
           </button>
         </div>

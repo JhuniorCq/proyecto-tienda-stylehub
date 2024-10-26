@@ -1,6 +1,6 @@
 import styles from "./Checkout.module.css";
 import { OptionsBox } from "../../components/OptionsBox/OptionsBox";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { validateCheckout } from "../../utils/validations/checkoutValidations";
 import { checkoutValidationsModal } from "../../utils/notifications/modals";
 import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../../utils/constants";
@@ -11,10 +11,14 @@ import { useNavigate } from "react-router-dom";
 import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "./constants";
 import paypalImage from "../../assets/images/paypal.png";
 import Swal from "sweetalert2";
+import { usePost } from "../../hooks/usePost";
+import axios from "axios";
+import { Loader } from "../../components/Loader/Loader";
 
 export const Checkout = () => {
-  const navigate = useNavigate();
+  const { postData, responsePost, loadingPost, errorPost } = usePost();
   const { shoppingCartProducts } = useContext(ShoppingCartContext);
+  const navigate = useNavigate();
 
   const [checkoutForm, setCheckoutForm] = useState({
     [INPUT_NAMES.EMAIL]: null,
@@ -52,14 +56,14 @@ export const Checkout = () => {
     }));
   };
 
-  const sendForm = (event) => {
+  const sendForm = async (event) => {
     event.preventDefault();
 
     console.log("Se validarán estos datos: ", checkoutForm);
     // Validations
     const checkoutValidated = validateCheckout(
       checkoutForm,
-      /*selectedDelivery, */ checkoutForm[INPUT_NAMES.DELIVERY_OPTION]
+      checkoutForm[INPUT_NAMES.DELIVERY_OPTION]
     );
 
     if (!checkoutValidated.success) {
@@ -84,32 +88,42 @@ export const Checkout = () => {
     console.log("Enviando: ", checkoutValidated.data);
 
     if (checkoutForm[INPUT_NAMES.PAYMENT_OPTION] === PAYMENT_OPTIONS[0].text) {
-      // Por ahora estará esto, luego haremos la integración de Paypal en el backend
-      Swal.fire({
-        title: "Thank you for your purchase!",
-        text: "You will be redirected to the paypal website to confirm payment.",
-        imageUrl: paypalImage,
-        imageWidth: 200,
-        imageHeight: 200,
-        imageAlt: "Paypal",
-        confirmButtonText: "Go to Paypal",
-        confirmButtonColor: "black",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.open("https://www.paypal.com/signin", "_blank");
-        }
-      });
+      try {
+        await handleOnlinePayment();
+      } catch (error) {
+        console.error("", error.message);
+      }
     } else {
       // Enviamos al backend a -> checkoutValidated.data -> El backend lo almacena y nos devuelve una respuesta con los mismos datos, y esto lo mostraremos en /order-completion, pero como aún no hay backend -> Lo que haré será enviar al checkoutValidated.data como un PAYMENT en el 2do Argumento del navigate
-
-      // alert(
-      //   "Gracias, por su compra. (Redireccionando al panel con los detalles del pedido)"
-      // );
       navigate("/order-completion", { state: checkoutValidated.data });
     }
   };
 
-  return (
+  const handleOnlinePayment = async () => {
+    try {
+      console.log(shoppingCartProducts);
+
+      await postData(
+        "http://localhost:1238/payment/create-order",
+        shoppingCartProducts
+      );
+    } catch (error) {
+      console.error("", error.message);
+    }
+  };
+
+  useEffect(() => {
+    console.log(loadingPost);
+    console.log(responsePost);
+    if (!loadingPost && responsePost && responsePost.length !== 0) {
+      console.log(responsePost);
+      window.location.href = responsePost.links[1].href;
+    }
+  }, [responsePost]);
+
+  return loadingPost ? (
+    <Loader />
+  ) : (
     <div className={styles.checkoutBox}>
       <div className={styles.orderFormBox}>
         <form className={styles.orderForm} onSubmit={sendForm}>

@@ -41,9 +41,9 @@ export const ShoppingCartProduct = ({ id, name, image, price, quantity }) => {
             <p className={styles.quantityProduct}>{quantity}</p>
             <button onClick={() => increaseProductQuantity(id)}>+</button>
           </div>
-          <p className={styles.unitPrice}>$ {price}</p>
+          <p className={styles.unitPrice}>S/. {price}</p>
           <p className={styles.totalPrice}>
-            $ {roundToDecimals(price * quantity, 2)}
+            S/. {roundToDecimals(price * quantity, 2)}
           </p>
         </div>
       </div>

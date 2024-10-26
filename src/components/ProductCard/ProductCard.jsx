@@ -54,7 +54,7 @@ export const ProductCard = ({ id, image, category, name, price }) => {
       <div className={styles.boxText}>
         <p className={styles.productCategory}>{category}</p>
         <h2 className={styles.productName}>{name}</h2>
-        <p className={styles.productPrice}>$ {price}</p>
+        <p className={styles.productPrice}>S/. {price}</p>
       </div>
 
       <div

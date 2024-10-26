@@ -24,7 +24,10 @@ export const Navbar = () => {
 
   return (
     <>
-      {location.pathname !== "/order-completion" && (
+      {!(
+        location.pathname === "/order-completion" ||
+        location.pathname === "/checkout"
+      ) && (
         <>
           <header
             className={
