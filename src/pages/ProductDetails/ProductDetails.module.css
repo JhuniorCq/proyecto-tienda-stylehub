@@ -43,6 +43,12 @@
   color: rgb(241, 24, 24);
 }
 
+.productQuantity {
+  margin-top: 12px;
+  font-weight: bold;
+  color: rgb(20, 95, 20);
+}
+
 .productDescription {
   margin: 25px 0;
 }
@@ -54,6 +60,7 @@
   color: white;
   border: none;
   cursor: pointer;
+  font-size: 0.95rem;
   transition: background-color 0.3s ease-in-out;
 }
 

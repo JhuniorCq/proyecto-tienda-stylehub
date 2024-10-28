@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-export const addOrRemoveProductToast = ({
+export const Toast = ({
   toast,
   position,
   showConfirmButton,

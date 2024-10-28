@@ -1,8 +1,12 @@
-import { useReducer } from "react";
+import { act, useContext, useReducer } from "react";
 import { ShoppingCartContext } from "./ShoppingCartContext";
 import { SHOPPING_CART_ACTIONS } from "../../utils/constants";
+import { ProductsContext } from "../ProductsContext/ProductsContext";
+import { Toast } from "../../utils/notifications/toasts";
 
 export const ShoppingCartProvider = ({ children }) => {
+  const { responseGet: responseProducts } = useContext(ProductsContext);
+
   const getCartSessionStorage = (shoppingCartInitial) => {
     const savedCart = window.sessionStorage.getItem("shoppingCart");
     return savedCart ? JSON.parse(savedCart) : shoppingCartInitial;
@@ -24,8 +28,26 @@ export const ShoppingCartProvider = ({ children }) => {
         break;
       }
       case SHOPPING_CART_ACTIONS.increaseProduct: {
+        const showQuantity = responseProducts.find(
+          (product) => product.id === action.payload
+        ).showQuantity;
+
         updateState = state.map((product) => {
-          if (product.id === action.payload) product.quantity++;
+          if (product.id === action.payload) {
+            if (product.quantity < showQuantity) {
+              product.quantity++;
+            } else {
+              Toast({
+                toast: true,
+                position: "bottom-left",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                icon: "error",
+                title: `La cantidad límite de este producto es ${showQuantity}`,
+              });
+            }
+          }
           return product;
         });
         break;

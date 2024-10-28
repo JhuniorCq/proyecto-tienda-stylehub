@@ -12,7 +12,7 @@ export const StoreSection = ({ productList, sectionTitle }) => {
             id={product.id}
             category={product.category}
             image={product.image}
-            name={product.title} // Acá es donde se hace el cambio de title a name
+            name={product.name}
             price={product.price}
           />
         ))}

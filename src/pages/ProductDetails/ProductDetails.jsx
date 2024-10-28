@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 import { Loader } from "../../components/Loader/Loader";
-import { addOrRemoveProductToast } from "../../utils/notifications/toasts";
+import { Toast as addOrRemoveProductToast } from "../../utils/notifications/toasts";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -58,11 +58,14 @@ export const ProductDetails = () => {
     <div className={styles.boxProductDetails}>
       <div className={styles.boxProduct}>
         <div className={styles.boxImage}>
-          <img src={productData.image} alt={productData.title} />
+          <img src={productData.image} alt={productData.name} />
         </div>
         <div className={styles.boxText}>
-          <h2 className={styles.productTitle}>{productData.title}</h2>
+          <h2 className={styles.productTitle}>{productData.name}</h2>
           <p className={styles.productPrice}>$ {productData.price}</p>
+          <p className={styles.productQuantity}>
+            {productData.showQuantity} available
+          </p>
           <p className={styles.productDescription}>{productData.description}</p>
           <button
             onClick={addProductCart}

@@ -32,5 +32,5 @@ export const useGet = (url) => {
     getData();
   }, [url]);
 
-  return stateGet;
+  return { ...stateGet, getData };
 };
