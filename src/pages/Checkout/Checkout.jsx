@@ -3,7 +3,11 @@ import { OptionsBox } from "../../components/OptionsBox/OptionsBox";
 import { useContext, useEffect, useState } from "react";
 import { validateCheckout } from "../../utils/validations/checkoutValidations";
 import { checkoutValidationsModal } from "../../utils/notifications/modals";
-import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../../utils/constants";
+import {
+  DEFAULT_SELECT_VALUE,
+  INPUT_NAMES,
+  URL_SERVER,
+} from "../../utils/constants";
 import { InputCheckout } from "../../components/InputCheckout/InputCheckout";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { OrderSummary } from "../../components/OrderSummary/OrderSummary";
@@ -15,10 +19,19 @@ import { usePost } from "../../hooks/usePost";
 import axios from "axios";
 import { Loader } from "../../components/Loader/Loader";
 import { MdEmail } from "react-icons/md";
+import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 
 export const Checkout = () => {
   const { postData, responsePost, loadingPost, errorPost } = usePost();
+  const {
+    postData: postPayment,
+    responsePost: responsePayment,
+    loadingPost: loadingPayment,
+    errorPost: errorPayment,
+  } = usePost();
   const { shoppingCartProducts } = useContext(ShoppingCartContext);
+  const { responseGet: ListaDeProductosTotales, refetchProducts } =
+    useContext(ProductsContext);
   const navigate = useNavigate();
 
   const [checkoutForm, setCheckoutForm] = useState({
@@ -96,7 +109,19 @@ export const Checkout = () => {
       }
     } else {
       // Enviamos al backend a -> checkoutValidated.data -> El backend lo almacena y nos devuelve una respuesta con los mismos datos, y esto lo mostraremos en /order-completion, pero como aún no hay backend -> Lo que haré será enviar al checkoutValidated.data como un PAYMENT en el 2do Argumento del navigate
-      navigate("/order-completion", { state: checkoutValidated.data });
+      try {
+        await postPayment(`${URL_SERVER}/order`, {
+          productList: shoppingCartProducts,
+          checkoutData: checkoutForm,
+        });
+        console.log(
+          "Recibiendo la respuesta del backend al enviar el pedido: ",
+          responsePayment,
+          errorPayment
+        );
+      } catch (error) {
+        console.error("", error.message);
+      }
     }
   };
 
@@ -104,7 +129,7 @@ export const Checkout = () => {
     try {
       console.log(shoppingCartProducts);
 
-      await postData("http://localhost:1238/payment/create-order", {
+      await postData(`${URL_SERVER}/payment/create-order`, {
         productList: shoppingCartProducts,
         checkoutData: checkoutForm,
       });
@@ -113,16 +138,35 @@ export const Checkout = () => {
     }
   };
 
+  // useEffect para el PAGO con YAPE o DEPÓSITO
+  useEffect(() => {
+    console.log(
+      "Valor de responsePayment antes de entrar al IF del useEffect",
+      responsePayment
+    );
+    if (!loadingPayment && responsePayment) {
+      console.log("Respuesta del ENVÍO DEL PEDIDO: ", responsePayment);
+      console.log(
+        "Los productos de la tienda despues de la compra: ",
+        ListaDeProductosTotales
+      );
+      // refetchProducts() actualiza la Lista de Productos de la Tienda luego de cada compra
+      refetchProducts();
+      navigate("/order-completion", { state: responsePayment });
+    }
+  }, [responsePayment]);
+
+  // useEffect para el PAGO con PAYPAL
   useEffect(() => {
     console.log(loadingPost);
     console.log(responsePost);
-    if (!loadingPost && responsePost && responsePost.length !== 0) {
+    if (!loadingPost && responsePost /* && responsePost.length !== 0*/) {
       console.log(responsePost);
       window.location.href = responsePost.links[1].href;
     }
   }, [responsePost]);
 
-  return loadingPost ? (
+  return loadingPost || loadingPayment ? (
     <Loader />
   ) : (
     <div className={styles.checkoutBox}>

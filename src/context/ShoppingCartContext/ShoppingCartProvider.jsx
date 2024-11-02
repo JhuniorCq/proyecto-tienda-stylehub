@@ -33,6 +33,11 @@ export const ShoppingCartProvider = ({ children }) => {
           (product) => product.id === action.payload
         ).showQuantity;
 
+        console.log(
+          "La cantidad máxima de este producto que quieres aumentar es: ",
+          showQuantity,
+          responseProducts
+        );
         updateState = state.map((product) => {
           if (product.id === action.payload) {
             if (product.quantity < showQuantity) {

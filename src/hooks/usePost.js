@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export const usePost = () => {
   const [statePost, setStatePost] = useState({
-    responsePost: [],
+    responsePost: null, // Lo inicializaré con null y ya no con []
     loadingPost: false,
     errorPost: null,
   });
@@ -13,7 +13,7 @@ export const usePost = () => {
     setStatePost({ responsePost: null, loadingPost: true, errorPost: null });
     try {
       const { data } = await axios.post(url, body);
-
+      console.log(data);
       setStatePost({
         responsePost: data,
         loadingPost: false,

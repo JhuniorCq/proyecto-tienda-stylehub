@@ -1,19 +1,12 @@
 import { ProductsContext } from "./ProductsContext";
 import { useGet } from "../../hooks/useGet";
-import { URL_PRODUCTS } from "../../utils/constants";
+import { URL_SERVER } from "../../utils/constants";
 
 export const ProductsProvider = ({ children }) => {
   // DATO: Actualmente el GET solo se ejecuta una vez, que es al MONTAR el Componente ProductsProvider y ya NO se vuelve a ejecutar (por lo que si en el backend se cambian los datos de los productos, creo que NO se verá reflejados acá porque NO se vuelve a hacer una Solicitud GET) -> Para que se vean reflejados se deberá hacer un F5 creo xd
-  const { responseGet, loadingGet, errorGet, getData } = useGet(URL_PRODUCTS);
-
-  // Esto es para que la propiedad "title" ahora se llame "name"
-  responseGet.forEach((product) => {
-    product.name = product.title;
-    // product.showQuantity = product?.rating?.count;
-    product.showQuantity = 3;
-    delete product.title;
-    delete product.rating;
-  });
+  const { responseGet, loadingGet, errorGet, getData } = useGet(
+    `${URL_SERVER}/product`
+  );
 
   console.log("Lista de Productos de la API (personalizada)", responseGet);
 

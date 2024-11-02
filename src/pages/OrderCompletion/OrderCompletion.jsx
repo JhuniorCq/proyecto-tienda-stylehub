@@ -9,10 +9,13 @@ import { roundToDecimals, totalCost } from "../../utils/logic";
 import { SHIPPING_COST } from "../../utils/constants";
 
 export const OrderCompletion = () => {
-  const { shoppingCartProducts, removeAllShoppingCart } =
+  const { /*shoppingCartProducts,*/ removeAllShoppingCart } =
     useContext(ShoppingCartContext);
+
   const { state: orderData } = useLocation();
+  const { checkoutData, productList } = orderData;
   console.log("xD", orderData);
+
   return (
     <div className={styles.orderCompletionBox}>
       <div className={styles.orderCompletionDataBox}>
@@ -20,7 +23,7 @@ export const OrderCompletion = () => {
 
         <div className={styles.thankyouBox}>
           <BsCartCheck className={styles.checkIcon} />
-          <p>¡Gracias, {orderData.firstName}!</p>
+          <p>¡Gracias, {checkoutData.firstName}!</p>
         </div>
 
         <div className={styles.orderReservedBox}>
@@ -32,12 +35,12 @@ export const OrderCompletion = () => {
           </p>
 
           <div className={styles.paymentMethodDataBox}>
-            {orderData.paymentOption === PAYMENT_OPTIONS[1].text ? (
+            {checkoutData.paymentOption === PAYMENT_OPTIONS[1].text ? (
               <>
                 <h3>Yape number</h3>
                 <p>936128801</p>
               </>
-            ) : orderData.paymentOption === PAYMENT_OPTIONS[2].text ? (
+            ) : checkoutData.paymentOption === PAYMENT_OPTIONS[2].text ? (
               <>
                 <h3>BCP account</h3>
                 <p>Account: 191-9876543-2-10</p>
@@ -54,41 +57,45 @@ export const OrderCompletion = () => {
             <div>
               <div className={styles.sectionOrderDetails}>
                 <h3>Contact information</h3>
-                <p>{orderData.firstName}</p>
-                <p>{orderData.lastName}</p>
-                <p>{orderData.dni}</p>
-                <p>{orderData.email}</p>
-                <p>{orderData.cellPhone}</p>
+                <p>{checkoutData.firstName}</p>
+                <p>{checkoutData.lastName}</p>
+                <p>{checkoutData.dni}</p>
+                <p>{checkoutData.email}</p>
+                <p>{checkoutData.cellPhone}</p>
               </div>
 
               <div className={styles.sectionOrderDetails}>
                 <h3>Delivery Type</h3>
-                <p>{orderData.deliveryOption}</p>
+                <p>{checkoutData.deliveryOption}</p>
               </div>
             </div>
 
             <div>
-              {orderData.deliveryOption === DELIVERY_OPTIONS[0].text && (
+              {checkoutData.deliveryOption === DELIVERY_OPTIONS[0].text && (
                 <div className={styles.sectionOrderDetails}>
                   <h3>Dirección de envío</h3>
-                  <p>{orderData.country}</p>
-                  <p>{orderData.department}</p>
-                  <p>{orderData.province}</p>
-                  <p>{orderData.district}</p>
+                  <p>{checkoutData.country}</p>
+                  <p>{checkoutData.department}</p>
+                  <p>{checkoutData.province}</p>
+                  <p>{checkoutData.district}</p>
                 </div>
               )}
 
               <div className={styles.sectionOrderDetails}>
                 <h3>Payment Method</h3>
                 <p>
-                  {orderData.paymentOption}: S/.{" "}
-                  {orderData.deliveryOption === DELIVERY_OPTIONS[0].text
-                    ? roundToDecimals(totalCost(shoppingCartProducts), 2) +
-                      SHIPPING_COST
-                    : orderData.deliveryOption === DELIVERY_OPTIONS[1].text
-                    ? roundToDecimals(totalCost(shoppingCartProducts), 2)
+                  {checkoutData.paymentOption}: S/.{" "}
+                  {checkoutData.deliveryOption === DELIVERY_OPTIONS[0].text
+                    ? roundToDecimals(totalCost(productList), 2) + SHIPPING_COST
+                    : checkoutData.deliveryOption === DELIVERY_OPTIONS[1].text
+                    ? roundToDecimals(totalCost(productList), 2)
                     : null}
                 </p>
+              </div>
+
+              <div className={styles.sectionOrderDetails}>
+                <h3>Date of Payment</h3>
+                <p>{checkoutData.orderDate}</p>
               </div>
             </div>
           </div>
@@ -114,8 +121,8 @@ export const OrderCompletion = () => {
       </div>
       <div className={styles.orderSummaryBox}>
         <OrderSummary
-          shoppingCartProducts={shoppingCartProducts}
-          orderData={orderData}
+          shoppingCartProducts={productList}
+          orderData={checkoutData}
         />
       </div>
     </div>
