@@ -5,12 +5,15 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingC
 import { roundToDecimals } from "../../utils/logic";
 import { Toast as addOrRemoveProductToast } from "../../utils/notifications/toasts";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
+import { Loader } from "../Loader/Loader";
 
 export const ShoppingCartProduct = ({ id, name, image, price, quantity }) => {
-  const { removeShoppingCart, increaseProductQuantity, reduceProductQuantity } =
-    useContext(ShoppingCartContext);
-
-  const { responseGet: responseProducts } = useContext(ProductsContext);
+  const {
+    removeShoppingCart,
+    increaseProductQuantity,
+    reduceProductQuantity,
+    loadingShowQuantity,
+  } = useContext(ShoppingCartContext);
 
   const removeProduct = () => {
     removeShoppingCart(id);
@@ -42,7 +45,12 @@ export const ShoppingCartProduct = ({ id, name, image, price, quantity }) => {
           <div className={styles.boxProductOptions}>
             <button onClick={() => reduceProductQuantity(id)}>-</button>
             <p className={styles.quantityProduct}>{quantity}</p>
-            <button onClick={() => increaseProductQuantity(id)}>+</button>
+            <button
+              onClick={() => increaseProductQuantity(id)}
+              disabled={loadingShowQuantity}
+            >
+              {loadingShowQuantity ? "..." : "+"}
+            </button>
           </div>
           <p className={styles.unitPrice}>S/. {price}</p>
           <p className={styles.totalPrice}>

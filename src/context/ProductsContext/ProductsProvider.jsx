@@ -1,18 +1,35 @@
 import { ProductsContext } from "./ProductsContext";
 import { useGet } from "../../hooks/useGet";
 import { URL_SERVER } from "../../utils/constants";
+import { useEffect } from "react";
 
 export const ProductsProvider = ({ children }) => {
   // DATO: Actualmente el GET solo se ejecuta una vez, que es al MONTAR el Componente ProductsProvider y ya NO se vuelve a ejecutar (por lo que si en el backend se cambian los datos de los productos, creo que NO se verá reflejados acá porque NO se vuelve a hacer una Solicitud GET) -> Para que se vean reflejados se deberá hacer un F5 creo xd
+
+  // CAMBIAREMOS LA FORMA DEL useGet PARA QUE SEA UN useGet FLEXIBLE A LOS DOS CASOS DE USO QUE TIENE
   const { responseGet, loadingGet, errorGet, getData } = useGet(
-    `${URL_SERVER}/product`
+    `${URL_SERVER}/product`,
+    true
   );
 
-  console.log("Lista de Productos de la API (personalizada)", responseGet);
+  // const fetchProducts = () => {
+  //   getData(`${URL_SERVER}/product`);
+  // };
+
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
+
+  console.log("Lista de Productos de la API: ", responseGet);
 
   return (
     <ProductsContext.Provider
-      value={{ responseGet, loadingGet, errorGet, refetchProducts: getData }}
+      value={{
+        responseGet,
+        loadingGet,
+        errorGet,
+        refetchProducts: getData,
+      }}
     >
       {children}
     </ProductsContext.Provider>

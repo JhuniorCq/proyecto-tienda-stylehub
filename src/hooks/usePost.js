@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export const usePost = () => {
   const [statePost, setStatePost] = useState({
-    responsePost: null, // Lo inicializaré con null y ya no con []
+    responsePost: null,
     loadingPost: false,
     errorPost: null,
   });

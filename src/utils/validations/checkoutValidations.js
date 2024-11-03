@@ -1,13 +1,12 @@
 import { z } from "zod";
 import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../constants";
 import { DELIVERY_OPTIONS } from "../../pages/Checkout/constants";
-// import { DELIVERY_OPTIONS } from "../../pages/Checkout/Checkout";
 
 const checkoutSchema = z.object({
   email: z
     .string({ message: "El email debe ser una cadena de texto." })
     .email(),
-  deliveryOption: z.string().min(1),
+  deliveryOption: z.enum([DELIVERY_OPTIONS[0].text, DELIVERY_OPTIONS[1].text]),
   country: z
     .string()
     .min(1)
@@ -53,7 +52,7 @@ const checkoutSchema = z.object({
 export const validateCheckout = (checkoutData, selectedDelivery) => {
   // Si el Tipo de Entrega es por Delivery usamos todas las reglas, pero si es por Recojo omitimos -> department, province y district
   if (selectedDelivery === DELIVERY_OPTIONS[1].text) {
-    const shippingSchema = checkoutSchema.omit({
+    const deliverySchema = checkoutSchema.omit({
       country: true,
       address: true,
       department: true,
@@ -63,7 +62,7 @@ export const validateCheckout = (checkoutData, selectedDelivery) => {
     console.log(
       "Quitando country, department, province y distrinct del esquema."
     );
-    return shippingSchema.safeParse(checkoutData);
+    return deliverySchema.safeParse(checkoutData);
   }
 
   return checkoutSchema.safeParse(checkoutData);

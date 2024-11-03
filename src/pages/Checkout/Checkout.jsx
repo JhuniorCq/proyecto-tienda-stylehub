@@ -22,7 +22,12 @@ import { MdEmail } from "react-icons/md";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 
 export const Checkout = () => {
-  const { postData, responsePost, loadingPost, errorPost } = usePost();
+  const {
+    postData: postPaymentPaypal,
+    responsePost: responsePaymentPaypal,
+    loadingPost: loadingPaymentPaypal,
+    errorPost: errorPaymentPaypal,
+  } = usePost();
   const {
     postData: postPayment,
     responsePost: responsePayment,
@@ -103,7 +108,13 @@ export const Checkout = () => {
 
     if (checkoutForm[INPUT_NAMES.PAYMENT_OPTION] === PAYMENT_OPTIONS[0].text) {
       try {
-        await handleOnlinePayment();
+        // await handleOnlinePayment();
+        console.log("Pagando con Paypal: ", shoppingCartProducts);
+
+        await postPaymentPaypal(`${URL_SERVER}/payment/create-order`, {
+          productList: shoppingCartProducts,
+          checkoutData: checkoutValidated.data,
+        });
       } catch (error) {
         console.error("", error.message);
       }
@@ -112,7 +123,7 @@ export const Checkout = () => {
       try {
         await postPayment(`${URL_SERVER}/order`, {
           productList: shoppingCartProducts,
-          checkoutData: checkoutForm,
+          checkoutData: checkoutValidated.data,
         });
         console.log(
           "Recibiendo la respuesta del backend al enviar el pedido: ",
@@ -129,7 +140,7 @@ export const Checkout = () => {
     try {
       console.log(shoppingCartProducts);
 
-      await postData(`${URL_SERVER}/payment/create-order`, {
+      await postPaymentPaypal(`${URL_SERVER}/payment/create-order`, {
         productList: shoppingCartProducts,
         checkoutData: checkoutForm,
       });
@@ -158,15 +169,18 @@ export const Checkout = () => {
 
   // useEffect para el PAGO con PAYPAL
   useEffect(() => {
-    console.log(loadingPost);
-    console.log(responsePost);
-    if (!loadingPost && responsePost /* && responsePost.length !== 0*/) {
-      console.log(responsePost);
-      window.location.href = responsePost.links[1].href;
+    console.log(loadingPaymentPaypal);
+    console.log(responsePaymentPaypal);
+    if (
+      !loadingPaymentPaypal &&
+      responsePaymentPaypal /* && responsePaymentPaypal.length !== 0*/
+    ) {
+      console.log(responsePaymentPaypal);
+      window.location.href = responsePaymentPaypal.links[1].href;
     }
-  }, [responsePost]);
+  }, [responsePaymentPaypal]);
 
-  return loadingPost || loadingPayment ? (
+  return loadingPaymentPaypal || loadingPayment ? (
     <Loader />
   ) : (
     <div className={styles.checkoutBox}>
