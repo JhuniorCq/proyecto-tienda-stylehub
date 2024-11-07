@@ -176,7 +176,8 @@ export const Checkout = () => {
       responsePaymentPaypal /* && responsePaymentPaypal.length !== 0*/
     ) {
       console.log(responsePaymentPaypal);
-      window.location.href = responsePaymentPaypal.links[1].href;
+      // window.location.href = responsePaymentPaypal.links[1].href;
+      window.open(responsePaymentPaypal.links[1].href, "_blank");
     }
   }, [responsePaymentPaypal]);
 
