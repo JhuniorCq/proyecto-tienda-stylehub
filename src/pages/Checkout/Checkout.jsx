@@ -13,12 +13,8 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingC
 import { OrderSummary } from "../../components/OrderSummary/OrderSummary";
 import { useNavigate } from "react-router-dom";
 import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "./constants";
-import paypalImage from "../../assets/images/paypal.png";
-import Swal from "sweetalert2";
 import { usePost } from "../../hooks/usePost";
-import axios from "axios";
 import { Loader } from "../../components/Loader/Loader";
-import { MdEmail } from "react-icons/md";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 
 export const Checkout = () => {
@@ -35,8 +31,7 @@ export const Checkout = () => {
     errorPost: errorPayment,
   } = usePost();
   const { shoppingCartProducts } = useContext(ShoppingCartContext);
-  const { responseGet: ListaDeProductosTotales, refetchProducts } =
-    useContext(ProductsContext);
+  const { refetchProducts } = useContext(ProductsContext);
   const navigate = useNavigate();
 
   const [checkoutForm, setCheckoutForm] = useState({
@@ -78,7 +73,6 @@ export const Checkout = () => {
   const sendForm = async (event) => {
     event.preventDefault();
 
-    console.log("Se validarán estos datos: ", checkoutForm);
     // Validations
     const checkoutValidated = validateCheckout(
       checkoutForm,
@@ -86,11 +80,6 @@ export const Checkout = () => {
     );
 
     if (!checkoutValidated.success) {
-      checkoutValidated.error.issues.forEach((error) =>
-        console.log(error.message)
-      );
-
-      // PARA ESTA VALIDACIÓN TOTAL -> HACER OPCIONAL A COUNTRY, ADDRESS, DEPARTMENT, PROVINCE Y DISTRICT, YA QUE SOLO EXISTIRÁN SI ES QUE EL TIPO DE ENVÍO ES "SHIPPING"
       checkoutValidationsModal({
         title: "Error en el ingreso de datos",
         text: "Porfavor, complete correctamente todos los campos.",
@@ -98,19 +87,13 @@ export const Checkout = () => {
         confirmButtonColor: "black",
       });
 
-      console.log("Datos validados que tienen error: ", checkoutForm);
-
       return;
     }
 
     setCheckoutForm(checkoutValidated.data);
-    console.log("Enviando: ", checkoutValidated.data);
 
     if (checkoutForm[INPUT_NAMES.PAYMENT_OPTION] === PAYMENT_OPTIONS[0].text) {
       try {
-        // await handleOnlinePayment();
-        console.log("Pagando con Paypal: ", shoppingCartProducts);
-
         await postPaymentPaypal(`${URL_SERVER}/payment/create-order`, {
           productList: shoppingCartProducts,
           checkoutData: checkoutValidated.data,
@@ -119,65 +102,40 @@ export const Checkout = () => {
         console.error("", error.message);
       }
     } else {
-      // Enviamos al backend a -> checkoutValidated.data -> El backend lo almacena y nos devuelve una respuesta con los mismos datos, y esto lo mostraremos en /order-completion, pero como aún no hay backend -> Lo que haré será enviar al checkoutValidated.data como un PAYMENT en el 2do Argumento del navigate
       try {
         await postPayment(`${URL_SERVER}/order`, {
           productList: shoppingCartProducts,
           checkoutData: checkoutValidated.data,
         });
-        console.log(
-          "Recibiendo la respuesta del backend al enviar el pedido: ",
-          responsePayment,
-          errorPayment
-        );
       } catch (error) {
         console.error("", error.message);
       }
     }
   };
 
-  const handleOnlinePayment = async () => {
-    try {
-      console.log(shoppingCartProducts);
-
-      await postPaymentPaypal(`${URL_SERVER}/payment/create-order`, {
-        productList: shoppingCartProducts,
-        checkoutData: checkoutForm,
-      });
-    } catch (error) {
-      console.error("", error.message);
-    }
-  };
-
   // useEffect para el PAGO con YAPE o DEPÓSITO
   useEffect(() => {
-    console.log(
-      "Valor de responsePayment antes de entrar al IF del useEffect",
-      responsePayment
-    );
     if (!loadingPayment && responsePayment) {
-      console.log("Respuesta del ENVÍO DEL PEDIDO: ", responsePayment);
-      console.log(
-        "Los productos de la tienda despues de la compra: ",
-        ListaDeProductosTotales
-      );
-      // refetchProducts() actualiza la Lista de Productos de la Tienda luego de cada compra
+      // Si hubo un error en el backend
+      if (!responsePayment.success) {
+        alert("Ocurrió un problema. Su pedido no pudo realizarse.");
+        return;
+      }
+
       refetchProducts();
-      navigate("/order-completion", { state: responsePayment });
+      navigate("/order-completion", { state: responsePayment.data });
     }
   }, [responsePayment]);
 
   // useEffect para el PAGO con PAYPAL
   useEffect(() => {
-    console.log(loadingPaymentPaypal);
-    console.log(responsePaymentPaypal);
-    if (
-      !loadingPaymentPaypal &&
-      responsePaymentPaypal /* && responsePaymentPaypal.length !== 0*/
-    ) {
-      console.log(responsePaymentPaypal);
-      // window.location.href = responsePaymentPaypal.links[1].href;
-      window.open(responsePaymentPaypal.links[1].href, "_blank");
+    if (!loadingPaymentPaypal && responsePaymentPaypal) {
+      if (!responsePaymentPaypal.links[1]) {
+        alert("Ocurrió un problema. No se pudo conectar con Paypal.");
+        return;
+      }
+
+      window.location.href = responsePaymentPaypal.links[1].href;
     }
   }, [responsePaymentPaypal]);
 
