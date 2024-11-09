@@ -9,9 +9,6 @@ export const useGet = (url) => {
   });
 
   const getData = async () => {
-    // Este setStateGet está acá, por si volvemos a ejecutar el getData (en cualquier otro momento)
-    // Por ejemplo: Luego de la confirmación de la compra ejecutamos de nuevo este getData para que
-    // se actualice el la Lista de Productos de la Tienda
     setStateGet((prev) => ({ ...prev, loadingGet: true }));
     try {
       const { data } = await axios.get(url);

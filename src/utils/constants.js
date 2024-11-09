@@ -1,5 +1,3 @@
-// URL DEL TOTAL DE PRODUCTOS
-// export const URL_PRODUCTS = "https://fakestoreapi.com/products";
 export const URL_SERVER = "http://localhost:1238";
 
 // CATEGORÍAS DE LOS PRODUCTOS

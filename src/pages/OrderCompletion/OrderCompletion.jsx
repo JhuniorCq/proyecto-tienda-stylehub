@@ -63,12 +63,23 @@ export const OrderCompletion = () => {
         </div>
 
         <div className={styles.orderReservedBox}>
-          {/* Acá el título tal vez cambia cuando el Pago es por Paypal */}
-          <h2>Your order has already been reserved</h2>
-          <p>
-            You must make the payment for your order within the next 24 or 48
-            hours at the latest, otherwise your order will be cancelled.
-          </p>
+          {orderData.deliveryOption === PAYMENT_OPTIONS[0].text ? (
+            <>
+              <h2>Your order has already been reserved</h2>
+              <p>
+                You must make the payment for your order within the next 24 or
+                48 hours at the latest, otherwise your order will be cancelled.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2>Your order has been paid successfully.</h2>
+              <p>
+                Thank you very much for your purchase, below you can see the
+                summary of your order.
+              </p>
+            </>
+          )}
 
           <div className={styles.paymentMethodDataBox}>
             {orderData.paymentOption === PAYMENT_OPTIONS[1].text ? (

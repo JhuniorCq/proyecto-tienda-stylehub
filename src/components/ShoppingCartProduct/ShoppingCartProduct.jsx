@@ -4,8 +4,6 @@ import { useContext, useEffect } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { roundToDecimals } from "../../utils/logic";
 import { Toast as addOrRemoveProductToast } from "../../utils/notifications/toasts";
-import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
-import { Loader } from "../Loader/Loader";
 
 export const ShoppingCartProduct = ({ id, name, image, price, quantity }) => {
   const {

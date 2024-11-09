@@ -9,7 +9,6 @@ export const InputCheckout = ({
   handleInput,
   isSelect,
   children,
-  // messageCompleteInput,
 }) => {
   const [inputValidated, setInputValidated] = useState(INPUT_STATES.INITIAL);
 
