@@ -9,9 +9,11 @@ import { roundToDecimals, totalCost } from "../../utils/logic";
 import { SHIPPING_COST, URL_SERVER } from "../../utils/constants";
 import { useManualGet } from "../../hooks/useManualGet";
 import { Loader } from "../../components/Loader/Loader";
+import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 
 export const OrderCompletion = () => {
   const { removeAllShoppingCart } = useContext(ShoppingCartContext);
+  const { refetchProducts } = useContext(ProductsContext);
 
   const { search: queryParameters, state: orderInfo } = useLocation();
 
@@ -40,6 +42,7 @@ export const OrderCompletion = () => {
     if (responseGet) {
       if (responseGet.success) {
         setOrderData(responseGet.data);
+        refetchProducts();
       } else {
         alert("Ocurrió un error tu pedido NO ha sido registrado.");
       }

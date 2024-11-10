@@ -18,20 +18,24 @@ import { Loader } from "../../components/Loader/Loader";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 
 export const Checkout = () => {
+  console.log("Estoy en Checkout");
   const {
     postData: postPaymentPaypal,
     responsePost: responsePaymentPaypal,
     loadingPost: loadingPaymentPaypal,
     errorPost: errorPaymentPaypal,
   } = usePost();
+
   const {
     postData: postPayment,
     responsePost: responsePayment,
     loadingPost: loadingPayment,
     errorPost: errorPayment,
   } = usePost();
+
   const { shoppingCartProducts } = useContext(ShoppingCartContext);
   const { refetchProducts } = useContext(ProductsContext);
+
   const navigate = useNavigate();
 
   const [checkoutForm, setCheckoutForm] = useState({
@@ -63,7 +67,7 @@ export const Checkout = () => {
 
   const handleInput = ({ target }) => {
     const { name, value } = target;
-    console.log(name, ":", value);
+
     setCheckoutForm((prev) => ({
       ...prev,
       [name]: value,
@@ -98,6 +102,10 @@ export const Checkout = () => {
           productList: shoppingCartProducts,
           checkoutData: checkoutValidated.data,
         });
+
+        console.log(
+          "Estoy haciendo un POST a mi backend para hacer el pago con Paypal"
+        );
       } catch (error) {
         console.error("", error.message);
       }
@@ -122,6 +130,8 @@ export const Checkout = () => {
         return;
       }
 
+      // Ya no se usará creo, porque ya NO disminuiremos los productos en la BD en este caso, ya que solo son reservados
+      // Aunque creo que mejor sí, así después de cada COMPRA la vista de la web del usuario estará actualizada
       refetchProducts();
       navigate("/order-completion", { state: responsePayment.data });
     }
@@ -136,6 +146,7 @@ export const Checkout = () => {
       }
 
       window.location.href = responsePaymentPaypal.links[1].href;
+      // window.open(responsePaymentPaypal.links[1].href, "_blank");
     }
   }, [responsePaymentPaypal]);
 
