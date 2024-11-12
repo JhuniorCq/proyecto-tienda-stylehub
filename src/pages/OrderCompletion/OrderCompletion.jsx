@@ -70,8 +70,8 @@ export const OrderCompletion = () => {
             <>
               <h2>Your order has already been reserved</h2>
               <p>
-                You must make the payment for your order within the next 24 or
-                48 hours at the latest, otherwise your order will be cancelled.
+                You must pay for your order within the next 24 hours at the
+                latest, otherwise your order will be cancelled.
               </p>
             </>
           ) : (
