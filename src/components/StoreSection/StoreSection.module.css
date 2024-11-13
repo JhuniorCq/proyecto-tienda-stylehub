@@ -1,26 +1,27 @@
-
 .boxStoreSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  border: 1px solid red;
 }
 
 .boxProducts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 45px 35px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 45px 35px;
+  border: 1px solid blue;
 }
 
 .sectionTitle {
-    text-align: center;
-    font-size: 3rem;
+  text-align: center;
+  font-size: 3rem;
 }
 
 @media (max-width: 450px) {
-    .sectionTitle {
-        text-align: center;
-        font-size: 2.5rem;
-    }
+  .sectionTitle {
+    text-align: center;
+    font-size: 2.5rem;
+  }
 }

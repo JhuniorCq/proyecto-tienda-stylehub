@@ -16,6 +16,7 @@ import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "./constants";
 import { usePost } from "../../hooks/usePost";
 import { Loader } from "../../components/Loader/Loader";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
+import { FaArrowLeft } from "react-icons/fa";
 
 export const Checkout = () => {
   console.log("Estoy en Checkout");
@@ -153,155 +154,166 @@ export const Checkout = () => {
   return loadingPaymentPaypal || loadingPayment ? (
     <Loader />
   ) : (
-    <div className={styles.checkoutBox}>
-      <div className={styles.orderFormBox}>
-        <form className={styles.orderForm} onSubmit={sendForm}>
-          {/* Contact */}
-          <section className={styles.conctactBox}>
-            <h2 className={styles.sectionTitle}>Contact</h2>
-
-            <InputCheckout
-              placeholder="Email"
-              name={INPUT_NAMES.EMAIL}
-              handleInput={handleInput}
-              messageCompleteInput="Please enter a valid email address."
+    <>
+      <div className={styles.checkoutBox}>
+        <div className={styles.orderFormBox}>
+          <div className={styles.title}>
+            <FaArrowLeft
+              className={styles.backButton}
+              onClick={() => navigate("/")}
             />
+            STYLE HUB
+          </div>
+          <form className={styles.orderForm} onSubmit={sendForm}>
+            {/* Contact */}
+            <section className={styles.conctactBox}>
+              <h2 className={styles.sectionTitle}>Contact</h2>
 
-            <div className={styles.namesBox}>
               <InputCheckout
-                placeholder="First name"
-                name={INPUT_NAMES.FIRST_NAME}
+                placeholder="Email"
+                name={INPUT_NAMES.EMAIL}
                 handleInput={handleInput}
+                messageCompleteInput="Please enter a valid email address."
               />
-              <InputCheckout
-                placeholder="Last name"
-                name={INPUT_NAMES.LAST_NAME}
-                handleInput={handleInput}
-              />
-            </div>
 
-            <InputCheckout
-              placeholder="DNI"
-              name={INPUT_NAMES.DNI}
-              handleInput={handleInput}
-            />
-
-            <InputCheckout
-              placeholder="Cell phone"
-              name={INPUT_NAMES.CELL_PHONE}
-              handleInput={handleInput}
-            />
-          </section>
-          {/* Delivery */} {/* USAR AL selectDelivery */}
-          <section className={styles.deliveryBox}>
-            <h2 className={styles.sectionTitle}>Delivery</h2>
-
-            <OptionsBox
-              name={INPUT_NAMES.DELIVERY_OPTION}
-              dataOptions={DELIVERY_OPTIONS}
-              onChange={handleInput}
-              defaultOption={DELIVERY_OPTIONS[0].text}
-              changeDeliveryTypeSelection={changeDeliveryTypeSelection}
-            />
-
-            {checkoutForm[INPUT_NAMES.DELIVERY_OPTION] ===
-            DELIVERY_OPTIONS[0].text ? (
-              <>
+              <div className={styles.namesBox}>
                 <InputCheckout
-                  name={INPUT_NAMES.COUNTRY}
-                  handleInput={handleInput}
-                  isSelect={true}
-                >
-                  <option value={DEFAULT_SELECT_VALUE}>Select a country</option>
-                  <option value="Perú">Perú</option>
-                </InputCheckout>
-                <InputCheckout
-                  placeholder="Address"
-                  name={INPUT_NAMES.ADDRESS}
+                  placeholder="First name"
+                  name={INPUT_NAMES.FIRST_NAME}
                   handleInput={handleInput}
                 />
-                <div className={styles.locationsBox}>
-                  <InputCheckout
-                    name={INPUT_NAMES.DEPARTMENT}
-                    handleInput={handleInput}
-                    isSelect={true}
-                  >
-                    <option value={DEFAULT_SELECT_VALUE}>
-                      Select a department
-                    </option>
-                    <option value="Lima">Lima</option>
-                  </InputCheckout>
+                <InputCheckout
+                  placeholder="Last name"
+                  name={INPUT_NAMES.LAST_NAME}
+                  handleInput={handleInput}
+                />
+              </div>
 
-                  <InputCheckout
-                    name={INPUT_NAMES.PROVINCE}
-                    handleInput={handleInput}
-                    isSelect={true}
-                  >
-                    <option value={DEFAULT_SELECT_VALUE}>
-                      Select a province
-                    </option>
-                    <option value="Callao">Callao</option>
-                  </InputCheckout>
+              <InputCheckout
+                placeholder="DNI"
+                name={INPUT_NAMES.DNI}
+                handleInput={handleInput}
+              />
 
+              <InputCheckout
+                placeholder="Cell phone"
+                name={INPUT_NAMES.CELL_PHONE}
+                handleInput={handleInput}
+              />
+            </section>
+            {/* Delivery */} {/* USAR AL selectDelivery */}
+            <section className={styles.deliveryBox}>
+              <h2 className={styles.sectionTitle}>Delivery</h2>
+
+              <OptionsBox
+                name={INPUT_NAMES.DELIVERY_OPTION}
+                dataOptions={DELIVERY_OPTIONS}
+                onChange={handleInput}
+                defaultOption={DELIVERY_OPTIONS[0].text}
+                changeDeliveryTypeSelection={changeDeliveryTypeSelection}
+              />
+
+              {checkoutForm[INPUT_NAMES.DELIVERY_OPTION] ===
+              DELIVERY_OPTIONS[0].text ? (
+                <>
                   <InputCheckout
-                    name={INPUT_NAMES.DISTRICT}
+                    name={INPUT_NAMES.COUNTRY}
                     handleInput={handleInput}
                     isSelect={true}
                   >
                     <option value={DEFAULT_SELECT_VALUE}>
-                      Select a district
+                      Select a country
                     </option>
-                    <option value="Ventanilla">Ventanilla</option>
+                    <option value="Perú">Perú</option>
                   </InputCheckout>
-                </div>
-              </>
-            ) : (
-              <div className={styles.storeBranchBox}>
-                <h3 className={styles.storeBrachTitle}>Store branch</h3>
-                <div className={styles.storeBranchDataBox}>
-                  <div className={styles.storeBranchData}>
-                    <h4 className={styles.storeBranchTitle}>
-                      StyleHub Store, Gamarra (Lima)
-                    </h4>
-                    <p className={styles.storeBranchAddress}>
-                      Av. Emilio Caveneda 151, Miraflores, Lima PE-LMA
+                  <InputCheckout
+                    placeholder="Address"
+                    name={INPUT_NAMES.ADDRESS}
+                    handleInput={handleInput}
+                  />
+                  <div className={styles.locationsBox}>
+                    <InputCheckout
+                      name={INPUT_NAMES.DEPARTMENT}
+                      handleInput={handleInput}
+                      isSelect={true}
+                    >
+                      <option value={DEFAULT_SELECT_VALUE}>
+                        Select a department
+                      </option>
+                      <option value="Lima">Lima</option>
+                    </InputCheckout>
+
+                    <InputCheckout
+                      name={INPUT_NAMES.PROVINCE}
+                      handleInput={handleInput}
+                      isSelect={true}
+                    >
+                      <option value={DEFAULT_SELECT_VALUE}>
+                        Select a province
+                      </option>
+                      <option value="Callao">Callao</option>
+                    </InputCheckout>
+
+                    <InputCheckout
+                      name={INPUT_NAMES.DISTRICT}
+                      handleInput={handleInput}
+                      isSelect={true}
+                    >
+                      <option value={DEFAULT_SELECT_VALUE}>
+                        Select a district
+                      </option>
+                      <option value="Ventanilla">Ventanilla</option>
+                    </InputCheckout>
+                  </div>
+                </>
+              ) : (
+                <div className={styles.storeBranchBox}>
+                  <h3 className={styles.storeBrachTitle}>Store branch</h3>
+                  <div className={styles.storeBranchDataBox}>
+                    <div className={styles.storeBranchData}>
+                      <h4 className={styles.storeBranchTitle}>
+                        StyleHub Store, Gamarra (Lima)
+                      </h4>
+                      <p className={styles.storeBranchAddress}>
+                        Av. Emilio Caveneda 151, Miraflores, Lima PE-LMA
+                      </p>
+                    </div>
+                    <p>
+                      <strong>GRATIS</strong>
                     </p>
                   </div>
-                  <p>
-                    <strong>GRATIS</strong>
-                  </p>
                 </div>
-              </div>
-            )}
-          </section>
-          {/* Payment */}
-          <section className={styles.paymentBox}>
-            <h2 className={styles.sectionTitle}>Payment</h2>
+              )}
+            </section>
+            {/* Payment */}
+            <section className={styles.paymentBox}>
+              <h2 className={styles.sectionTitle}>Payment</h2>
 
-            <OptionsBox
-              name={INPUT_NAMES.PAYMENT_OPTION}
-              dataOptions={PAYMENT_OPTIONS}
-              onChange={handleInput}
-              defaultOption={PAYMENT_OPTIONS[0].text}
-            />
-          </section>
-          {/* Pay now o Finalize Order */}
-          <div>
-            <button className={styles.finalizeOrderButton}>
-              {checkoutForm[INPUT_NAMES.PAYMENT_OPTION] ===
-              PAYMENT_OPTIONS[0].text
-                ? "Pay now"
-                : "Finalize Order"}
-            </button>
-          </div>
-        </form>
+              <OptionsBox
+                name={INPUT_NAMES.PAYMENT_OPTION}
+                dataOptions={PAYMENT_OPTIONS}
+                onChange={handleInput}
+                defaultOption={PAYMENT_OPTIONS[0].text}
+              />
+            </section>
+            {/* Pay now o Finalize Order */}
+            <div>
+              <button className={styles.finalizeOrderButton}>
+                {checkoutForm[INPUT_NAMES.PAYMENT_OPTION] ===
+                PAYMENT_OPTIONS[0].text
+                  ? "Pay now"
+                  : "Finalize Order"}
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className={styles.orderSummaryBox}>
+          <OrderSummary
+            shoppingCartProducts={shoppingCartProducts}
+            orderData={checkoutForm}
+          />
+        </div>
       </div>
-      <div className={styles.orderSummaryBox}>
-        <OrderSummary
-          shoppingCartProducts={shoppingCartProducts}
-          orderData={checkoutForm}
-        />
-      </div>
-    </div>
+    </>
   );
 };

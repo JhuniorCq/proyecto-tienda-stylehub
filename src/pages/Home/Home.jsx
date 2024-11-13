@@ -20,6 +20,10 @@ export const Home = () => {
     (product) => product.category === PRODUCT_CATEGORIES.womenClothing
   );
 
+  const electronicsList = responseProducts.filter(
+    (product) => product.category === PRODUCT_CATEGORIES.electronics
+  );
+
   return (
     <div className={styles.boxHome}>
       {/* SECCIÓN DE INICIO */}
@@ -39,6 +43,12 @@ export const Home = () => {
           <StoreSection
             productList={womenClothingList}
             sectionTitle="WOMEN'S CLOTHING"
+          />
+
+          {/* LISTA DE PRODUCTOS ELECTRÓNICOS */}
+          <StoreSection
+            productList={electronicsList}
+            sectionTitle="ELECTRONICS"
           />
         </div>
       )}
