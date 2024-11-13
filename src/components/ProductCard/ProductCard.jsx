@@ -5,6 +5,7 @@ import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { Toast as addOrRemoveProductToast } from "../../utils/notifications/toasts";
+import { PRODUCT_CATEGORIES } from "../../utils/constants";
 
 export const ProductCard = ({ id, image, category, name, price }) => {
   const navigate = useNavigate();
@@ -48,7 +49,17 @@ export const ProductCard = ({ id, image, category, name, price }) => {
       onMouseLeave={() => setShowOptions(false)}
     >
       <div className={styles.boxImage}>
-        <img src={image} alt={name} />
+        <img
+          src={image}
+          alt={name}
+          className={`${
+            category === PRODUCT_CATEGORIES.jewelery
+              ? styles.heightImageJewelries
+              : category === PRODUCT_CATEGORIES.electronics
+              ? styles.heightImageElectronics
+              : styles.heightImageClothes
+          }`}
+        />
       </div>
 
       <div className={styles.boxText}>
