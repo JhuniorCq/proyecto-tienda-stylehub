@@ -1,5 +1,5 @@
 import { DELIVERY_OPTIONS } from "../../pages/Checkout/constants";
-import { SHIPPING_COST } from "../../utils/constants";
+import { PRODUCT_CATEGORIES, SHIPPING_COST } from "../../utils/constants";
 import {
   roundToDecimals,
   totalCost,
@@ -16,7 +16,17 @@ export const OrderSummary = ({ shoppingCartProducts, orderData }) => {
             <li key={product.id} className={styles.productBox}>
               <div>
                 <div className={styles.imageBox}>
-                  <img src={product.image} alt="" />
+                  <img
+                    src={product.image}
+                    alt="Product image"
+                    className={
+                      product.category === PRODUCT_CATEGORIES.electronics
+                        ? styles.heightElectronics
+                        : product.category === PRODUCT_CATEGORIES.jewelery
+                        ? styles.heightJawelery
+                        : styles.heightClothes
+                    }
+                  />
                   <span className={styles.quantity}>{product.quantity}</span>
                 </div>
                 <div className={styles.nameProductBox}>

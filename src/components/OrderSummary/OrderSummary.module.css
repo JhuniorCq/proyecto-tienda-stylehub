@@ -46,11 +46,20 @@
 }
 
 .imageBox > img {
-  /* width: 100%; */
-  /* min-width: 70px; */
-  height: 100%;
+  /* height: 100%; */
   padding: 10px;
-  /* object-fit: cover; */
+}
+
+.heightClothes {
+  height: 100%;
+}
+
+.heightElectronics {
+  height: 75%;
+}
+
+.heightJawelery {
+  height: 65%;
 }
 
 .quantity {
