@@ -29,7 +29,7 @@ export const ProductCard = ({ id, image, category, name, price }) => {
         title: "Este producto ya se encuentra en el carrito",
       });
     } else {
-      addShoppingCart({ id, name, image, price });
+      addShoppingCart({ id, name, image, price, category });
       addOrRemoveProductToast({
         toast: true,
         position: "bottom-left",

@@ -1,0 +1,65 @@
+.boxPoster {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.boxPoster > * {
+  width: 50%;
+  /* border: 1px solid blue; */
+}
+
+.boxImage {
+  width: 100%;
+}
+
+.posterImage {
+  width: 100%;
+}
+
+.boxBenefits {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* gap: 10px; */
+  padding: 50px 80px;
+  background-color: rgb(48, 46, 54);
+  color: white;
+}
+
+.boxIntroduction {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.boxIntroduction > h3 {
+  font-size: 2rem;
+}
+
+.boxIntroduction > p {
+  font-size: 1.3rem;
+}
+
+.benefitsList {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-left: 90px;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.benefitIcon {
+  font-size: 2.2rem;
+  color: white;
+}
+
+.benefit > p {
+  font-size: 1.2rem;
+}

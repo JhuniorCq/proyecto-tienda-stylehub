@@ -82,6 +82,7 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
               image={product.image}
               price={product.price}
               quantity={product.quantity}
+              category={product.category}
             />
           ))}
       </div>

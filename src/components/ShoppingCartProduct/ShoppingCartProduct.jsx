@@ -4,8 +4,17 @@ import { useContext, useEffect } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { roundToDecimals } from "../../utils/logic";
 import { Toast as addOrRemoveProductToast } from "../../utils/notifications/toasts";
+import { PRODUCT_CATEGORIES } from "../../utils/constants";
 
-export const ShoppingCartProduct = ({ id, name, image, price, quantity }) => {
+export const ShoppingCartProduct = ({
+  id,
+  name,
+  image,
+  price,
+  quantity,
+  category,
+}) => {
+  console.log(category);
   const {
     removeShoppingCart,
     increaseProductQuantity,
@@ -28,7 +37,15 @@ export const ShoppingCartProduct = ({ id, name, image, price, quantity }) => {
 
   return (
     <div className={styles.boxProduct}>
-      <div className={styles.boxImage}>
+      <div
+        className={`${styles.boxImage} ${
+          category === PRODUCT_CATEGORIES.electronics
+            ? `${styles.heightElectronics}`
+            : category === PRODUCT_CATEGORIES.jewelery
+            ? `${styles.heightJawelery}`
+            : styles.heightClothing
+        }`}
+      >
         <img src={image} alt={name} />
       </div>
       <div className={styles.boxProductData}>

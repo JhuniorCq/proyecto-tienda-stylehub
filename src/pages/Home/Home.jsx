@@ -5,6 +5,37 @@ import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 import { PRODUCT_CATEGORIES } from "../../utils/constants";
 import { StartSection } from "../../components/StartSection/StartSection";
 import { Loader } from "../../components/Loader/Loader";
+import { CategoriesBox } from "../../components/CategoriesBox/CategoriesBox";
+import categoryMensClothing from "../../assets/images/categoryMensClothing.png";
+import categoryWomensClothing from "../../assets/images/categoryWomensClothing.png";
+import categoryElectronics from "../../assets/images/categoryElectronics.png";
+import categoryJewelry from "../../assets/images/categoryJewelry.png";
+import imagePoster from "../../assets/images/image-poster.png";
+import backgroundMens from "../../assets/images/background-mens.png";
+import backgroundWomens from "../../assets/images/background-womens.png";
+import backgroundElectronics from "../../assets/images/background-electronics.png";
+import backgroundJewelry from "../../assets/images/background-jewelry.png";
+import { PosterBox } from "../../components/PosterBox/PosterBox";
+import { Advertising } from "../../components/Advertising/Advertising";
+
+const categoryList = [
+  {
+    title: "MEN'S CLOTHING",
+    image: categoryMensClothing,
+  },
+  {
+    title: "WOMEN'S CLOTHING",
+    image: categoryWomensClothing,
+  },
+  {
+    title: "ELECTRONICS",
+    image: categoryElectronics,
+  },
+  {
+    title: "JEWELRY",
+    image: categoryJewelry,
+  },
+];
 
 export const Home = () => {
   const {
@@ -33,30 +64,48 @@ export const Home = () => {
       {/* SECCIÓN DE INICIO */}
       <StartSection />
 
+      {/* CAJA DE LAS CATEGORÍAS DE PRODUCTOS */}
+      <CategoriesBox categoryList={categoryList} />
+
+      <Advertising />
+
+      <PosterBox image={imagePoster} />
+
       {loadingProducts ? (
         <Loader />
       ) : (
         <div className={styles.boxSections}>
           {/* LISTA DE PRODUCTOS DE HOMBRE */}
           <StoreSection
+            id={PRODUCT_CATEGORIES.menClothing}
             productList={menClothingList}
             sectionTitle="MEN'S CLOTHING"
+            backgroundImage={backgroundMens}
           />
 
           {/* LISTA DE PRODUCTOS DE MUJER */}
           <StoreSection
+            id={PRODUCT_CATEGORIES.womenClothing}
             productList={womenClothingList}
             sectionTitle="WOMEN'S CLOTHING"
+            backgroundImage={backgroundWomens}
           />
 
           {/* LISTA DE PRODUCTOS ELECTRÓNICOS */}
           <StoreSection
+            id={PRODUCT_CATEGORIES.electronics}
             productList={electronicsList}
             sectionTitle="ELECTRONICS"
+            backgroundImage={backgroundElectronics}
           />
 
           {/* LISTA DE PRODUCTOS DE JOYERÍA */}
-          <StoreSection productList={jeweleryList} sectionTitle="JEWELERY" />
+          <StoreSection
+            id={PRODUCT_CATEGORIES.jewelery}
+            productList={jeweleryList}
+            sectionTitle="JEWELRY"
+            backgroundImage={backgroundJewelry}
+          />
         </div>
       )}
     </div>

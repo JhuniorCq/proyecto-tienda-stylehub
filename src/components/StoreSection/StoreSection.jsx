@@ -1,9 +1,15 @@
 import { ProductCard } from "../ProductCard/ProductCard";
 import styles from "./StoreSection.module.css";
 
-export const StoreSection = ({ productList, sectionTitle }) => {
+export const StoreSection = ({
+  id,
+  productList,
+  sectionTitle,
+  backgroundImage,
+}) => {
   return (
-    <div className={styles.boxStoreSection}>
+    <div id={id} className={styles.boxStoreSection}>
+      <img className={styles.backgroundImage} src={backgroundImage} alt="" />
       <h2 className={styles.sectionTitle}>{sectionTitle}</h2>
       <div className={styles.boxProducts}>
         {productList.map((product) => (

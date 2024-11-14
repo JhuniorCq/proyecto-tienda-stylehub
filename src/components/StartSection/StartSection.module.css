@@ -1,4 +1,44 @@
+/* ESTILOS NUEVOS */
 .boxStart {
+  width: 100%;
+  height: 100vh;
+}
+
+.boxCarousel {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  user-select: none;
+}
+
+.imageCarousel {
+  width: 100%;
+  height: 100%;
+  /* height: calc(100vh - 62px); */
+  object-fit: cover;
+}
+
+.buttonCarousel {
+  position: absolute;
+  color: white;
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.buttonLeft {
+  left: 40px;
+}
+
+.buttonRight {
+  right: 40px;
+}
+
+/* ESTILOS ORIGINALES */
+/* .boxStart {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -104,12 +144,11 @@
     height: 52vh;
     margin-top: 25px;
   }
-  
+
   .boxImage > img {
     height: 100%;
     mask-image: linear-gradient(black 92%, transparent);
   }
-  
 }
 
 @media (min-width: 451px) and (max-width: 575px) {
@@ -139,7 +178,7 @@
     height: 48vh;
     margin-top: 25px;
   }
-  
+
   .boxImage > img {
     height: 100%;
     mask-image: linear-gradient(black 92%, transparent);
@@ -155,7 +194,7 @@
   }
 
   .boxText .preTitle {
-    font-size: .9rem;
+    font-size: 0.9rem;
     text-align: right;
   }
 
@@ -173,9 +212,9 @@
     height: 45vh;
     margin-top: 35px;
   }
-  
+
   .boxImage > img {
     height: 100%;
     mask-image: linear-gradient(black 92%, transparent);
   }
-}
+} */

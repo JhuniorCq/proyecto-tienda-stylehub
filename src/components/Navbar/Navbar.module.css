@@ -1,21 +1,28 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+header {
   width: 100%;
   height: 62px;
-  padding: 0 90px;
-  background-color: white;
   z-index: 10;
-  position: sticky;
+  /* position: sticky; */
+  position: fixed;
   top: 0;
   animation: animation-header linear both;
   animation-timeline: scroll(root block);
-  animation-range: 0 90%;
+  animation-range: 0 40%;
+  /* background-color: #f2e5e0; */
+  background-color: transparent;
 }
 
-.startBackgroundColor {
-  background-color: #f2e5e0;
+.navBar {
+  display: flex;
+  /* border: 1px solid red; */
+  justify-content: space-between;
+  /* justify-content: flex-start; */
+  /* gap: 60px; */
+  /*  */
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 90px;
 }
 
 .logo {
@@ -27,16 +34,72 @@
   height: 55%;
 }
 
+.categoryList {
+  display: flex;
+  gap: 55px;
+  font-size: 1.25rem;
+  /* border: 1px solid blue; */
+}
+
+.category {
+  color: white;
+  animation: animation-color-text linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0 40%;
+}
+
+.activeCategory {
+  color: green;
+}
+
+/* .boxSearch {
+  width: 28%;
+  height: 35px;
+  margin-left: auto;
+}
+
+.search {
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 4px;
+} */
+
+.boxNavOptions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  color: white;
+  animation: animation-color-text linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0 40%;
+}
+
+.boxSearchIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchIcon {
+  margin-top: 4px;
+  font-size: 1.6rem;
+}
+
 .boxShoppingCart {
   position: relative;
   display: flex;
+  /* margin-left: auto; */
   align-items: center;
   cursor: pointer;
 }
 
 .shoppingCart {
   font-size: 1.8rem;
-  color: #393536;
+  /* color: black; */
   cursor: pointer;
 }
 
@@ -63,14 +126,20 @@
   }
 }
 
+@keyframes animation-color-text {
+  to {
+    color: black;
+  }
+}
+
 @media (min-width: 576px) and (max-width: 991px) {
-  .header {
+  .navBar {
     padding: 0 60px;
   }
 }
 
 @media (max-width: 575px) {
-  .header {
+  .navBar {
     padding: 0 40px;
   }
 }
