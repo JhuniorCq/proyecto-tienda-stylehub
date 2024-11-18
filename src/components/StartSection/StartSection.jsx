@@ -9,10 +9,30 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa6";
 
 const carouselImages = [
-  carouselMensClothing,
-  carouselWomensClothing,
-  carouselElectronics,
-  carouselJewelry,
+  {
+    image: carouselMensClothing,
+    titlePartOne: "SHARP LOOKS",
+    titlePartTwo: "EVERY DAY",
+    paragraph: "Clothes that define modern masculinity",
+  },
+  {
+    image: carouselWomensClothing,
+    titlePartOne: "EFFORTLESS",
+    titlePartTwo: "ELEGANCE",
+    paragraph: "Styles that shine for every occasion",
+  },
+  {
+    image: carouselElectronics,
+    titlePartOne: "EMPOWERING",
+    titlePartTwo: "MODERN LIFE",
+    paragraph: "Innovation to enhance your day",
+  },
+  {
+    image: carouselJewelry,
+    titlePartOne: "TIMELESS",
+    titlePartTwo: "ELEGANCE",
+    paragraph: "Discover jewels that define your style",
+  },
 ];
 
 export const StartSection = () => {
@@ -49,22 +69,35 @@ export const StartSection = () => {
     //     <img src={mainModel} alt="" />
     //   </div>
     // </section>
-    <section className={styles.boxStart}>
-      <div className={styles.boxCarousel}>
-        <img
-          className={styles.imageCarousel}
-          src={carouselImages[indexCarousel]}
-          alt="Carrousel Image"
-        />
-        <FaChevronLeft
-          className={`${styles.buttonCarousel} ${styles.buttonLeft}`}
-          onClick={decreaseCarouselIndex}
-        />
-        <FaChevronRight
-          className={`${styles.buttonCarousel} ${styles.buttonRight}`}
-          onClick={increaseCarouselIndex}
-        />
+    // <section className={styles.boxStart}>
+    <section className={styles.boxCarousel}>
+      <img
+        className={styles.imageCarousel}
+        src={carouselImages[indexCarousel].image}
+        alt="Carrousel image"
+      />
+      <div className={styles.boxTextCarousel}>
+        <div className={styles.boxTitleCarousel}>
+          <p className={styles.titleCarousel}>
+            {carouselImages[indexCarousel].titlePartOne}
+          </p>
+          <p className={styles.titleCarousel}>
+            {carouselImages[indexCarousel].titlePartTwo}
+          </p>
+        </div>
+        <p className={styles.paragraphCarousel}>
+          {carouselImages[indexCarousel].paragraph}
+        </p>
       </div>
+      <FaChevronLeft
+        className={`${styles.buttonCarousel} ${styles.buttonLeft}`}
+        onClick={decreaseCarouselIndex}
+      />
+      <FaChevronRight
+        className={`${styles.buttonCarousel} ${styles.buttonRight}`}
+        onClick={increaseCarouselIndex}
+      />
     </section>
+    // </section>
   );
 };

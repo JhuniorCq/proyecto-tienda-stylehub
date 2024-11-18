@@ -9,7 +9,11 @@ export const StoreSection = ({
 }) => {
   return (
     <div id={id} className={styles.boxStoreSection}>
-      <img className={styles.backgroundImage} src={backgroundImage} alt="" />
+      <img
+        className={styles.backgroundImage}
+        src={backgroundImage}
+        alt="Background image"
+      />
       <h2 className={styles.sectionTitle}>{sectionTitle}</h2>
       <div className={styles.boxProducts}>
         {productList.map((product) => (

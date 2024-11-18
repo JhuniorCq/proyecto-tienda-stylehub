@@ -1,4 +1,5 @@
 .boxHome {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -6,7 +7,7 @@
 
 .boxSections {
   width: 100%;
-  padding: 60px 90px;
+  padding: 60px 90px 100px;
   display: flex;
   flex-direction: column;
   gap: 120px;

@@ -13,16 +13,16 @@ export const Navbar = () => {
   const [showShoppingCart, setShowShoppingCart] = useState(false);
 
   const location = useLocation();
-  const [isStart, setIsStart] = useState(true);
+  // const [isStart, setIsStart] = useState(true);
 
   const appearShoppingCart = () => {
     setShowShoppingCart(!showShoppingCart);
   };
 
-  useEffect(() => {
-    if (location.pathname !== "/") setIsStart(false);
-    else setIsStart(true);
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (location.pathname !== "/") setIsStart(false);
+  //   else setIsStart(true);
+  // }, [location.pathname]);
 
   return (
     <>
@@ -39,13 +39,14 @@ export const Navbar = () => {
 
               <ul className={styles.categoryList}>
                 <li>
-                  <a
-                    href={`#${PRODUCT_CATEGORIES.menClothing}`}
+                  {/* <a
+                    href={`/#${PRODUCT_CATEGORIES.menClothing}`}
                     className={styles.category}
                   >
                     Men's
-                  </a>
+                  </a> */}
                   {/* <NavLink
+                    
                     className={`${styles.category} ${({ isActive }) => {
                       isActive ? styles.activeCategory : "";
                     }}`}
@@ -54,12 +55,12 @@ export const Navbar = () => {
                   </NavLink> */}
                 </li>
                 <li>
-                  <a
-                    href={`#${PRODUCT_CATEGORIES.womenClothing}`}
+                  {/* <a
+                    href={`/#${PRODUCT_CATEGORIES.womenClothing}`}
                     className={styles.category}
                   >
                     Women's
-                  </a>
+                  </a> */}
                   {/* <NavLink
                     className={`${styles.category} ${({ isActive }) => {
                       isActive ? styles.activeCategory : "";
@@ -69,12 +70,12 @@ export const Navbar = () => {
                   </NavLink> */}
                 </li>
                 <li>
-                  <a
-                    href={`#${PRODUCT_CATEGORIES.electronics}`}
+                  {/* <a
+                    href={`/#${PRODUCT_CATEGORIES.electronics}`}
                     className={styles.category}
                   >
                     Electronics
-                  </a>
+                  </a> */}
                   {/* <NavLink
                     className={`${styles.category} ${({ isActive }) => {
                       isActive ? styles.activeCategory : "";
@@ -84,12 +85,12 @@ export const Navbar = () => {
                   </NavLink> */}
                 </li>
                 <li>
-                  <a
-                    href={`#${PRODUCT_CATEGORIES.jewelery}`}
+                  {/* <a
+                    href={`/#${PRODUCT_CATEGORIES.jewelery}`}
                     className={styles.category}
                   >
                     Jawelery
-                  </a>
+                  </a> */}
                   {/* <NavLink
                     className={`${styles.category} ${({ isActive }) => {
                       isActive ? styles.activeCategory : "";

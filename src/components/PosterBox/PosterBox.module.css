@@ -1,27 +1,33 @@
 .boxPoster {
   width: 100%;
+  height: 630px;
   display: flex;
   flex-wrap: wrap;
 }
 
 .boxPoster > * {
   width: 50%;
+  height: 100%;
   /* border: 1px solid blue; */
 }
 
 .boxImage {
   width: 100%;
+  height: 100%;
 }
 
 .posterImage {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-position: left; */
 }
 
 .boxBenefits {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* gap: 10px; */
+  /* gap: 20px; */
   padding: 50px 80px;
   background-color: rgb(48, 46, 54);
   color: white;
@@ -47,6 +53,8 @@
   flex-direction: column;
   gap: 30px;
   padding-left: 90px;
+  /* xD */
+  overflow: hidden;
 }
 
 .benefit {
@@ -62,4 +70,209 @@
 
 .benefit > p {
   font-size: 1.2rem;
+}
+
+@media (min-width: 1600px) {
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .boxBenefits {
+    padding: 40px 70px;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .benefitsList {
+    padding-left: 70px;
+  }
+
+  .boxIntroduction > h3 {
+    font-size: 1.8rem;
+  }
+
+  .boxIntroduction > p {
+    font-size: 1.15rem;
+  }
+
+  .benefitIcon {
+    font-size: 2rem;
+  }
+
+  .benefit > p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .boxBenefits {
+    padding: 40px 70px;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .benefitsList {
+    padding-left: 70px;
+  }
+
+  .boxIntroduction > h3 {
+    font-size: 1.8rem;
+  }
+
+  .boxIntroduction > p {
+    font-size: 1.15rem;
+  }
+
+  .benefitIcon {
+    font-size: 2rem;
+  }
+
+  .benefit > p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .boxPoster {
+    height: auto;
+  }
+
+  .boxPoster > * {
+    width: 100%;
+  }
+
+  .boxBenefits {
+    padding: 40px 70px;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .benefitsList {
+    padding-left: 70px;
+  }
+
+  .boxIntroduction > h3 {
+    font-size: 1.8rem;
+  }
+
+  .boxIntroduction > p {
+    font-size: 1.15rem;
+  }
+
+  .benefitIcon {
+    font-size: 2rem;
+  }
+
+  .benefit > p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 635px) and (max-width: 767px) {
+  .boxPoster {
+    height: auto;
+  }
+
+  .boxPoster > * {
+    width: 100%;
+  }
+
+  .boxBenefits {
+    padding: 40px 70px;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .benefitsList {
+    padding-left: 70px;
+  }
+
+  .boxIntroduction > h3 {
+    font-size: 1.8rem;
+  }
+
+  .boxIntroduction > p {
+    font-size: 1.15rem;
+  }
+
+  .benefitIcon {
+    font-size: 2rem;
+  }
+
+  .benefit > p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 515px) and (max-width: 634px) {
+  .boxPoster {
+    height: auto;
+  }
+
+  .boxPoster > * {
+    width: 100%;
+    height: 400px;
+  }
+
+  .boxBenefits {
+    padding: 40px 70px;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .benefitsList {
+    padding-left: 70px;
+  }
+
+  .boxIntroduction > h3 {
+    font-size: 1.8rem;
+  }
+
+  .boxIntroduction > p {
+    font-size: 1.15rem;
+  }
+
+  .benefitIcon {
+    font-size: 2rem;
+  }
+
+  .benefit > p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 514px) {
+  .boxPoster {
+    height: auto;
+  }
+
+  .boxPoster > * {
+    width: 100%;
+    height: 400px;
+  }
+
+  .boxBenefits {
+    padding: 40px 70px;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .benefitsList {
+    padding-left: 70px;
+  }
+
+  .boxIntroduction > h3 {
+    font-size: 1.8rem;
+  }
+
+  .boxIntroduction > p {
+    font-size: 1.15rem;
+  }
+
+  .benefitIcon {
+    font-size: 2rem;
+  }
+
+  .benefit > p {
+    font-size: 1.15rem;
+  }
 }

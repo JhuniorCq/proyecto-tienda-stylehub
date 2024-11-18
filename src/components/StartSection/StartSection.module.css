@@ -1,24 +1,52 @@
 /* ESTILOS NUEVOS */
-.boxStart {
+/* .boxStart {
   width: 100%;
   height: 100vh;
-}
+} */
 
 .boxCarousel {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   position: relative;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
+  /* justify-content: center; */
   user-select: none;
+}
+
+.boxTextCarousel {
+  border: 1px solid yellow;
+  position: absolute;
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.boxTitleCarousel {
+  /* border: 1px solid green; */
+  text-align: center;
+  align-items: center;
+}
+
+.titleCarousel {
+  font-family: var(--font-family-poppins);
+  font-size: 6rem;
+}
+
+.paragraphCarousel {
+  font-size: 2rem;
+  font-family: var(--font-family-poppins);
 }
 
 .imageCarousel {
   width: 100%;
   height: 100%;
-  /* height: calc(100vh - 62px); */
   object-fit: cover;
 }
 
@@ -35,6 +63,102 @@
 
 .buttonRight {
   right: 40px;
+}
+
+@media (min-width: 1600px) {
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .titleCarousel {
+    font-size: 5.5rem;
+  }
+
+  .paragraphCarousel {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .titleCarousel {
+    font-size: 5.5rem;
+  }
+
+  .paragraphCarousel {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .titleCarousel {
+    font-size: 5.3rem;
+  }
+
+  .paragraphCarousel {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 635px) and (max-width: 767px) {
+  .boxCarousel {
+    height: 90vh;
+  }
+
+  .buttonCarousel {
+    font-size: 1.8rem;
+  }
+
+  .titleCarousel {
+    font-size: 4rem;
+  }
+
+  .paragraphCarousel {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 515px) and (max-width: 634px) {
+  .boxCarousel {
+    height: 85vh;
+  }
+
+  .buttonCarousel {
+    font-size: 1.8rem;
+  }
+
+  .titleCarousel {
+    font-size: 3.2rem;
+  }
+
+  .paragraphCarousel {
+    font-size: 1.1rem;
+  }
+}
+
+/* REDUCIR TAMAÑOS PARA ESTA MEDIQUERIE */
+@media (max-width: 514px) {
+  .boxCarousel {
+    height: 80vh;
+  }
+
+  .buttonCarousel {
+    font-size: 1.6rem;
+  }
+
+  .buttonLeft {
+    left: 30px;
+  }
+
+  .buttonRight {
+    right: 30px;
+  }
+
+  .titleCarousel {
+    font-size: 3rem;
+  }
+
+  .paragraphCarousel {
+    font-size: 1rem;
+  }
 }
 
 /* ESTILOS ORIGINALES */

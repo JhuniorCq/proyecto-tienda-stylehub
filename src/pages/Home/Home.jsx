@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 import { StoreSection } from "../../components/StoreSection/StoreSection";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 import { PRODUCT_CATEGORIES } from "../../utils/constants";
 import { StartSection } from "../../components/StartSection/StartSection";
@@ -10,13 +10,14 @@ import categoryMensClothing from "../../assets/images/categoryMensClothing.png";
 import categoryWomensClothing from "../../assets/images/categoryWomensClothing.png";
 import categoryElectronics from "../../assets/images/categoryElectronics.png";
 import categoryJewelry from "../../assets/images/categoryJewelry.png";
-import imagePoster from "../../assets/images/image-poster.png";
-import backgroundMens from "../../assets/images/background-mens.png";
-import backgroundWomens from "../../assets/images/background-womens.png";
-import backgroundElectronics from "../../assets/images/background-electronics.png";
-import backgroundJewelry from "../../assets/images/background-jewelry.png";
+import imagePoster from "../../assets/images/imagePoster.png";
+import backgroundMens from "../../assets/images/backgroundMens.png";
+import backgroundWomens from "../../assets/images/backgroundWomens.png";
+import backgroundElectronics from "../../assets/images/backgroundElectronics.png";
+import backgroundJewelry from "../../assets/images/backgroundJewelry.png";
 import { PosterBox } from "../../components/PosterBox/PosterBox";
 import { Advertising } from "../../components/Advertising/Advertising";
+import { Footer } from "../../components/Footer/Footer";
 
 const categoryList = [
   {
@@ -71,6 +72,7 @@ export const Home = () => {
 
       <PosterBox image={imagePoster} />
 
+      {/* Mover a otro componente */}
       {loadingProducts ? (
         <Loader />
       ) : (
@@ -108,6 +110,8 @@ export const Home = () => {
           />
         </div>
       )}
+
+      <Footer />
     </div>
   );
 };

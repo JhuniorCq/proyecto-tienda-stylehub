@@ -3,8 +3,10 @@
   --success-color: #2ecc71;
   --light-gray: #919191;
   --very-light-gray: #efefef;
+  --color-disabled: rgb(97, 97, 97);
   --background-very-light-gray: #f6f6f6;
   --font-family-roboto: "Roboto", sans-serif;
+  --font-family-poppins: "Poppins", serif;
 }
 
 * {

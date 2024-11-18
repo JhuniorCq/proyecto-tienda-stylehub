@@ -14,7 +14,6 @@ header {
 
 .navBar {
   display: flex;
-  /* border: 1px solid red; */
   justify-content: space-between;
   /* justify-content: flex-start; */
   /* gap: 60px; */
@@ -132,7 +131,22 @@ header {
   }
 }
 
-@media (min-width: 576px) and (max-width: 991px) {
+@media (min-width: 1600px) {
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navBar {
+    padding: 0 60px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
   .navBar {
     padding: 0 60px;
   }
@@ -143,3 +157,15 @@ header {
     padding: 0 40px;
   }
 }
+/* 
+@media (min-width: 576px) and (max-width: 991px) {
+  .navBar {
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 575px) {
+  .navBar {
+    padding: 0 40px;
+  }
+} */
