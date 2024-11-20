@@ -1,7 +1,6 @@
 import styles from "./Advertising.module.css";
 import { PiShoppingCart } from "react-icons/pi";
 import { IoStorefrontOutline } from "react-icons/io5";
-import { PiStorefront } from "react-icons/pi";
 
 export const Advertising = () => {
   return (

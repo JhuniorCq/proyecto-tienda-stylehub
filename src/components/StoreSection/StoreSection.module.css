@@ -6,6 +6,7 @@
   gap: 60px;
   /* border: 1px solid red; */
   position: relative;
+  min-height: 500px;
 }
 
 .boxProducts {
@@ -30,9 +31,39 @@
   /* z-index: 1; */
 }
 
-@media (max-width: 450px) {
+@media (min-width: 1600px) {
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+@media (min-width: 635px) and (max-width: 767px) {
+}
+
+@media (min-width: 515px) and (max-width: 634px) {
   .sectionTitle {
-    text-align: center;
     font-size: 2.5rem;
+  }
+
+  .backgroundImage {
+    /* border: 1px solid green; */
+    height: 380px;
+  }
+}
+
+@media (max-width: 514px) {
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+
+  .backgroundImage {
+    /* border: 1px solid green; */
+    height: 330px;
   }
 }

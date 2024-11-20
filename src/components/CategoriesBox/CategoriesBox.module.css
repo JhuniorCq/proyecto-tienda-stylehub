@@ -1,4 +1,6 @@
 .sectionBoxCategories {
+  width: 100%;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -9,10 +11,6 @@
 .titleBoxCategories {
   font-size: 3rem;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
 }
 
 .boxCategories {
@@ -55,4 +53,39 @@
 
 .boxButtonStart > a:hover {
   scale: 1.1;
+}
+
+@media (min-width: 1600px) {
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+@media (min-width: 635px) and (max-width: 767px) {
+}
+
+@media (min-width: 515px) and (max-width: 634px) {
+  .sectionBoxCategories {
+    padding: 0px 60px;
+  }
+
+  .titleBoxCategories {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 514px) {
+  .sectionBoxCategories {
+    padding: 0px 40px;
+  }
+
+  .titleBoxCategories {
+    font-size: 2.5rem;
+  }
 }

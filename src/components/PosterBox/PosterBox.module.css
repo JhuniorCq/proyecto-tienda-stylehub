@@ -105,13 +105,13 @@
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .boxBenefits {
-    padding: 40px 70px;
+    padding: 40px 60px;
     justify-content: center;
     gap: 40px;
   }
 
   .benefitsList {
-    padding-left: 70px;
+    padding-left: 60px;
   }
 
   .boxIntroduction > h3 {
@@ -119,7 +119,7 @@
   }
 
   .boxIntroduction > p {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .benefitIcon {
@@ -127,7 +127,7 @@
   }
 
   .benefit > p {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -138,16 +138,17 @@
 
   .boxPoster > * {
     width: 100%;
+    height: 560px;
   }
 
   .boxBenefits {
-    padding: 40px 70px;
+    padding: 40px 60px;
     justify-content: center;
     gap: 40px;
   }
 
   .benefitsList {
-    padding-left: 70px;
+    padding-left: 60px;
   }
 
   .boxIntroduction > h3 {
@@ -174,16 +175,17 @@
 
   .boxPoster > * {
     width: 100%;
+    height: 560px;
   }
 
   .boxBenefits {
-    padding: 40px 70px;
+    padding: 40px 60px;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
   }
 
   .benefitsList {
-    padding-left: 70px;
+    padding-left: 60px;
   }
 
   .boxIntroduction > h3 {
@@ -191,7 +193,7 @@
   }
 
   .boxIntroduction > p {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .benefitIcon {
@@ -199,7 +201,7 @@
   }
 
   .benefit > p {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -210,33 +212,38 @@
 
   .boxPoster > * {
     width: 100%;
-    height: 400px;
+    height: 500px;
   }
 
   .boxBenefits {
-    padding: 40px 70px;
+    padding: 35px 40px;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
   }
 
   .benefitsList {
-    padding-left: 70px;
+    padding-left: 40px;
+    gap: 25px;
   }
 
   .boxIntroduction > h3 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .boxIntroduction > p {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 
   .benefitIcon {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+
+  .benefit {
+    gap: 20px;
   }
 
   .benefit > p {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 }
 
@@ -247,32 +254,39 @@
 
   .boxPoster > * {
     width: 100%;
-    height: 400px;
+    height: 520px;
   }
 
   .boxBenefits {
-    padding: 40px 70px;
+    padding: 35px 40px;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
+    height: auto;
   }
 
   .benefitsList {
-    padding-left: 70px;
+    padding-left: 40px;
+    gap: 25px;
+    /* min-height: 520px; */
   }
 
   .boxIntroduction > h3 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 
   .boxIntroduction > p {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 
   .benefitIcon {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+
+  .benefit {
+    gap: 20px;
   }
 
   .benefit > p {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 }
