@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 import { StoreSection } from "../../components/StoreSection/StoreSection";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 import { PRODUCT_CATEGORIES } from "../../utils/constants";
 import { StartSection } from "../../components/StartSection/StartSection";

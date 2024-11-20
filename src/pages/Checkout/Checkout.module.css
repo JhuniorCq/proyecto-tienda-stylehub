@@ -28,7 +28,7 @@
 }
 
 .orderFormBox {
-  padding: 50px 40px 50px 12%;
+  padding: 50px 70px 50px 12%;
 }
 
 .orderForm {
@@ -55,13 +55,6 @@
   gap: 12px;
 }
 
-/* Este de nameBox me sirve */
-/* .namesBox > input,
-.locationsBox > select {
-  flex-grow: 1;
-  width: calc(100% / 3);
-} */
-
 .finalizeOrderButton {
   text-align: center;
   align-content: center;
@@ -81,10 +74,6 @@
   flex-direction: column;
   gap: 10px;
 }
-/* 
-.storeBranchTitle {
-  font-weight: 600;
-} */
 
 .storeBranchDataBox {
   border: 1px solid black;
@@ -107,12 +96,113 @@
 }
 
 /* ORDER SUMMARY */
-
 .orderSummaryBox {
   background-color: var(--very-light-gray);
-  padding: 50px 12% 50px 40px;
+  padding: 50px 12% 50px 70px;
+  /* padding: 50px 300px 50px 70px; */
 }
-/* 
-.orderSummaryBox > * {
-  border: 1px solid red;
-} */
+
+@media (min-width: 1600px) {
+}
+
+@media (min-width: 1250px) and (max-width: 1480px) {
+  .orderFormBox {
+    padding: 50px 70px 50px 8%;
+  }
+
+  .orderSummaryBox {
+    padding: 50px 8% 50px 70px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1249px) {
+  .checkoutBox {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .checkoutBox > * {
+    width: 100%;
+  }
+
+  .orderFormBox {
+    /* padding: 50px 12% 50px 12%; */
+    padding: 50px 12%;
+  }
+
+  .orderSummaryBox {
+    /* padding: 50px 12% 50px 70px; */
+    padding: 50px 12%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .checkoutBox {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .checkoutBox > * {
+    width: 100%;
+  }
+
+  .orderFormBox {
+    /* padding: 50px 12% 50px 12%; */
+    padding: 50px 12%;
+  }
+
+  .orderSummaryBox {
+    /* padding: 50px 12% 50px 70px; */
+    padding: 50px 12%;
+  }
+}
+
+@media (min-width: 546px) and (max-width: 767px) {
+  .checkoutBox {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .checkoutBox > * {
+    width: 100%;
+  }
+
+  .orderFormBox {
+    /* padding: 50px 12% 50px 12%; */
+    padding: 50px 12%;
+  }
+
+  .orderSummaryBox {
+    /* padding: 50px 12% 50px 70px; */
+    padding: 50px 12%;
+  }
+}
+
+@media (max-width: 545px) {
+  .checkoutBox {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .checkoutBox > * {
+    width: 100%;
+  }
+
+  .orderFormBox {
+    /* padding: 50px 12% 50px 12%; */
+    padding: 50px 12%;
+  }
+
+  .orderSummaryBox {
+    /* padding: 50px 12% 50px 70px; */
+    padding: 50px 12%;
+  }
+}

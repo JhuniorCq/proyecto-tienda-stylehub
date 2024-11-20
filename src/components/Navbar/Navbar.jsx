@@ -4,25 +4,18 @@ import { LuSearch } from "react-icons/lu";
 import logo from "../../assets/images/logo.png";
 import styles from "./Navbar.module.css";
 import { ShoppingCart } from "../ShoppingCart/ShoppingCart";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
-import { PRODUCT_CATEGORIES } from "../../utils/constants";
 
 export const Navbar = () => {
   const { shoppingCartProducts } = useContext(ShoppingCartContext);
   const [showShoppingCart, setShowShoppingCart] = useState(false);
 
   const location = useLocation();
-  // const [isStart, setIsStart] = useState(true);
 
   const appearShoppingCart = () => {
     setShowShoppingCart(!showShoppingCart);
   };
-
-  // useEffect(() => {
-  //   if (location.pathname !== "/") setIsStart(false);
-  //   else setIsStart(true);
-  // }, [location.pathname]);
 
   return (
     <>
