@@ -2,22 +2,17 @@ header {
   width: 100%;
   height: 62px;
   z-index: 10;
-  /* position: sticky; */
   position: fixed;
   top: 0;
   animation: animation-header linear both;
   animation-timeline: scroll(root block);
   animation-range: 0 40%;
-  /* background-color: #f2e5e0; */
   background-color: transparent;
 }
 
 .navBar {
   display: flex;
   justify-content: space-between;
-  /* justify-content: flex-start; */
-  /* gap: 60px; */
-  /*  */
   align-items: center;
   width: 100%;
   height: 100%;
@@ -32,39 +27,6 @@ header {
 .logo > img {
   height: 55%;
 }
-
-.categoryList {
-  display: flex;
-  gap: 55px;
-  font-size: 1.25rem;
-  /* border: 1px solid blue; */
-}
-
-.category {
-  color: white;
-  animation: animation-color-text linear both;
-  animation-timeline: scroll(root block);
-  animation-range: 0 40%;
-}
-
-.activeCategory {
-  color: green;
-}
-
-/* .boxSearch {
-  width: 28%;
-  height: 35px;
-  margin-left: auto;
-}
-
-.search {
-  width: 100%;
-  height: 100%;
-  max-width: 500px;
-  padding: 15px;
-  border: 1px solid black;
-  border-radius: 4px;
-} */
 
 .boxNavOptions {
   display: flex;
@@ -91,14 +53,12 @@ header {
 .boxShoppingCart {
   position: relative;
   display: flex;
-  /* margin-left: auto; */
   align-items: center;
   cursor: pointer;
 }
 
 .shoppingCart {
   font-size: 1.8rem;
-  /* color: black; */
   cursor: pointer;
 }
 
@@ -131,21 +91,6 @@ header {
   }
 }
 
-@media (min-width: 1600px) {
-}
-
-@media (min-width: 1200px) and (max-width: 1599px) {
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  /* .navBar {
-    padding: 0 60px;
-  } */
-}
-
 @media (min-width: 576px) and (max-width: 767px) {
   .navBar {
     padding: 0 60px;
@@ -157,15 +102,3 @@ header {
     padding: 0 40px;
   }
 }
-/* 
-@media (min-width: 576px) and (max-width: 991px) {
-  .navBar {
-    padding: 0 60px;
-  }
-}
-
-@media (max-width: 575px) {
-  .navBar {
-    padding: 0 40px;
-  }
-} */

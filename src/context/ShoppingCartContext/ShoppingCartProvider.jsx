@@ -38,8 +38,6 @@ export const ShoppingCartProvider = ({ children }) => {
       case SHOPPING_CART_ACTIONS.increaseProduct: {
         const { showQuantity } = responseShowQuantity;
 
-        console.log("XD", showQuantity, responseShowQuantity);
-
         updateState = state.map((product) => {
           if (product.id === action.payload) {
             if (product.quantity < showQuantity) {

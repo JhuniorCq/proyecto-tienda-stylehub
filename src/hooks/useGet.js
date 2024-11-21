@@ -12,7 +12,7 @@ export const useGet = (url) => {
     setStateGet((prev) => ({ ...prev, loadingGet: true }));
     try {
       const { data } = await axios.get(url);
-      console.log("getData en ejecución");
+
       setStateGet({
         responseGet: data,
         loadingGet: false,

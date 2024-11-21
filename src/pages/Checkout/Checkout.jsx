@@ -55,7 +55,6 @@ export const Checkout = () => {
   });
 
   const changeDeliveryTypeSelection = () => {
-    // CUANDO HACEMOS ESTE CAMBIO, TAMBIEN DEBEMOS RESETEAR A country, department, province y district
     setCheckoutForm((prev) => ({
       ...prev,
       [INPUT_NAMES.COUNTRY]: null,
@@ -78,7 +77,6 @@ export const Checkout = () => {
   const sendForm = async (event) => {
     event.preventDefault();
 
-    // Validations
     const checkoutValidated = validateCheckout(
       checkoutForm,
       checkoutForm[INPUT_NAMES.DELIVERY_OPTION]
@@ -125,14 +123,11 @@ export const Checkout = () => {
   // useEffect para el PAGO con YAPE o DEPÓSITO
   useEffect(() => {
     if (!loadingPayment && responsePayment) {
-      // Si hubo un error en el backend
       if (!responsePayment.success) {
         alert("Ocurrió un problema. Su pedido no pudo realizarse.");
         return;
       }
 
-      // Ya no se usará creo, porque ya NO disminuiremos los productos en la BD en este caso, ya que solo son reservados
-      // Aunque creo que mejor sí, así después de cada COMPRA la vista de la web del usuario estará actualizada
       refetchProducts();
       navigate("/order-completion", { state: responsePayment.data });
     }
@@ -147,7 +142,6 @@ export const Checkout = () => {
       }
 
       window.location.href = responsePaymentPaypal.links[1].href;
-      // window.open(responsePaymentPaypal.links[1].href, "_blank");
     }
   }, [responsePaymentPaypal]);
 
@@ -165,7 +159,6 @@ export const Checkout = () => {
             <h1 className={styles.title}>STYLE HUB</h1>
           </div>
           <form className={styles.orderForm} onSubmit={sendForm}>
-            {/* Contact */}
             <section className={styles.conctactBox}>
               <h2 className={styles.sectionTitle}>Contact</h2>
 
@@ -201,7 +194,7 @@ export const Checkout = () => {
                 handleInput={handleInput}
               />
             </section>
-            {/* Delivery */} {/* USAR AL selectDelivery */}
+            {/* Delivery */}
             <section className={styles.deliveryBox}>
               <h2 className={styles.sectionTitle}>Delivery</h2>
 

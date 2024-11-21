@@ -1,6 +1,5 @@
 .boxProduct {
   width: 100%;
-  /* border: 1px solid orange; */
   display: flex;
   padding: 0 20px;
   height: 120px;
@@ -14,7 +13,6 @@
   height: 70%;
   text-align: center;
   align-content: center;
-  /* border: 1px solid red; */
   overflow: hidden;
 }
 
@@ -37,7 +35,6 @@
 
 .boxProductData {
   width: 70%;
-  /* flex-grow: 1; */
   display: flex;
   flex-direction: column;
   gap: 12px;

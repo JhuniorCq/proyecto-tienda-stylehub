@@ -46,7 +46,6 @@ export const PosterBox = ({ image }) => {
             <p>Personalized attention 24/7. Contact us at 936128801</p>
           </li>
         </ul>
-        {/* <div></div> */}
       </div>
     </div>
   );

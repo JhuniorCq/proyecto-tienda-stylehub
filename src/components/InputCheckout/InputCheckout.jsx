@@ -18,18 +18,8 @@ export const InputCheckout = ({
     const resultInputValidated = validateInputCheckout({ name, value });
 
     if (!resultInputValidated.success) {
-      console.log(
-        "ERROR EN LA VALIDACIÓN DEL INPUT: ",
-        resultInputValidated.error.issues[0].message,
-        "El name:",
-        name,
-        "El value",
-        value
-      );
-
       setInputValidated(INPUT_STATES.ERROR);
     } else if (resultInputValidated.success) {
-      console.log("VALIDACIÓN CORRECTA PARA: ", name);
       setInputValidated(INPUT_STATES.SUCCESS);
     }
   };

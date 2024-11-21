@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   font-size: 3.5rem;
-  /* background-color: var(--very-light-gray); */
   margin-bottom: 35px;
   position: relative;
 }
@@ -54,7 +53,6 @@
   font-size: 1.65rem;
 }
 
-/* Este de nameBox me sirve */
 .namesBox,
 .locationsBox {
   display: flex;
@@ -75,7 +73,6 @@
 }
 
 .storeBranchBox {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -101,14 +98,9 @@
   font-size: 0.9rem;
 }
 
-/* ORDER SUMMARY */
 .orderSummaryBox {
   background-color: var(--very-light-gray);
   padding: 50px 12% 50px 70px;
-  /* padding: 50px 300px 50px 70px; */
-}
-
-@media (min-width: 1600px) {
 }
 
 @media (min-width: 1250px) and (max-width: 1480px) {
@@ -134,12 +126,10 @@
   }
 
   .orderFormBox {
-    /* padding: 50px 12% 50px 12%; */
     padding: 50px 12%;
   }
 
   .orderSummaryBox {
-    /* padding: 50px 12% 50px 70px; */
     padding: 50px 12%;
   }
 }
@@ -157,12 +147,10 @@
   }
 
   .orderFormBox {
-    /* padding: 50px 12% 50px 12%; */
     padding: 50px 12%;
   }
 
   .orderSummaryBox {
-    /* padding: 50px 12% 50px 70px; */
     padding: 50px 12%;
   }
 }
@@ -180,12 +168,10 @@
   }
 
   .orderFormBox {
-    /* padding: 50px 12% 50px 12%; */
     padding: 50px 12%;
   }
 
   .orderSummaryBox {
-    /* padding: 50px 12% 50px 70px; */
     padding: 50px 12%;
   }
 }
@@ -197,7 +183,6 @@
   }
 
   .backButton {
-    /* font-size: 1.8rem; */
     position: static;
   }
 
@@ -213,12 +198,10 @@
   }
 
   .orderFormBox {
-    /* padding: 50px 12% 50px 12%; */
     padding: 40px 12% 50px;
   }
 
   .orderSummaryBox {
-    /* padding: 50px 12% 50px 70px; */
     padding: 50px 12%;
   }
 }

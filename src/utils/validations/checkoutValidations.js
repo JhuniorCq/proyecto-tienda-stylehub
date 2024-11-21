@@ -59,9 +59,7 @@ export const validateCheckout = (checkoutData, selectedDelivery) => {
       province: true,
       district: true,
     });
-    console.log(
-      "Quitando country, department, province y distrinct del esquema."
-    );
+
     return deliverySchema.safeParse(checkoutData);
   }
 

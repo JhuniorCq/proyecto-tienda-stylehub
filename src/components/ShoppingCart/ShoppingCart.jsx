@@ -19,7 +19,6 @@ export const ShoppingCart = ({ showShoppingCart, appearShoppingCart }) => {
   const { shoppingCartProducts, removeAllShoppingCart } =
     useContext(ShoppingCartContext);
 
-  console.log(shoppingCartProducts);
   const navigate = useNavigate();
 
   const productsExistCart = shoppingCartProducts.length > 0;

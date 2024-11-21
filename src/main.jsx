@@ -10,9 +10,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <ProductsProvider>
       <ShoppingCartProvider>
-        {/* <React.StrictMode> */}
         <App />
-        {/* </React.StrictMode> */}
       </ShoppingCartProvider>
     </ProductsProvider>
   </BrowserRouter>

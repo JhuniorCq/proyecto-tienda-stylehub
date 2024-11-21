@@ -64,13 +64,8 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-/* .addButton:hover {
-  background-color: rgb(17, 17, 17);
-} */
-
 .productDisabled {
   background-color: var(--color-disabled);
-  /* filter: blur(0.1rem) !important; */
   cursor: default;
 }
 

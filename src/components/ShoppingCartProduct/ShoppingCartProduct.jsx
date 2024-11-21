@@ -1,6 +1,6 @@
 import { RiDeleteBackFill } from "react-icons/ri";
 import styles from "./ShoppingCartProduct.module.css";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext/ShoppingCartContext";
 import { roundToDecimals } from "../../utils/logic";
 import { Toast as addOrRemoveProductToast } from "../../utils/notifications/toasts";
@@ -14,7 +14,6 @@ export const ShoppingCartProduct = ({
   quantity,
   category,
 }) => {
-  console.log(category);
   const {
     removeShoppingCart,
     increaseProductQuantity,

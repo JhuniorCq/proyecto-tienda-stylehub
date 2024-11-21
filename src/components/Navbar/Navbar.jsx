@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AiOutlineShopping } from "react-icons/ai";
 import { LuSearch } from "react-icons/lu";
 import logo from "../../assets/images/logo.png";
@@ -29,70 +29,6 @@ export const Navbar = () => {
               <Link className={styles.logo} to="/">
                 <img src={logo} alt="Logo" />
               </Link>
-
-              <ul className={styles.categoryList}>
-                <li>
-                  {/* <a
-                    href={`/#${PRODUCT_CATEGORIES.menClothing}`}
-                    className={styles.category}
-                  >
-                    Men's
-                  </a> */}
-                  {/* <NavLink
-                    
-                    className={`${styles.category} ${({ isActive }) => {
-                      isActive ? styles.activeCategory : "";
-                    }}`}
-                  >
-                    Men's
-                  </NavLink> */}
-                </li>
-                <li>
-                  {/* <a
-                    href={`/#${PRODUCT_CATEGORIES.womenClothing}`}
-                    className={styles.category}
-                  >
-                    Women's
-                  </a> */}
-                  {/* <NavLink
-                    className={`${styles.category} ${({ isActive }) => {
-                      isActive ? styles.activeCategory : "";
-                    }}`}
-                  >
-                    Women's
-                  </NavLink> */}
-                </li>
-                <li>
-                  {/* <a
-                    href={`/#${PRODUCT_CATEGORIES.electronics}`}
-                    className={styles.category}
-                  >
-                    Electronics
-                  </a> */}
-                  {/* <NavLink
-                    className={`${styles.category} ${({ isActive }) => {
-                      isActive ? styles.activeCategory : "";
-                    }}`}
-                  >
-                    Electronics
-                  </NavLink> */}
-                </li>
-                <li>
-                  {/* <a
-                    href={`/#${PRODUCT_CATEGORIES.jewelery}`}
-                    className={styles.category}
-                  >
-                    Jawelery
-                  </a> */}
-                  {/* <NavLink
-                    className={`${styles.category} ${({ isActive }) => {
-                      isActive ? styles.activeCategory : "";
-                    }}`}
-                  >
-                    Jawelery
-                  </NavLink> */}
-                </li>
-              </ul>
 
               <div className={styles.boxNavOptions}>
                 <div className={styles.boxSearchIcon}>

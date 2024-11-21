@@ -10,7 +10,6 @@
 }
 
 .footerSection {
-  /* border: 1px solid red; */
   width: 30%;
   min-width: 250px;
   display: flex;
@@ -23,7 +22,6 @@
 }
 
 .contactRow {
-  /* background-color: green; */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -38,7 +36,6 @@
 }
 
 .informationSection > div:last-child {
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -51,17 +48,14 @@
 }
 
 .bookComplaintsBook > img {
-  /* width: 100%; */
   height: 100%;
   cursor: pointer;
 }
 
 .boxInputSubscribe {
   width: 75%;
-  /* min-width: 60%; */
   height: 40px;
   position: relative;
-  /* border: 1px solid yellow; */
   display: flex;
   align-items: center;
 }
@@ -80,7 +74,6 @@
   right: 0;
   height: 100%;
   width: 100px;
-  /* max-width: 100px; */
   border: none;
   background-color: rgb(68, 68, 68);
   color: white;
@@ -91,9 +84,6 @@
 
 .buttonSubscribe:hover {
   background-color: rgb(42, 42, 42);
-}
-
-@media (min-width: 1600px) {
 }
 
 @media (min-width: 1200px) and (max-width: 1599px) {

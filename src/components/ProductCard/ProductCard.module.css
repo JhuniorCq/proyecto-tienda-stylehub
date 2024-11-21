@@ -4,26 +4,20 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* border: 1px solid red; */
   position: relative;
 }
 
 .boxImage {
   width: 100%;
-  /* height: 64%; */
   height: 224px;
   background-color: white;
   text-align: center;
   align-content: center;
-  /* border: 1px solid gray; */
   overflow: hidden;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
 }
 
 .boxImage > img {
-  /* El height 76% hace que se vea mejor la ropa de hombre y mujer -> El height < a 60% hace que se vea mejor los electrónicos  -> y para joería es mejor si es <= a 40%*/
-  /* height: 76%; */
-  /* height: 60%; */
   object-fit: cover;
   transition: scale 0.2s ease-in-out;
 }
@@ -45,7 +39,6 @@
 }
 
 .boxText {
-  /* height: 36%; */
   display: flex;
   flex-direction: column;
   gap: 7px;
@@ -100,6 +93,5 @@
 
 .productDisabled {
   background-color: var(--color-disabled);
-  /* filter: blur(0.1rem); */
   cursor: default;
 }

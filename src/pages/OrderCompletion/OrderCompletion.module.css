@@ -19,7 +19,6 @@
   width: 100%;
   text-align: center;
   font-size: 3rem;
-  /* text-shadow: -3px 0px 7px rgba(0, 0, 0, 0.5); */
 }
 
 .thankyouBox {
@@ -65,7 +64,6 @@
 }
 
 .orderDetailsDataBox > div {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -73,7 +71,7 @@
 
 .finalOptionsBox {
   display: flex;
-  /* flex-direction: column; */
+
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
@@ -88,12 +86,12 @@
 .backButton {
   background-color: black;
   color: white;
-  /* height: 50px; */
+
   text-align: center;
   align-content: center;
   padding: 10px 15px;
   height: 55px;
-  /* min-width: 35%; */
+
   width: 35%;
   min-width: 190px;
   border-radius: 5px;
@@ -103,9 +101,6 @@
 .orderSummaryBox {
   background-color: var(--very-light-gray);
   padding: 60px 10% 50px 70px;
-}
-
-@media (min-width: 1600px) {
 }
 
 @media (min-width: 1250px) and (max-width: 1480px) {

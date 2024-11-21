@@ -1,6 +1,5 @@
 .sectionBoxCategories {
   width: 100%;
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -20,12 +19,10 @@
   align-items: center;
   gap: 25px;
   flex-wrap: wrap;
-  /* border: 1px solid green; */
 }
 
 .boxButtonStart {
   width: 100%;
-  /* border: 1px solid red; */
   margin-top: 10px;
   display: flex;
   flex-direction: column;

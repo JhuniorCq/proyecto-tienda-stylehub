@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import styles from "./CategoriesBox.module.css";
 import { CategoryBox } from "../CategoryBox/CategoryBox";
 import { PRODUCT_CATEGORIES } from "../../utils/constants";
