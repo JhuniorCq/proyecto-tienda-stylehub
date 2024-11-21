@@ -1,13 +1,19 @@
-.title {
+.boxTitle {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3.5rem;
   /* background-color: var(--very-light-gray); */
   margin-bottom: 35px;
-  /* cursor: pointer; */
-  text-shadow: -3px 0px 7px rgba(0, 0, 0, 0.5);
   position: relative;
+}
+
+.title {
+  width: 100%;
+  font-size: 3.5rem;
+  font-weight: normal;
+  text-shadow: -3px 0px 7px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 .backButton {
@@ -185,6 +191,16 @@
 }
 
 @media (max-width: 545px) {
+  .boxTitle {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .backButton {
+    /* font-size: 1.8rem; */
+    position: static;
+  }
+
   .checkoutBox {
     width: 100%;
     min-height: 100vh;
@@ -198,7 +214,7 @@
 
   .orderFormBox {
     /* padding: 50px 12% 50px 12%; */
-    padding: 50px 12%;
+    padding: 40px 12% 50px;
   }
 
   .orderSummaryBox {

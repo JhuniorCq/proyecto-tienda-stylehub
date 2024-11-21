@@ -43,14 +43,11 @@
   gap: 12px;
 }
 
-/* .boxProductData > * {
-    border: 1px solid green;
-} */
-
 .firstRowProductData {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 .productName {

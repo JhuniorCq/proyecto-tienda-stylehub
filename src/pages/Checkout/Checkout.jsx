@@ -157,12 +157,12 @@ export const Checkout = () => {
     <>
       <div className={styles.checkoutBox}>
         <div className={styles.orderFormBox}>
-          <div className={styles.title}>
+          <div className={styles.boxTitle}>
             <FaArrowLeft
               className={styles.backButton}
               onClick={() => navigate("/")}
             />
-            STYLE HUB
+            <h1 className={styles.title}>STYLE HUB</h1>
           </div>
           <form className={styles.orderForm} onSubmit={sendForm}>
             {/* Contact */}

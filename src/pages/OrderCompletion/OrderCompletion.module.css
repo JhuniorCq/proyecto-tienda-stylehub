@@ -9,15 +9,11 @@
 }
 
 .orderCompletionDataBox {
-  padding: 60px 40px 50px 12%;
+  padding: 60px 70px 50px 10%;
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
-
-/* .orderCompletionDataBox > * {
-  border: 1px solid red;
-} */
 
 .storeName {
   width: 100%;
@@ -64,11 +60,8 @@
 
 .orderDetailsDataBox {
   display: flex;
-  /* flex-direction: column; */
-  /* justify-content: space-between; */
   gap: clamp(15px, 50%, 90px);
   flex-wrap: wrap;
-  /* max-height: 220px; */
 }
 
 .orderDetailsDataBox > div {
@@ -109,5 +102,90 @@
 
 .orderSummaryBox {
   background-color: var(--very-light-gray);
-  padding: 60px 12% 50px 40px;
+  padding: 60px 10% 50px 70px;
+}
+
+@media (min-width: 1600px) {
+}
+
+@media (min-width: 1250px) and (max-width: 1480px) {
+  .orderCompletionDataBox {
+    padding: 50px 70px 50px 8%;
+  }
+
+  .orderSummaryBox {
+    padding: 50px 8% 50px 70px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1249px) {
+  .orderCompletionBox {
+    flex-direction: column;
+  }
+
+  .orderCompletionBox > * {
+    width: 100%;
+  }
+
+  .orderCompletionDataBox {
+    padding: 50px 12%;
+  }
+
+  .orderSummaryBox {
+    padding: 50px 12%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .orderCompletionBox {
+    flex-direction: column;
+  }
+
+  .orderCompletionBox > * {
+    width: 100%;
+  }
+
+  .orderCompletionDataBox {
+    padding: 50px 12%;
+  }
+
+  .orderSummaryBox {
+    padding: 50px 12%;
+  }
+}
+
+@media (min-width: 546px) and (max-width: 767px) {
+  .orderCompletionBox {
+    flex-direction: column;
+  }
+
+  .orderCompletionBox > * {
+    width: 100%;
+  }
+
+  .orderCompletionDataBox {
+    padding: 50px 12%;
+  }
+
+  .orderSummaryBox {
+    padding: 50px 12%;
+  }
+}
+
+@media (max-width: 545px) {
+  .orderCompletionBox {
+    flex-direction: column;
+  }
+
+  .orderCompletionBox > * {
+    width: 100%;
+  }
+
+  .orderCompletionDataBox {
+    padding: 50px 12%;
+  }
+
+  .orderSummaryBox {
+    padding: 50px 12%;
+  }
 }
