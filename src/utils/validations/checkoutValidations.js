@@ -1,6 +1,9 @@
 import { z } from "zod";
 import { DEFAULT_SELECT_VALUE, INPUT_NAMES } from "../constants";
-import { DELIVERY_OPTIONS } from "../../pages/Checkout/constants";
+import {
+  DELIVERY_OPTIONS,
+  PAYMENT_OPTIONS,
+} from "../../pages/Checkout/constants";
 
 const checkoutSchema = z.object({
   email: z
@@ -46,7 +49,11 @@ const checkoutSchema = z.object({
   cellPhone: z.string().regex(/^\d{9}$/, {
     message: "El número de celular debe tener 9 dígitos números.",
   }),
-  paymentOption: z.string().min(1),
+  paymentOption: z.enum([
+    PAYMENT_OPTIONS[0].text,
+    PAYMENT_OPTIONS[1].text,
+    PAYMENT_OPTIONS[2].text,
+  ]),
 });
 
 export const validateCheckout = (checkoutData, selectedDelivery) => {
