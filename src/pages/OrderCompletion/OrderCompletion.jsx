@@ -56,7 +56,7 @@ export const OrderCompletion = () => {
   if (!orderData) return;
 
   return (
-    <div className={styles.orderCompletionBox}>
+    <div className={styles.orderCompletionBox} id="orderCompletionBox">
       <div className={styles.orderCompletionDataBox}>
         <h1 className={styles.storeName}>STYLE HUB</h1>
 
@@ -101,7 +101,7 @@ export const OrderCompletion = () => {
           </div>
         </div>
 
-        <div className={styles.orderDetailsBox}>
+        <div className={styles.orderDetailsBox} id="orderDetailsBox">
           <h2>Order details</h2>
           <div className={styles.orderDetailsDataBox}>
             <div>
@@ -170,7 +170,7 @@ export const OrderCompletion = () => {
           </Link>
         </div>
       </div>
-      <div className={styles.orderSummaryBox}>
+      <div className={styles.orderSummaryBox} id="orderSummaryBox">
         <OrderSummary
           shoppingCartProducts={orderData.productList}
           orderData={orderData}
