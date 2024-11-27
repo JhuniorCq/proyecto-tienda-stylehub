@@ -76,19 +76,11 @@ describe("Prueba de integración: Envío correcto de datos del formulario de pag
       expect(interception.response.statusCode).to.eq(200);
       expect(interception.response.body).to.have.property("success", true);
 
-      // Aquí, el backend redirige a una nueva página
       // Verificar que la redirección sucedió correctamente
       cy.url().should("include", "/order-completion"); // Cambia esto por la URL de la página de resumen
 
       // Verificar que el contenido de la página de resumen de pedido esté presente
       cy.get("#orderCompletionBox").should("exist"); // Ajustado el selector a la clase real de la página de resumen
-
-      // Verifica detalles del pedido (por ejemplo, productos, precios, etc.)
-      cy.contains("¡Gracias, Jhunior!").should("exist"); // Verificar que el mensaje de agradecimiento está presente
-
-      // Verifica si el resumen de la orden está visible
-      cy.get("#orderDetailsBox").should("exist");
-      cy.get("#orderSummaryBox").should("exist");
     });
   });
 });

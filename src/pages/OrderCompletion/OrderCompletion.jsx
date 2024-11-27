@@ -101,7 +101,7 @@ export const OrderCompletion = () => {
           </div>
         </div>
 
-        <div className={styles.orderDetailsBox} id="orderDetailsBox">
+        <div className={styles.orderDetailsBox}>
           <h2>Order details</h2>
           <div className={styles.orderDetailsDataBox}>
             <div>
@@ -170,7 +170,7 @@ export const OrderCompletion = () => {
           </Link>
         </div>
       </div>
-      <div className={styles.orderSummaryBox} id="orderSummaryBox">
+      <div className={styles.orderSummaryBox}>
         <OrderSummary
           shoppingCartProducts={orderData.productList}
           orderData={orderData}
