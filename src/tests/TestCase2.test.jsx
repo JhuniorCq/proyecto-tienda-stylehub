@@ -32,7 +32,7 @@ const validCheckoutData = {
 };
 
 describe("Envía datos correctos al backend al validar el formulario", () => {
-  it("Debe enviar los datos al backend usando postPaymentPaypal si el método de pago es Paypal", async () => {
+  it("Debe enviar los datos al backend para realizar el pedido", async () => {
     const { postData: postPaymentPaypal } = usePost();
 
     // Simular el envío de formulario

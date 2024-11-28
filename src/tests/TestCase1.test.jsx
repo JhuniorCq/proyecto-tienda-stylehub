@@ -4,7 +4,7 @@ import { INPUT_NAMES } from "../utils/constants";
 import { DEFAULT_SELECT_VALUE } from "../utils/constants";
 import { DELIVERY_OPTIONS, PAYMENT_OPTIONS } from "../pages/Checkout/constants";
 
-describe("validateInputCheckout", () => {
+describe("Debe validar cada uno de los inputs del formulario", () => {
   const validValues = {
     [INPUT_NAMES.EMAIL]: "usuario@correo.com",
     [INPUT_NAMES.DELIVERY_OPTION]: DELIVERY_OPTIONS[0].text,
