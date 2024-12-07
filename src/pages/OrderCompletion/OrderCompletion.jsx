@@ -62,7 +62,7 @@ export const OrderCompletion = () => {
 
         <div className={styles.thankyouBox}>
           <BsCartCheck className={styles.checkIcon} />
-          <p>¡Gracias, {orderData.firstName}!</p>
+          <p>¡Thank you, {orderData.firstName}!</p>
         </div>
 
         <div className={styles.orderReservedBox}>

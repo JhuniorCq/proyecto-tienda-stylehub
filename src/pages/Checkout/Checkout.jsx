@@ -101,10 +101,6 @@ export const Checkout = () => {
           productList: shoppingCartProducts,
           checkoutData: checkoutValidated.data,
         });
-
-        console.log(
-          "Estoy haciendo un POST a mi backend para hacer el pago con Paypal"
-        );
       } catch (error) {
         console.error("", error.message);
       }

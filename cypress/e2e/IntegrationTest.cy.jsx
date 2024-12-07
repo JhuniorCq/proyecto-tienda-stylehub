@@ -77,10 +77,10 @@ describe("Prueba de integración: Envío correcto de datos del formulario de pag
       expect(interception.response.body).to.have.property("success", true);
 
       // Verificar que la redirección sucedió correctamente
-      cy.url().should("include", "/order-completion"); // Cambia esto por la URL de la página de resumen
+      cy.url().should("include", "/order-completion");
 
       // Verificar que el contenido de la página de resumen de pedido esté presente
-      cy.get("#orderCompletionBox").should("exist"); // Ajustado el selector a la clase real de la página de resumen
+      cy.get("#orderCompletionBox").should("exist");
     });
   });
 });
