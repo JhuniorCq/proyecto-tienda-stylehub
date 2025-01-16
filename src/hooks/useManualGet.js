@@ -11,7 +11,7 @@ export const useManualGet = () => {
   const getData = async (url) => {
     if (!url) return;
 
-    setStateGet((prev) => ({ ...prev, loadingGet: true }));
+    setStateGet({ responseGet: null, loadingGet: true, errorGet: null });
     try {
       const { data } = await axios.get(url);
       setStateGet({
@@ -20,12 +20,13 @@ export const useManualGet = () => {
         errorGet: null,
       });
     } catch (error) {
+      const errorMessage = error.response?.data.message ?? error.message;
+
       setStateGet({
         responseGet: null,
         loadingGet: false,
-        errorGet: error.message,
+        errorGet: errorMessage,
       });
-      console.error("Error en getData: ", error.message);
     }
   };
 

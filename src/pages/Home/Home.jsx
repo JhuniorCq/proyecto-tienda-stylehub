@@ -33,7 +33,7 @@ const categoryList = [
     image: categoryElectronics,
   },
   {
-    title: "JEWELRY",
+    title: "JEWELERY",
     image: categoryJewelry,
   },
 ];
@@ -72,7 +72,6 @@ export const Home = () => {
 
       <PosterBox image={imagePoster} />
 
-      {/* Mover a otro componente */}
       {loadingProducts ? (
         <Loader />
       ) : (
@@ -81,7 +80,7 @@ export const Home = () => {
           <StoreSection
             id={PRODUCT_CATEGORIES.menClothing}
             productList={menClothingList}
-            sectionTitle="MEN'S CLOTHING"
+            sectionTitle={PRODUCT_CATEGORIES.menClothing.toUpperCase()}
             backgroundImage={backgroundMens}
           />
 
@@ -89,7 +88,7 @@ export const Home = () => {
           <StoreSection
             id={PRODUCT_CATEGORIES.womenClothing}
             productList={womenClothingList}
-            sectionTitle="WOMEN'S CLOTHING"
+            sectionTitle={PRODUCT_CATEGORIES.womenClothing.toUpperCase()}
             backgroundImage={backgroundWomens}
           />
 
@@ -97,7 +96,7 @@ export const Home = () => {
           <StoreSection
             id={PRODUCT_CATEGORIES.electronics}
             productList={electronicsList}
-            sectionTitle="ELECTRONICS"
+            sectionTitle={PRODUCT_CATEGORIES.electronics.toUpperCase()}
             backgroundImage={backgroundElectronics}
           />
 
@@ -105,7 +104,7 @@ export const Home = () => {
           <StoreSection
             id={PRODUCT_CATEGORIES.jewelery}
             productList={jeweleryList}
-            sectionTitle="JEWELRY"
+            sectionTitle={PRODUCT_CATEGORIES.jewelery.toUpperCase()}
             backgroundImage={backgroundJewelry}
           />
         </div>

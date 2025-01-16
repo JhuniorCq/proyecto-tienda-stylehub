@@ -19,10 +19,12 @@ export const usePost = () => {
         errorPost: null,
       });
     } catch (error) {
+      const errorMessage = error.response?.data.message ?? error.message;
+
       setStatePost({
         responsePost: null,
         loadingPost: false,
-        errorPost: error.message,
+        errorPost: errorMessage,
       });
       console.error("", error.message);
     }

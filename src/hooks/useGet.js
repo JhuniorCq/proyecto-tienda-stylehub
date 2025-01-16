@@ -9,7 +9,7 @@ export const useGet = (url) => {
   });
 
   const getData = async () => {
-    setStateGet((prev) => ({ ...prev, loadingGet: true }));
+    setStateGet({ responseGet: [], loadingGet: true, errorGet: null });
     try {
       const { data } = await axios.get(url);
 
@@ -19,10 +19,12 @@ export const useGet = (url) => {
         errorGet: null,
       });
     } catch (error) {
+      const errorMessage = error.response?.data.message ?? error.message;
+
       setStateGet({
         responseGet: null,
         loadingGet: false,
-        errorGet: error.message,
+        errorGet: errorMessage,
       });
       console.error("Error en getData: ", error.message);
     }
