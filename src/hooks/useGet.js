@@ -26,7 +26,7 @@ export const useGet = (url) => {
         loadingGet: false,
         errorGet: errorMessage,
       });
-      console.error("Error en getData: ", error.message);
+      console.error("Error en getData: ", errorMessage);
     }
   };
 

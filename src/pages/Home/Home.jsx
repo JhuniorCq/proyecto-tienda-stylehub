@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 import { StoreSection } from "../../components/StoreSection/StoreSection";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { ProductsContext } from "../../context/ProductsContext/ProductsContext";
 import { PRODUCT_CATEGORIES } from "../../utils/constants";
 import { StartSection } from "../../components/StartSection/StartSection";
@@ -42,23 +42,38 @@ export const Home = () => {
   const {
     responseGet: responseProducts,
     loadingGet: loadingProducts,
-    errorGet,
+    errorGet: errorProducts,
   } = useContext(ProductsContext);
 
-  const menClothingList = responseProducts.filter(
-    (product) => product.category === PRODUCT_CATEGORIES.menClothing
-  );
-  const womenClothingList = responseProducts.filter(
-    (product) => product.category === PRODUCT_CATEGORIES.womenClothing
-  );
+  const menClothingList = useMemo(() => {
+    if (!responseProducts || responseProducts.length === 0) return;
 
-  const electronicsList = responseProducts.filter(
-    (product) => product.category === PRODUCT_CATEGORIES.electronics
-  );
+    return responseProducts.filter(
+      (product) => product.category === PRODUCT_CATEGORIES.menClothing
+    );
+  }, [responseProducts]);
 
-  const jeweleryList = responseProducts.filter(
-    (product) => product.category === PRODUCT_CATEGORIES.jewelery
-  );
+  const womenClothingList = useMemo(() => {
+    if (!responseProducts || responseProducts.length === 0) return;
+
+    return responseProducts.filter(
+      (product) => product.category === PRODUCT_CATEGORIES.womenClothing
+    );
+  }, [responseProducts]);
+
+  const electronicsList = useMemo(() => {
+    if (!responseProducts || responseProducts.length === 0) return;
+    return responseProducts.filter(
+      (product) => product.category === PRODUCT_CATEGORIES.electronics
+    );
+  }, [responseProducts]);
+
+  const jeweleryList = useMemo(() => {
+    if (!responseProducts || responseProducts.length === 0) return;
+    return responseProducts.filter(
+      (product) => product.category === PRODUCT_CATEGORIES.jewelery
+    );
+  }, [responseProducts]);
 
   return (
     <div className={styles.boxHome}>
@@ -74,6 +89,8 @@ export const Home = () => {
 
       {loadingProducts ? (
         <Loader />
+      ) : errorProducts ? (
+        <p className={styles.errorMessageProducts}>{errorProducts}</p>
       ) : (
         <div className={styles.boxSections}>
           {/* LISTA DE PRODUCTOS DE HOMBRE */}
